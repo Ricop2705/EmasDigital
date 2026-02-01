@@ -1265,6 +1265,20 @@ function confirmVerification(){
   }, 120);
 }
 </script>
+<script>
+document.addEventListener("click", function(e){
+  const navMenu = document.getElementById("navMenu");
+  const hamburger = document.querySelector(".hamburger");
+
+  const klikDiMenu = navMenu.contains(e.target);
+  const klikDiHamburger = hamburger.contains(e.target);
+
+  if(!klikDiMenu && !klikDiHamburger){
+    navMenu.classList.remove("active");
+    hamburger.classList.remove("open");
+  }
+});
+</script>
 
 <script>
 const navMenu = document.getElementById("navMenu");
@@ -1296,6 +1310,7 @@ window.addEventListener("resize", () => {
 
 </body>
 </html>
+
 
 
 
