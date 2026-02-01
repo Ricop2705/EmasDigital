@@ -568,6 +568,16 @@ footer{
     height:28px;
   }
 }
+/* ANIMASI HAMBURGER */
+.hamburger.open span:nth-child(1){
+  transform:rotate(45deg) translate(5px,5px);
+}
+.hamburger.open span:nth-child(2){
+  opacity:0;
+}
+.hamburger.open span:nth-child(3){
+  transform:rotate(-45deg) translate(6px,-6px);
+}
 
 </style>
 </head>
@@ -1257,12 +1267,35 @@ function confirmVerification(){
 </script>
 
 <script>
+const navMenu = document.getElementById("navMenu");
+const hamburger = document.querySelector(".hamburger");
+
+/* TOGGLE HAMBURGER */
 function toggleMenu(){
-  document.getElementById("navMenu").classList.toggle("active");
+  navMenu.classList.toggle("active");
+  hamburger.classList.toggle("open");
 }
+
+/* TUTUP MENU SAAT LINK DIKLIK */
+document.querySelectorAll("#navMenu a").forEach(link => {
+  link.addEventListener("click", () => {
+    navMenu.classList.remove("active");
+    hamburger.classList.remove("open");
+  });
+});
+
+/* RESET SAAT RESIZE KE DESKTOP */
+window.addEventListener("resize", () => {
+  if(window.innerWidth > 768){
+    navMenu.classList.remove("active");
+    hamburger.classList.remove("open");
+  }
+});
 </script>
+
 
 </body>
 </html>
+
 
 
