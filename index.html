@@ -363,15 +363,106 @@ footer{
   50%{height:40px}
 }
 
+/* ===============================
+   RESPONSIVE MOBILE
+================================ */
+@media (max-width: 768px){
+
+  /* HERO */
+  .hero{
+    min-height:60vh;
+    padding:60px 24px;
+    background-position:center;
+  }
+
+  .hero-content{
+    max-width:100%;
+  }
+
+  .hero h1{
+    font-size:30px;
+    line-height:1.25;
+  }
+
+  .hero p{
+    font-size:16px;
+  }
+
+  .hero button{
+    padding:14px 28px;
+    font-size:15px;
+  }
+}
+@media (max-width: 768px){
+  nav{
+    padding:14px 20px;
+  }
+
+  nav ul{
+    gap:14px;
+    font-size:14px;
+  }
+
+  .nav-member{
+    padding:6px 14px;
+    font-size:13px;
+  }
+}
+@media (max-width: 768px){
+  .products{
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+
+  .card img{
+    height:200px;
+  }
+}
+@media (max-width: 768px){
+  #agePopup .box,
+  #verifyPopup > div{
+    width:90%;
+    max-width:360px;
+    padding:26px;
+  }
+
+  #verifyPopup h2{
+    font-size:20px;
+  }
+
+  #verifyPopup p{
+    font-size:14px;
+  }
+}
+@media (max-width: 768px){
+  #kontak{
+    text-align:center;
+  }
+
+  #kontak p{
+    font-size:14px;
+  }
+}
+@media (max-width: 768px){
+  button{
+    min-height:44px; /* standar sentuhan jari */
+  }
+}
+@media (hover: none){
+  button:hover{
+    filter:none;
+    transform:none;
+  }
+}
+
 </style>
 </head>
 <body>
 
 <div id="agePopup">
   <div class="box">
-    <h2>Peringantan !</h2>
-    <p>Website ini menyediakan layanan pembelian dan investasi emas digital serta fisik premium.
-Demi kepatuhan regulasi dan kenyamanan bersama, layanan ini hanya diperuntukkan bagi pengguna berusia 21 tahun ke atas.</p>
+    <h2>Konten 21+</h2>
+    <p>Website ini menjual perlengkapan keselamatan premium. Apakah Anda berusia 21 tahun ke atas?</p>
     <button id="yes">Ya, saya 21+</button>
     <button id="no">Tidak</button>
   </div>
@@ -1040,5 +1131,3 @@ function confirmVerification(){
 
 </body>
 </html>
-
-
