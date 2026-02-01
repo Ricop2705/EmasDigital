@@ -146,13 +146,9 @@ section{padding:72px 42px}
   border-radius:22px;overflow:hidden;position:relative;
   background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.06));
   border:1px solid rgba(246,231,178,.35);
-  box-shadow:0 24px 60px rgba(0,0,0,.45)
+ 
 }
-.card::after{
-  content:"";position:absolute;inset:auto -40% -60% -40%;height:120%;
-  background:linear-gradient(120deg,transparent,rgba(246,231,178,.35),transparent);
-  transform:rotate(-8deg)
-}
+
 .card img{width:100%;height:220px;object-fit:cover}
 .card .info{padding:22px}
 .card h3{margin:0 0 8px}
@@ -221,6 +217,7 @@ footer{
   opacity:1;
   animation:goldShimmer 1.2s linear forwards;
 }
+
 
 /* Button shimmer */
 .hero button, .card button, #yes, .login-box button{
@@ -477,7 +474,7 @@ footer{
       <li onclick="scrollToSection('keunggulan')">Keunggulan</li>
       <li onclick="scrollToSection('kontak')">Kontak</li>
       <li onclick="showLogin()">Login</li>
-      <li class="nav-member" onclick="scrollToSection('memberDashboard')">Membership</li>
+      <li class="nav-member" onclick="scrollToSection('membership')">Membership</li>
 
     </ul>
   </nav>
@@ -586,16 +583,17 @@ z-index:999;align-items:center;justify-content:center">
       <h3>GOLD MEMBER</h3>
       <p>Akses harga spesial & prioritas pembelian</p>
       <div class="price">Rp 99.000 / tahun</div>
-      <button>Gabung Gold</button> 
+      <button onclick="activateMembership('gold')">Aktifkan Membership</button>
     </div>
   </div>
+  
   <div class="card" style="border:2px solid #e5e4e2">
     <img src="https://images.unsplash.com/photo-1605792657660-596af9009e82">
     <div class="info">
       <h3>PLATINUM MEMBER</h3>
       <p>Harga terbaik, konsultasi & prioritas VIP</p>
       <div class="price">Rp 199.000 / tahun</div>
-      <button>Gabung Platinum</button>
+      <button onclick="activateMembership('platinum')">Aktifkan Membership</button>
     </div>
   </div>
 </div>
