@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+  <!-- SEO & SHARE PREVIEW -->
+<meta property="og:title" content="Emas Digital & Fisik Premium">
+<meta property="og:description" content="Investasi emas digital & fisik aman, transparan, dan bersertifikat internasional. Akses membership eksklusif.">
+<meta property="og:image" content="https://ricop2705.github.io/EmasDigital/assets/share.jpg">
+<meta property="og:url" content="https://ricop2705.github.io/EmasDigital/">
+<meta property="og:type" content="website">
+
+<!-- WhatsApp / Mobile -->
+<meta name="twitter:card" content="summary_large_image">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Emas Digital | Investasi Aman & Modern</title>
@@ -537,6 +547,27 @@ footer{
   transform:rotate(-45deg) translate(6px,-6px);
 }
 
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:700;
+  font-size:18px;
+  color:#fff;
+}
+
+.logo img{
+  width:32px;
+  height:32px;
+  object-fit:contain;
+}
+
+@media(max-width:768px){
+  .logo img{
+    width:28px;
+    height:28px;
+  }
+}
 
 </style>
 </head>
@@ -554,7 +585,10 @@ footer{
 <header>
 
   <nav class="navbar">
-  <div class="logo">EmasDigital</div>
+  <div class="logo">
+  <img src="https://github.com/Ricop2705/image/blob/main/logo.png?raw=true" alt="Emas Digital Logo">
+  <span>EmasDigital</span>
+</div>
 
   <!-- HAMBURGER -->
   <div class="hamburger" onclick="toggleMenu()">
@@ -1227,28 +1261,6 @@ function toggleMenu(){
   document.getElementById("navMenu").classList.toggle("active");
 }
 </script>
-<script>
-const navMenu = document.getElementById("navMenu");
-
-function toggleMenu(){
-  navMenu.classList.toggle("active");
-}
-
-/* 🔥 TUTUP MENU SAAT LINK DIKLIK */
-document.querySelectorAll("#navMenu a").forEach(link => {
-  link.addEventListener("click", () => {
-    navMenu.classList.remove("active");
-  });
-});
-</script>
-<script>
-document.addEventListener("click", e => {
-  if (!e.target.closest(".navbar")) {
-    navMenu.classList.remove("active");
-  }
-});
-</script>
 
 </body>
 </html>
-
