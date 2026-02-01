@@ -1227,6 +1227,28 @@ function toggleMenu(){
   document.getElementById("navMenu").classList.toggle("active");
 }
 </script>
+<script>
+const navMenu = document.getElementById("navMenu");
+
+function toggleMenu(){
+  navMenu.classList.toggle("active");
+}
+
+/* 🔥 TUTUP MENU SAAT LINK DIKLIK */
+document.querySelectorAll("#navMenu a").forEach(link => {
+  link.addEventListener("click", () => {
+    navMenu.classList.remove("active");
+  });
+});
+</script>
+<script>
+document.addEventListener("click", e => {
+  if (!e.target.closest(".navbar")) {
+    navMenu.classList.remove("active");
+  }
+});
+</script>
 
 </body>
 </html>
+
