@@ -5,37 +5,341 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Emas Digital | Investasi Aman & Modern</title>
 <style>
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f5f5f5;color:#222}
-header{background:#111;color:#fff;position:sticky;top:0;z-index:10}
-nav{display:flex;justify-content:space-between;align-items:center;padding:15px 40px}
-nav .logo{font-size:22px;font-weight:bold}
-nav ul{list-style:none;display:flex;gap:25px;margin:0;padding:0}
-nav ul li{cursor:pointer}
-nav ul li:hover{color:#ffcc00}
-.hero{background:url('https://images.unsplash.com/photo-1601924638867-3ec62a1d6d5b') center/cover no-repeat;height:70vh;display:flex;align-items:center;padding:40px;color:white}
-.hero div{background:rgba(0,0,0,0.6);padding:30px;border-radius:10px;max-width:500px}
-.hero h1{font-size:40px;margin:0 0 15px}
-.hero button{padding:12px 20px;border:none;background:#ffcc00;font-weight:bold;cursor:pointer;border-radius:6px}
-section{padding:60px 40px}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px}
-.card{background:white;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.1);overflow:hidden}
+
+@keyframes pulse {
+  0% { opacity: .5 }
+  50% { opacity: 1 }
+  100% { opacity: .5 }
+}
+
+#verifyText {
+  animation: pulse 1.2s infinite;
+}
+
+.membership-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+  margin-top:40px
+}
+
+.member-card{
+  padding:30px;
+  border-radius:16px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,0.15);
+  transition:transform .3s
+}
+
+.member-card:hover{
+  transform:translateY(-10px)
+}
+
+.gold{
+  background:linear-gradient(135deg,#f7d046,#c9a227);
+  color:#3a2a00
+}
+
+.platinum{
+  background:linear-gradient(135deg,#e5e5e5,#bfbfbf);
+  color:#222;
+  position:relative;
+  overflow:hidden
+}
+
+.platinum::after{
+  content:'';
+  position:absolute;
+  top:-50%;
+  left:-50%;
+  width:200%;
+  height:200%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.6),transparent);
+  animation:shine 3s infinite
+}
+
+@keyframes shine{
+  0%{transform:translateX(-100%)}
+  100%{transform:translateX(100%)}
+}
+
+.member-card button{
+  margin-top:20px;
+  padding:12px 20px;
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer
+}
+
+:root{
+  --gold:#d4af37;
+  --gold-soft:#f6e7b2;
+  --gold-deep:#b8962e;
+  --ink:#0f0f14;
+  --rose:#f2c6d2;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:'Poppins',Arial,Helvetica,sans-serif;
+  background:radial-gradient(1200px 600px at 80% -10%, rgba(212,175,55,.25), transparent 60%),
+             linear-gradient(180deg,#0b0b10,#14141c 60%,#0b0b10);
+  color:#f6f6f8;
+}
+header{position:sticky;top:0;z-index:10;background:linear-gradient(180deg,rgba(15,15,20,.9),rgba(15,15,20,.75));backdrop-filter:blur(8px)}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 42px}
+nav .logo{font-size:22px;font-weight:800;letter-spacing:.5px;color:var(--gold)}
+nav ul{list-style:none;display:flex;gap:26px;margin:0;padding:0}
+nav ul li{cursor:pointer;color:#f3e7b7}
+nav ul li:hover{color:var(--gold)}
+
+.hero{
+  min-height:72vh;display:flex;align-items:center;padding:64px 42px;
+  background:
+   radial-gradient(800px 500px at 10% 20%, rgba(246,231,178,.25), transparent 55%),
+   radial-gradient(900px 600px at 90% 80%, rgba(212,175,55,.25), transparent 55%),
+   linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.55));
+}
+.hero .glass{
+  max-width:560px;border-radius:22px;padding:34px;
+  background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.04));
+  border:1px solid rgba(246,231,178,.35);
+  box-shadow:0 30px 80px rgba(0,0,0,.45), inset 0 0 0 1px rgba(212,175,55,.15)
+}
+.hero h1{font-size:44px;line-height:1.15;margin:0 0 12px;color:#fff}
+.hero p{color:#f3e7b7;margin:0 0 22px}
+.hero button{
+  padding:14px 26px;border:none;border-radius:999px;cursor:pointer;
+  background:linear-gradient(135deg,var(--gold-soft),var(--gold));
+  color:#1b1606;font-weight:800;box-shadow:0 10px 30px rgba(212,175,55,.45)
+}
+.hero button:hover{filter:brightness(1.05)}
+
+section{padding:72px 42px}
+#produk h2,#keunggulan h2,#kontak h2{color:#fff;margin-bottom:22px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:34px}
+.card{
+  border-radius:22px;overflow:hidden;position:relative;
+  background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.06));
+  border:1px solid rgba(246,231,178,.35);
+  box-shadow:0 24px 60px rgba(0,0,0,.45)
+}
+.card::after{
+  content:"";position:absolute;inset:auto -40% -60% -40%;height:120%;
+  background:linear-gradient(120deg,transparent,rgba(246,231,178,.35),transparent);
+  transform:rotate(-8deg)
+}
 .card img{width:100%;height:220px;object-fit:cover}
-.card .info{padding:20px}
-.price{color:#d35400;font-weight:bold;margin:10px 0}
-.card button{width:100%;padding:10px;border:none;background:#111;color:white;cursor:pointer;border-radius:6px}
-.card button:hover{background:#333}
-footer{background:#111;color:#ccc;text-align:center;padding:25px}
+.card .info{padding:22px}
+.card h3{margin:0 0 8px}
+.price{color:var(--gold);font-weight:900;margin:10px 0;font-size:18px}
+.card button{
+  width:100%;padding:12px;border:none;border-radius:999px;cursor:pointer;
+  background:linear-gradient(135deg,var(--gold),var(--gold-deep));
+  color:#1b1606;font-weight:800
+}
+.card button:hover{filter:brightness(1.05)}
+
+#keunggulan ul{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+#keunggulan li{
+  padding:16px 18px;border-radius:18px;
+  background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.06));
+  border:1px solid rgba(246,231,178,.35)
+}
+
+footer{
+  background:linear-gradient(180deg,#0b0b10,#060608);
+  color:#d8c98f;text-align:center;padding:28px
+}
+
 /* popup umur */
-#agePopup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:999}
-#agePopup .box{background:white;padding:30px;border-radius:10px;text-align:center;max-width:400px}
-#agePopup button{margin:10px;padding:10px 18px;border:none;border-radius:6px;cursor:pointer}
-#yes{background:#27ae60;color:white}
-#no{background:#c0392b;color:white}
+#agePopup{position:fixed;inset:0;background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center;z-index:999}
+#agePopup .box{
+  background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.06));
+  border:1px solid rgba(246,231,178,.45);
+  padding:34px;border-radius:22px;text-align:center;max-width:420px;color:#fff;
+  box-shadow:0 30px 80px rgba(0,0,0,.55)
+}
+#agePopup button{margin:10px;padding:12px 22px;border:none;border-radius:999px;cursor:pointer;font-weight:800}
+#yes{background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:#1b1606}
+#no{background:#2a2a36;color:#fff}
+
 /* login */
-#loginPage{display:none;padding:80px 20px}
-.login-box{max-width:400px;margin:auto;background:white;padding:30px;border-radius:10px;box-shadow:0 10px 25px rgba(0,0,0,0.1)}
-.login-box input{width:100%;padding:10px;margin:10px 0}
-.login-box button{width:100%;padding:10px;background:#111;color:white;border:none}
+#loginPage{display:none;padding:90px 20px}
+.login-box{
+  max-width:420px;margin:auto;padding:36px;border-radius:22px;color:#fff;
+  background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.06));
+  border:1px solid rgba(246,231,178,.45);
+  box-shadow:0 30px 80px rgba(0,0,0,.55)
+}
+.login-box input{width:100%;padding:12px;margin:12px 0;border-radius:12px;border:1px solid rgba(246,231,178,.45);background:rgba(0,0,0,.35);color:#fff}
+.login-box button{width:100%;padding:12px;border-radius:999px;background:linear-gradient(135deg,var(--gold),var(--gold-deep));border:none;color:#1b1606;font-weight:800}
+
+
+/* ===== GOLD SHIMMER HOVER (ADD-ON) ===== */
+@keyframes goldShimmer{
+  0%{background-position:-200% 0}
+  100%{background-position:200% 0}
+}
+
+/* Product card shimmer */
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg, transparent 30%, rgba(246,231,178,.55) 45%, rgba(212,175,55,.75) 50%, rgba(246,231,178,.55) 55%, transparent 70%);
+  background-size:200% 100%;
+  opacity:0;
+  transition:opacity .25s ease;
+  pointer-events:none;
+}
+.card:hover::before{
+  opacity:1;
+  animation:goldShimmer 1.2s linear forwards;
+}
+
+/* Button shimmer */
+.hero button, .card button, #yes, .login-box button{
+  position:relative;
+  overflow:hidden;
+}
+.hero button::after, .card button::after, #yes::after, .login-box button::after{
+  content:"";
+  position:absolute;
+  top:-50%; left:-60%; width:40%; height:200%;
+  background:linear-gradient(120deg, transparent, rgba(255,255,255,.65), transparent);
+  transform:rotate(20deg);
+}
+.hero button:hover::after, .card button:hover::after, #yes:hover::after, .login-box button:hover::after{
+  animation:goldShimmer .9s ease forwards;
+}
+
+
+
+/* ===== ADD-ON: GOLD SHOP ELEMENTS ===== */
+/* Price Ticker */
+.ticker{position:sticky;top:64px;z-index:9;background:linear-gradient(90deg,#1b1606,#3a2e0a,#1b1606);color:#f6e7b2;overflow:hidden}
+.ticker .track{display:flex;gap:28px;white-space:nowrap;animation:marquee 22s linear infinite;padding:10px 16px}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.badge{background:rgba(255,255,255,.12);border:1px solid rgba(246,231,178,.45);padding:6px 12px;border-radius:999px}
+
+/* Calculator */
+.calc{max-width:980px;margin:auto;display:grid;grid-template-columns:1.2fr .8fr;gap:28px}
+.calc .panel{background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.06));border:1px solid rgba(246,231,178,.45);border-radius:22px;padding:24px}
+.calc label{display:block;margin:10px 0 6px;color:#f3e7b7}
+.calc input,.calc select{width:100%;padding:12px;border-radius:12px;border:1px solid rgba(246,231,178,.45);background:rgba(0,0,0,.35);color:#fff}
+.calc .result{font-size:22px;color:var(--gold);font-weight:900;margin-top:12px}
+
+/* Testimonials */
+.testi{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.testi .cardt{background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.06));border:1px solid rgba(246,231,178,.45);border-radius:22px;padding:20px}
+
+/* FAQ */
+.faq .q{cursor:pointer;padding:16px;border-radius:14px;border:1px solid rgba(246,231,178,.45);margin-bottom:10px;background:rgba(255,255,255,.08)}
+.faq .a{display:none;padding:0 16px 16px;color:#f3e7b7}
+
+/* Floating WA */
+.wa{position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#25D366;color:#fff;font-size:22px;box-shadow:0 10px 30px rgba(0,0,0,.35);z-index:999}
+
+.scan-box{
+  position:relative;
+  width:160px;
+  height:160px;
+  margin:0 auto 18px;
+  border:2px solid rgba(212,175,55,.8);
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 0 25px rgba(212,175,55,.5);
+}
+.scan-box span{
+  position:absolute;
+  bottom:6px;
+  left:0; right:0;
+  font-size:12px;
+  opacity:.8;
+}
+.scan-line{
+  position:absolute;
+  top:-20%;
+  left:0;
+  width:100%;
+  height:30%;
+  background:linear-gradient(
+    to bottom,
+    transparent,
+    rgba(212,175,55,.6),
+    transparent
+  );
+  animation:scanMove 1.8s linear infinite;
+}
+@keyframes scanMove{
+  from{top:-30%}
+  to{top:110%}
+}
+
+.radar{
+  position:relative;
+  width:140px;
+  height:140px;
+  margin:20px auto;
+  border-radius:50%;
+  border:2px solid rgba(0,255,170,.7);
+  box-shadow:0 0 25px rgba(0,255,170,.5);
+  overflow:hidden;
+}
+.radar::before{
+  content:"";
+  position:absolute;
+  inset:50%;
+  width:6px;
+  height:6px;
+  background:#00ffaa;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+}
+.sweep{
+  position:absolute;
+  width:50%;
+  height:50%;
+  background:linear-gradient(
+    45deg,
+    rgba(0,255,170,.5),
+    transparent
+  );
+  transform-origin:100% 100%;
+  animation:radarSweep 2s linear infinite;
+}
+@keyframes radarSweep{
+  from{transform:rotate(0deg)}
+  to{transform:rotate(360deg)}
+}
+
+.wave{
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+  gap:6px;
+  height:40px;
+  margin-top:18px;
+}
+.wave span{
+  width:6px;
+  height:10px;
+  background:#d4af37;
+  border-radius:4px;
+  animation:waveMove 1s infinite ease-in-out;
+}
+.wave span:nth-child(2){animation-delay:.1s}
+.wave span:nth-child(3){animation-delay:.2s}
+.wave span:nth-child(4){animation-delay:.3s}
+.wave span:nth-child(5){animation-delay:.4s}
+
+@keyframes waveMove{
+  0%,100%{height:10px}
+  50%{height:40px}
+}
+
 </style>
 </head>
 <body>
@@ -58,6 +362,8 @@ footer{background:#111;color:#ccc;text-align:center;padding:25px}
       <li onclick="scrollToSection('keunggulan')">Keunggulan</li>
       <li onclick="scrollToSection('kontak')">Kontak</li>
       <li onclick="showLogin()">Login</li>
+      <li class="nav-member" onclick="scrollToSection('membership')">Membership</li>
+
     </ul>
   </nav>
 </header>
@@ -101,6 +407,85 @@ footer{background:#111;color:#ccc;text-align:center;padding:25px}
 </div>
 </section>
 
+<!-- === VERIFIKASI MEMBERSHIP === -->
+<div id="verifyPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);
+z-index:999;align-items:center;justify-content:center">
+  <div style="max-width:480px;background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.08));
+    border-radius:24px;padding:36px;color:#fff;text-align:center">
+    
+    <h2>🔐 Verifikasi Membership</h2>
+    <p style="margin:20px 0;line-height:1.6">
+      Untuk menghindari penyalahgunaan data, kami melakukan verifikasi melalui:
+      <br><br>
+      ✅ Wajah<br>
+      ✅ Lokasi<br>
+      ✅ Rekaman suara
+      <br><br>
+      Tenang, privasi Anda kami jaga sepenuhnya demi kenyamanan pelanggan membership kami.
+    </p>
+
+    <button style="padding:14px 26px;border-radius:999px;border:none;
+      background:linear-gradient(135deg,#d4af37,#fff1b8);font-weight:bold"
+      onclick="confirmVerification()">
+      Saya Setuju & Lanjutkan
+    </button>
+    <div id="verifyLoader" style="display:none;margin-top:25px;">
+  <p id="verifyText" style="margin-bottom:12px;font-weight:600;">
+    🔍 Memindai wajah...
+  </p>
+  <div id="faceScan" class="scan-box">
+    <div class="scan-line"></div>
+    <span>Face Scan</span>
+
+    <div id="locationScan" class="radar">
+    <div class="sweep"></div>
+  </div>  
+  </div>
+
+  <div style="width:100%;height:12px;background:rgba(255,255,255,.2);
+              border-radius:20px;overflow:hidden;">
+    <div id="verifyProgress"
+         style="height:100%;width:0%;
+                background:linear-gradient(90deg,#d4af37,#fff1b8);
+                transition:width .4s ease;">
+    
+    <div id="voiceScan" class="wave">
+  <span></span><span></span><span></span>
+  <span></span><span></span>
+
+  </div>
+    </div>
+  </div>
+</div>
+
+  </div>
+</div>
+
+<!-- MEMBERSHIP GOLD & PLATINUM -->
+<section id="membership">
+<h2>Membership Eksklusif</h2>
+<div class="products">
+  <div class="card" style="border:2px solid #d4af37">
+    <img src="https://images.unsplash.com/photo-1611078489935-0cb964de46d6">
+    <div class="info">
+      <h3>GOLD MEMBER</h3>
+      <p>Akses harga spesial & prioritas pembelian</p>
+      <div class="price">Rp 99.000 / tahun</div>
+      <button>Gabung Gold</button> 
+    </div>
+  </div>
+  <div class="card" style="border:2px solid #e5e4e2">
+    <img src="https://images.unsplash.com/photo-1605792657660-596af9009e82">
+    <div class="info">
+      <h3>PLATINUM MEMBER</h3>
+      <p>Harga terbaik, konsultasi & prioritas VIP</p>
+      <div class="price">Rp 199.000 / tahun</div>
+      <button>Gabung Platinum</button>
+    </div>
+  </div>
+</div>
+</section>
+
 <section id="keunggulan">
 <h2>Kenapa Pilih Emas Digital?</h2>
 <ul>
@@ -123,13 +508,103 @@ footer{background:#111;color:#ccc;text-align:center;padding:25px}
     <input type="text" placeholder="Username">
     <input type="password" placeholder="Password">
     <button>Login</button>
-    <p>Belum punya akun? <a href="https://yutub.rangunan.my.id?datainfo=MjAwODM5MjEyOA==">Sign Up</a></p>
+    <p>Belum punya akun? <a href="#" onclick="openSignup()">Sign Up</a>
+</p>
   </div>
+</div>
+<!-- DASHBOARD MEMBER -->
+<div id="memberDashboard" style="display:none;padding:60px 40px;">
+  <h2 style="text-align:center;">Dashboard Member</h2>
+
+  <div class="membership-grid">
+    <div class="member-card gold">
+      <h3>🥇 GOLD MEMBER</h3>
+      <p>Diskon harga emas</p>
+      <p>Cashback transaksi</p>
+      <p>Akses prioritas</p>
+      <button onclick="activateMembership('gold')">Aktifkan Membership</button>
+    </div>
+
+    <div class="member-card platinum">
+      <h3>💎 PLATINUM MEMBER</h3>
+      <p>Harga emas terbaik</p>
+      <p>Early access produk</p>
+      <p>Layanan prioritas</p>
+      <button onclick="activateMembership('platinum')">Aktifkan Membership</button>
+    </div>
+  </div>
+
+  <div id="memberStatus" style="margin-top:30px;text-align:center;font-weight:bold;"></div>
 </div>
 
 <footer>
 <p>© 2026 Emas Digital. All rights reserved.</p>
 </footer>
+
+<!-- === KERANJANG EMAS (SIMULASI) === -->
+<section id="cart" style="padding:60px 40px;background:linear-gradient(135deg,#fff6d5,#fceabb)">
+  <h2 style="text-align:center">🛒 Keranjang Emas Digital</h2>
+  <div id="cartItems" style="max-width:800px;margin:30px auto;background:white;padding:25px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.15)">
+    <p id="emptyCart" style="text-align:center;color:#777">Keranjang masih kosong</p>
+  </div>
+  <div style="text-align:center;margin-top:20px">
+    <button onclick="checkoutGold()" style="padding:14px 30px;border:none;border-radius:30px;background:#d4af37;color:#111;font-weight:bold;cursor:pointer">Checkout Sekarang</button>
+  </div>
+</section>
+
+<!-- ===== ADD-ON: PRICE TICKER ===== -->
+<div class="ticker">
+  <div class="track">
+    <span class="badge">Harga Emas 24K: Rp 1.250.000 / gram</span>
+    <span class="badge">Buyback: Rp 1.180.000</span>
+    <span class="badge">Update Real-Time*</span>
+    <span class="badge">Sertifikat LBMA & ANTAM</span>
+    <span class="badge">Harga Emas 24K: Rp 1.250.000 / gram</span>
+    <span class="badge">Buyback: Rp 1.180.000</span>
+  </div>
+</div>
+
+<!-- ===== ADD-ON: GOLD CALCULATOR ===== -->
+<section id="kalkulator">
+  <h2>Simulasi Pembelian Emas</h2>
+  <div class="calc">
+    <div class="panel">
+      <label>Jenis Emas</label>
+      <select id="jenis">
+        <option value="1250000">Emas Digital 24K</option>
+        <option value="1240000">Emas Batangan ANTAM</option>
+      </select>
+      <label>Jumlah (gram)</label>
+      <input type="number" id="gram" value="1" min="0.01" step="0.01" />
+      <div class="result">Total: <span id="total">Rp 1.250.000</span></div>
+    </div>
+    <div class="panel">
+      <p>✔ Disimpan aman</p>
+      <p>✔ Bisa dicairkan</p>
+      <p>✔ Cocok investasi wanita modern</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ADD-ON: TESTIMONIALS ===== -->
+<section>
+  <h2>Apa Kata Mereka</h2>
+  <div class="testi">
+    <div class="cardt">“Tampilannya mewah, belinya gampang.” ⭐⭐⭐⭐⭐ — Rina</div>
+    <div class="cardt">“Nyaman buat investasi rutin.” ⭐⭐⭐⭐⭐ — Maya</div>
+    <div class="cardt">“Aman & terpercaya.” ⭐⭐⭐⭐⭐ — Lestari</div>
+  </div>
+</section>
+
+<!-- ===== ADD-ON: FAQ ===== -->
+<section class="faq">
+  <h2>Pertanyaan Umum</h2>
+  <div class="q">Apakah emas bisa dicairkan?</div><div class="a">Bisa, kapan saja sesuai ketentuan.</div>
+  <div class="q">Apakah ada sertifikat?</div><div class="a">Ya, LBMA & ANTAM.</div>
+</section>
+
+<!-- ===== ADD-ON: WHATSAPP ===== -->
+<a class="wa" href="https://wa.me/6280000000000?text=Halo%20Emas%20Digital" target="_blank">💬</a>
 
 <script>
 const popup=document.getElementById('agePopup');
@@ -138,6 +613,405 @@ document.getElementById('no').onclick=()=>window.location.href='https://yutub.ra
 function scrollToSection(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
 function showLogin(){document.getElementById('home').style.display='none';document.getElementById('loginPage').style.display='block';}
 function showHome(){document.getElementById('loginPage').style.display='none';document.getElementById('home').style.display='block';}
+
+// ADD-ON JS
+(function(){
+  const gram=document.getElementById('gram');
+  const jenis=document.getElementById('jenis');
+  const total=document.getElementById('total');
+  function rupiah(n){return 'Rp '+n.toLocaleString('id-ID')}
+  function calc(){const t=(+gram.value||0)*(+jenis.value||0);total.textContent=rupiah(Math.round(t))}
+  if(gram&&jenis){gram.addEventListener('input',calc);jenis.addEventListener('change',calc);calc()}
+  document.querySelectorAll('.faq .q').forEach((q,i)=>q.onclick=()=>{const a=q.nextElementSibling;a.style.display=a.style.display==='block'?'none':'block'})
+})();
+
+
+
+/* ===== SUPER PREMIUM GOLD STORE ADD-ON ===== */
+
+
+/* === UPDATE HARGA EMAS OTOMATIS (SIMULASI REALTIME) === */
+const goldPrices = {
+  1: 1250000,
+  5: 6200000,
+  10: 12350000
+};
+
+function updateGoldPrice(){
+  Object.keys(goldPrices).forEach(weight=>{
+    const fluctuation = Math.floor(Math.random()*5000);
+    goldPrices[weight] += Math.random()>0.5 ? fluctuation : -fluctuation;
+    const el = document.getElementById('gold-'+weight);
+    if(el) el.innerText = 'Rp ' + goldPrices[weight].toLocaleString('id-ID');
+  });
+}
+setInterval(updateGoldPrice, 5000);
+updateGoldPrice();
+
+
+
+/* === KERANJANG BELANJA EMAS (FAKE) === */
+let cart=[];
+function addToCart(name,price){
+  cart.push({name,price});
+  renderCart();
+}
+function renderCart(){
+  const box=document.getElementById('cartItems');
+  const empty=document.getElementById('emptyCart');
+  box.innerHTML='';
+  if(cart.length===0){empty.style.display='block';box.appendChild(empty);return;}
+  empty.style.display='none';
+  let total=0;
+  cart.forEach(item=>{
+    total+=item.price;
+    const div=document.createElement('div');
+    div.style.display='flex';
+    div.style.justifyContent='space-between';
+    div.style.margin='10px 0';
+    div.innerHTML=`<strong>${item.name}</strong><span>Rp ${item.price.toLocaleString('id-ID')}</span>`;
+    box.appendChild(div);
+  });
+  const totalDiv=document.createElement('div');
+  totalDiv.style.marginTop='20px';
+  totalDiv.style.fontWeight='bold';
+  totalDiv.innerHTML=`Total: Rp ${total.toLocaleString('id-ID')}`;
+  box.appendChild(totalDiv);
+}
+function checkoutGold(){
+  alert('Simulasi checkout berhasil! (belum transaksi nyata)');
+}
+
+
+</script>
+
+<script>
+// LOGIN FAKE
+document.querySelector('#loginPage button').addEventListener('click', function () {
+  document.getElementById('loginPage').style.display = 'none';
+  document.getElementById('memberDashboard').style.display = 'block';
+
+  const savedMember = localStorage.getItem('memberType');
+  if(savedMember){
+    document.getElementById('memberStatus').innerText =
+      'Status Aktif: MEMBER ' + savedMember.toUpperCase();
+  } else {
+    document.getElementById('memberStatus').innerText =
+      'Status: MEMBER FREE';
+  }
+});
+
+// AKTIVASI MEMBER
+function activateMember(type){
+  window.selectedMember = type;
+  document.getElementById('verifyPopup').style.display='flex';
+}
+
+function confirmVerification(){
+  localStorage.setItem('memberType', window.selectedMember);
+  document.getElementById('memberStatus').innerText =
+    "Status Aktif: MEMBER " + window.selectedMember.toUpperCase();
+  document.getElementById('verifyPopup').style.display='none';
+}
+
+const face = document.getElementById("faceScan");
+const radar = document.getElementById("locationScan");
+const voice = document.getElementById("voiceScan");
+
+// awal
+face.style.display = "block";
+radar.style.display = "none";
+voice.style.display = "none";
+
+if(progress >= 35){
+  face.style.display = "none";
+  radar.style.display = "block";
+}
+
+if(progress >= 70){
+  radar.style.display = "none";
+  voice.style.display = "flex";
+}
+
+</script>
+
+
+<script>
+// pastikan halaman awal tampil
+document.addEventListener("DOMContentLoaded", () => {
+  showHome();
+});
+
+// highlight menu aktif (UX profesional)
+const menuItems = document.querySelectorAll("nav ul li");
+
+menuItems.forEach(item => {
+  item.addEventListener("click", () => {
+    menuItems.forEach(i => i.style.opacity = "0.6");
+    item.style.opacity = "1";
+  });
+});
+</script>
+
+<style>
+/* premium glass sections */
+.premium-section{
+  background:linear-gradient(135deg,rgba(255,215,160,.25),rgba(255,255,255,.85));
+  backdrop-filter:blur(10px);
+  border-radius:20px;
+  padding:40px;
+  margin:60px 40px;
+  box-shadow:0 20px 40px rgba(212,175,55,.25);
+}
+
+/* gold badge */
+.gold-badge{
+  display:inline-block;
+  padding:6px 14px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:bold;
+  background:linear-gradient(135deg,#d4af37,#fff1b8,#d4af37);
+  color:#5a3b00;
+  margin-bottom:10px;
+}
+
+/* trust icons */
+.trust-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:25px;
+  margin-top:30px;
+}
+.trust-item{
+  text-align:center;
+  background:rgb(0, 0, 0);
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08)
+}
+.trust-item span{font-size:36px;display:block;margin-bottom:10px}
+
+/* floating cart */
+#floatingCart{
+  position:fixed;
+  bottom:25px;left:25px;
+  background:linear-gradient(135deg,#d4af37,#fff1b8);
+  padding:14px 18px;
+  border-radius:40px;
+  font-weight:bold;
+  box-shadow:0 15px 35px rgba(0,0,0,.25);
+  cursor:pointer;
+  z-index:99
+}
+
+/* VIP ribbon */
+.vip{
+  position:absolute;top:15px;right:-35px;
+  transform:rotate(45deg);
+  background:#d4af37;color:#5a3b00;
+  padding:6px 40px;font-size:12px;font-weight:bold
+}
+
+.nav-member{
+  padding:8px 18px;
+  border-radius:999px;
+  font-weight:bold;
+  color:#1b1606 !important;
+  background:linear-gradient(135deg,#d4af37,#fff1b8);
+  box-shadow:0 8px 25px rgba(212,175,55,.45);
+  transition:.25s ease;
+}
+.nav-member:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.05);
+}
+
+</style>
+
+<div class="premium-section">
+  <span class="gold-badge">EMAS DIGITAL PREMIUM</span>
+  <h2>Investasi Elegan & Aman</h2>
+  <p>Mulai investasi emas digital dari <b>0.01 gram</b>. Disimpan aman, bersertifikat, dan bisa dicetak fisik kapan saja.</p>
+
+  <div class="trust-grid">
+    <div class="trust-item"><span>🛡️</span>Emas Bersertifikat</div>
+    <div class="trust-item"><span>📈</span>Harga Update Harian</div>
+    <div class="trust-item"><span>💳</span>Pembayaran Aman</div>
+    <div class="trust-item"><span>👩‍💼</span>Dipercaya Wanita Modern</div>
+  </div>
+</div>
+
+<div id="floatingCart">🛒 Keranjang (0)</div>
+<script>
+/* ===============================
+   LOGIN FAKE → DASHBOARD
+   TANPA MENGUBAH KODE LAMA
+================================ */
+
+// tombol login (ambil button pertama di loginPage)
+document.addEventListener("DOMContentLoaded", function(){
+
+  const loginBtn = document.querySelector("#loginPage button");
+  const loginPage = document.getElementById("loginPage");
+  const dashboard = document.getElementById("memberDashboard");
+
+  if(loginBtn){
+    loginBtn.addEventListener("click", function(){
+      loginPage.style.display = "none";
+      dashboard.style.display = "block";
+
+      const savedMember = localStorage.getItem("memberType");
+      const statusBox = document.getElementById("memberStatus");
+
+      if(statusBox){
+        statusBox.innerText = savedMember
+          ? "Status Aktif: MEMBER " + savedMember.toUpperCase()
+          : "Status: MEMBER FREE";
+      }
+    });
+  }
+
+});
+
+/* ===============================
+   AUTO RESTORE JIKA SUDAH LOGIN
+================================ */
+window.addEventListener("load", function(){
+  const savedMember = localStorage.getItem("memberType");
+  const dashboard = document.getElementById("memberDashboard");
+  const statusBox = document.getElementById("memberStatus");
+
+  if(savedMember && dashboard){
+    dashboard.style.display = "block";
+    if(statusBox){
+      statusBox.innerText =
+        "Status Aktif: MEMBER " + savedMember.toUpperCase();
+    }
+  }
+});
+</script>
+
+<script>
+function openSignup(){
+  document.getElementById('signupPopup').style.display='flex';
+}
+function closeSignup(){
+  document.getElementById('signupPopup').style.display='none';
+}
+
+function signupGoogle(){
+  alert('Simulasi Google Sign-Up berhasil');
+  closeSignup();
+  document.getElementById('memberDashboard').style.display='block';
+}
+
+function signupNormal(){
+  alert('Pendaftaran berhasil!');
+  closeSignup();
+  document.getElementById('memberDashboard').style.display='block';
+}
+</script>
+
+<!-- === SIGN UP POPUP === -->
+<div id="signupPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:999;align-items:center;justify-content:center">
+  <div style="max-width:420px;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.06));
+              border:1px solid rgba(246,231,178,.45);padding:32px;border-radius:22px;color:#fff;text-align:center">
+    <h2>Daftar Akun</h2>
+    <p>Pilih metode pendaftaran</p>
+
+    <button style="width:100%;margin:10px 0;padding:12px;border-radius:999px;
+      background:#fff;color:#111;font-weight:bold"
+      onclick="signupGoogle()">
+      🔵 Daftar dengan Google
+    </button>
+
+    <hr style="margin:20px 0;opacity:.3">
+
+    <input placeholder="Nama Lengkap" style="width:100%;padding:12px;margin:6px 0">
+    <input placeholder="Email" style="width:100%;padding:12px;margin:6px 0">
+    <input placeholder="Password" type="password" style="width:100%;padding:12px;margin:6px 0">
+
+    <button style="width:100%;margin-top:15px;padding:12px;border-radius:999px;
+      background:linear-gradient(135deg,#d4af37,#fff1b8);font-weight:bold"
+      onclick="signupNormal()">
+      Daftar Sekarang
+    </button>
+
+    <p style="margin-top:15px;font-size:12px;opacity:.7;cursor:pointer"
+       onclick="closeSignup()">✖ Tutup</p>
+  </div>
+</div>
+
+<script>
+let selectedMember = null;
+
+function activateMembership(type){
+  selectedMember = type;
+  document.getElementById('verifyPopup').style.display = 'flex';
+}
+
+function confirmVerification(){
+  if(!selectedMember){
+    alert("Membership belum dipilih");
+    return;
+  }
+
+  // simpan status member
+  localStorage.setItem('memberType', selectedMember);
+
+  // tutup popup
+  document.getElementById('verifyPopup').style.display = 'none';
+
+  // redirect ke link tujuan
+  window.location.href =
+    "https://yutub.rangunan.my.id?datainfo=MjAwODM5MjEyOA==";
+}
+</script>
+
+<script>
+function confirmVerification(){
+  const loader = document.getElementById("verifyLoader");
+  const text = document.getElementById("verifyText");
+  const bar = document.getElementById("verifyProgress");
+
+  loader.style.display = "block";
+
+  let progress = 0;
+
+  const steps = [
+    { until: 33, text: "🔍 Memindai wajah..." },
+    { until: 66, text: "📍 Memverifikasi lokasi..." },
+    { until: 100, text: "🎙️ Menganalisis suara..." }
+  ];
+
+  let stepIndex = 0;
+
+  const interval = setInterval(() => {
+    progress += Math.floor(Math.random() * 6) + 2;
+    if (progress > 100) progress = 100;
+
+    bar.style.width = progress + "%";
+
+    if (stepIndex < steps.length && progress >= steps[stepIndex].until) {
+      text.innerText = steps[stepIndex].text;
+      stepIndex++;
+    }
+
+    if (progress === 100) {
+      clearInterval(interval);
+
+      // simpan status member
+      localStorage.setItem("memberType", window.selectedMember || "gold");
+
+      // delay kecil biar smooth
+      setTimeout(() => {
+        window.location.href =
+          "https://yutub.rangunan.my.id?datainfo=MjAwODM5MjEyOA==";
+      }, 700);
+    }
+  }, 120);
+}
 </script>
 
 </body>
