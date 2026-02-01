@@ -451,6 +451,92 @@ footer{
     transform:none;
   }
 }
+/* NAVBAR DASAR */
+.navbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 28px;
+  position:relative;
+}
+
+.nav-menu{
+  display:flex;
+  gap:26px;
+  list-style:none;
+}
+
+.nav-menu a{
+  text-decoration:none;
+  color:#fff;
+}
+
+/* HAMBURGER ICON */
+.hamburger{
+  display:none;
+  flex-direction:column;
+  gap:6px;
+  cursor:pointer;
+}
+
+.hamburger span{
+  width:26px;
+  height:3px;
+  background:#d4af37;
+  border-radius:3px;
+  transition:.3s;
+}
+
+@media (max-width: 768px){
+
+  /* HAMBURGER MUNCUL */
+  .hamburger{
+    display:flex;
+  }
+
+  /* MENU DISHIDE */
+  .nav-menu{
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    flex-direction:column;
+    background:#0b0b0b;
+    padding:20px;
+    gap:18px;
+
+    opacity:0;
+    transform:translateY(-10px);
+    pointer-events:none;
+    transition:.3s;
+  }
+
+  /* MENU AKTIF */
+  .nav-menu.active{
+    opacity:1;
+    transform:translateY(0);
+    pointer-events:auto;
+  }
+
+  .nav-menu a{
+    font-size:16px;
+  }
+
+  .nav-member{
+    text-align:center;
+  }
+}
+
+.nav-menu.active ~ .hamburger span:nth-child(1){
+  transform:rotate(45deg) translate(5px,5px);
+}
+.nav-menu.active ~ .hamburger span:nth-child(2){
+  opacity:0;
+}
+.nav-menu.active ~ .hamburger span:nth-child(3){
+  transform:rotate(-45deg) translate(6px,-6px);
+}
+
 
 </style>
 </head>
@@ -459,27 +545,36 @@ footer{
 <div id="agePopup">
   <div class="box">
     <h2>Peringatan !</h2>
-    <p>Platform ini menghadirkan layanan emas digital dan emas fisik bersertifikat internasional.
-  Untuk menjaga keamanan transaksi dan perlindungan data, akses hanya diberikan kepada
-  pengguna berusia <b>21 tahun ke atas</b>. Apakah Anda berusia 21 tahun ke atas?</p>
+    <p>Platform ini menghadirkan layanan emas digital dan emas fisik bersertifikat internasional. Untuk menjaga keamanan transaksi dan perlindungan data, akses hanya diberikan kepada pengguna berusia 21 tahun ke atas. Apakah Anda berusia 21 tahun ke atas?. Apakah Anda berusia 21 tahun ke atas?</p>
     <button id="yes">Ya, saya 21+</button>
     <button id="no">Tidak</button>
   </div>
 </div>
 
 <header>
-  <nav>
-    <div class="logo">EMAS•DIGITAL</div>
-    <ul>
-      <li onclick="showHome()">Beranda</li>
+
+  <nav class="navbar">
+  <div class="logo">EmasDigital</div>
+
+  <!-- HAMBURGER -->
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- MENU -->
+  <ul class="nav-menu" id="navMenu">
+   <li onclick="showHome()">Beranda</li>
       <li onclick="scrollToSection('produk')">Produk</li>
       <li onclick="scrollToSection('keunggulan')">Keunggulan</li>
       <li onclick="scrollToSection('kontak')">Kontak</li>
       <li onclick="showLogin()">Login</li>
       <li class="nav-member" onclick="scrollToSection('membership')">Membership</li>
-
-    </ul>
-  </nav>
+      </a>
+    </li>
+  </ul>
+</nav>
 </header>
 
 <div id="home">
@@ -637,14 +732,14 @@ z-index:999;align-items:center;justify-content:center">
       <p>Diskon harga emas</p>
       <p>Cashback transaksi</p>
       <p>Akses prioritas</p>
-     </div>
+    </div>
 
     <div class="member-card platinum">
       <h3>💎 PLATINUM MEMBER</h3>
       <p>Harga emas terbaik</p>
       <p>Early access produk</p>
       <p>Layanan prioritas</p>
-      </div>
+    </div>
   </div>
 
   <div id="memberStatus" style="margin-top:30px;text-align:center;font-weight:bold;"></div>
@@ -655,7 +750,7 @@ z-index:999;align-items:center;justify-content:center">
 </footer>
 
 <!-- === KERANJANG EMAS (SIMULASI) === -->
-<section id="cart" style="padding:60px 40px;background:linear-gradient(135deg,#fff6d5,#fceabb)">
+<section id="cart" style="padding:60px 40px;background:linear-gradient(135deg,#0b0b0b,#fcb502)">
   <h2 style="text-align:center">🛒 Keranjang Emas Digital</h2>
   <div id="cartItems" style="max-width:800px;margin:30px auto;background:white;padding:25px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.15)">
     <p id="emptyCart" style="text-align:center;color:#777">Keranjang masih kosong</p>
@@ -1127,7 +1222,11 @@ function confirmVerification(){
 }
 </script>
 
+<script>
+function toggleMenu(){
+  document.getElementById("navMenu").classList.toggle("active");
+}
+</script>
+
 </body>
 </html>
-
-
