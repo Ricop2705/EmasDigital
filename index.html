@@ -869,7 +869,7 @@ z-index:999;align-items:center;justify-content:center">
 </section>
 
 <!-- ===== ADD-ON: WHATSAPP ===== -->
-<a class="wa" href="https://wa.me/6280000000000?text=Halo%20Emas%20Digital" target="_blank">💬</a>
+<a class="wa" href="https://wa.me/6285717442694?text=Halo%20Emas%20Digital" target="_blank"><i class="fi fi-brands-whatsapp-circle"></i></a>
 
 <script>
 const popup=document.getElementById('agePopup');
@@ -913,39 +913,6 @@ function updateGoldPrice(){
 setInterval(updateGoldPrice, 5000);
 updateGoldPrice();
 
-
-
-/* === KERANJANG BELANJA EMAS (FAKE) === */
-let cart=[];
-function addToCart(name,price){
-  cart.push({name,price});
-  renderCart();
-}
-function renderCart(){
-  const box=document.getElementById('cartItems');
-  const empty=document.getElementById('emptyCart');
-  box.innerHTML='';
-  if(cart.length===0){empty.style.display='block';box.appendChild(empty);return;}
-  empty.style.display='none';
-  let total=0;
-  cart.forEach(item=>{
-    total+=item.price;
-    const div=document.createElement('div');
-    div.style.display='flex';
-    div.style.justifyContent='space-between';
-    div.style.margin='10px 0';
-    div.innerHTML=`<strong>${item.name}</strong><span>Rp ${item.price.toLocaleString('id-ID')}</span>`;
-    box.appendChild(div);
-  });
-  const totalDiv=document.createElement('div');
-  totalDiv.style.marginTop='20px';
-  totalDiv.style.fontWeight='bold';
-  totalDiv.innerHTML=`Total: Rp ${total.toLocaleString('id-ID')}`;
-  box.appendChild(totalDiv);
-}
-function checkoutGold(){
-  alert('Simulasi checkout berhasil! (belum transaksi nyata)');
-}
 
 
 </script>
@@ -1107,7 +1074,7 @@ menuItems.forEach(item => {
   </div>
 </div>
 
-<div id="FloatingCart">
+<div id="floatingCart">
   🛒 <span id="cartCount">0</span>
 </div>
 <script>
@@ -1409,11 +1376,11 @@ function renderCart(){
         Rp ${item.price.toLocaleString("id-ID")}
       </div>
       <div>
-        <button onclick="decreaseQty(${item.id})">−</button>
-        <button onclick="event.preventDefault(); addToCart(...)">
-        <strong>${item.qty}</strong>
-        <button onclick="increaseQty(${item.id})">+</button>
-        <button onclick="removeItem(${item.id})">🗑️</button>
+        <button type="button" onclick="decreaseQty(${item.id})">−</button>
+        <strong style="margin:0 8px">${item.qty}</strong>
+        <button type="button" onclick="increaseQty(${item.id})">+</button>
+        <button type="button" onclick="removeItem(${item.id})">🗑️</button>
+
       </div>
     `;
     box.appendChild(div);
