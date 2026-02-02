@@ -643,23 +643,31 @@ footer{
     <div class="info">
       <h3>Emas Antam 1 Gram</h3>
       <div class="price">Rp 3.150.000</div>
-      <button>Beli Sekarang</button>
+      <button onclick='addToCart({id:1,name:"Emas Antam 1 Gram",price:3150000})'>
+    Beli Sekarang
+  </button>
     </div>
   </div>
+
   <div class="card">
     <img src="https://github.com/Ricop2705/image/blob/main/EmasBatangan2gram.jpg?raw=true">
     <div class="info">
       <h3>Emas Antam 2 Gram</h3>
       <div class="price">Rp 6.280.000</div>
-      <button>Beli Sekarang</button>
+      <button onclick='addToCart({id:2,name:"Emas Antam 2 Gram",price:6280000})'>
+    Beli Sekarang
+  </button>
     </div>
   </div>
+
   <div class="card">
     <img src="https://github.com/Ricop2705/image/blob/main/EmasBatangan3gram.jpg?raw=true">
     <div class="info">
       <h3>Emas Antam 3 Gram</h3>
       <div class="price">Rp 9.400.000</div>
-      <button>Beli Sekarang</button>
+      <button onclick='addToCart({id:3,name:"Emas Antam 3 Gram",price:9400000})'>
+    Beli Sekarang
+  </button>
     </div>
   </div>
 </div>
@@ -801,8 +809,8 @@ z-index:999;align-items:center;justify-content:center">
 <!-- === KERANJANG EMAS (SIMULASI) === -->
 <section id="cart" style="padding:60px 40px;background:linear-gradient(135deg,#0b0b0b,#fcb502)">
   <h2 style="text-align:center">🛒 Keranjang Emas Digital</h2>
-  <div id="cartItems" style="max-width:800px;margin:30px auto;background:white;padding:25px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.15)">
-    <p id="emptyCart" style="text-align:center;color:#777">Keranjang masih kosong</p>
+  <div id="cartItems" style="max-width:800px;margin:30px auto;background:rgb(0, 0, 0);padding:25px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.15)">
+    <p id="emptyCart" style="text-align:center;color:#ffffff">Keranjang masih kosong</p>
   </div>
   <div style="text-align:center;margin-top:20px">
     <button onclick="checkoutGold()" style="padding:14px 30px;border:none;border-radius:30px;background:#d4af37;color:#111;font-weight:bold;cursor:pointer">Checkout Sekarang</button>
@@ -1052,14 +1060,14 @@ menuItems.forEach(item => {
 /* floating cart */
 #floatingCart{
   position:fixed;
-  bottom:25px;left:25px;
-  background:linear-gradient(135deg,#d4af37,#fff1b8);
-  padding:14px 18px;
-  border-radius:40px;
+  bottom:20px;
+  right:20px;
+  background:gold;
+  color:#000;
+  padding:12px 18px;
+  border-radius:30px;
+  display:none;
   font-weight:bold;
-  box-shadow:0 15px 35px rgba(0,0,0,.25);
-  cursor:pointer;
-  z-index:99
 }
 
 /* VIP ribbon */
@@ -1099,8 +1107,11 @@ menuItems.forEach(item => {
   </div>
 </div>
 
-<div id="floatingCart">🛒 Keranjang (0)</div>
+<div id="FloatingCart">
+  🛒 <span id="cartCount">0</span>
+</div>
 <script>
+
 /* ===============================
    LOGIN FAKE → DASHBOARD
    TANPA MENGUBAH KODE LAMA
@@ -1312,12 +1323,131 @@ window.addEventListener("resize", () => {
 });
 </script>
 
+<script>
+/* ===============================
+   CART GLOBAL (SATU-SATUNYA)
+================================ */
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+/* ===============================
+   ADD TO CART
+================================ */
+function addToCart(product){
+  const item = cart.find(i => i.id === product.id);
+  if(item){
+    item.qty++;
+  }else{
+    cart.push({...product, qty:1});
+  }
+  saveCart();
+  renderCart();
+  updateFloatingCart();
+}
+</script>
+
+<script>
+/* ===============================
+   QTY CONTROLS
+================================ */
+function increaseQty(id){
+  const item = cart.find(i => i.id === id);
+  if(item){
+    item.qty++;
+    saveCart();
+    renderCart();
+    updateFloatingCart();
+  }
+}
+
+function decreaseQty(id){
+  const item = cart.find(i => i.id === id);
+  if(!item) return;
+  item.qty--;
+  if(item.qty <= 0){
+    cart = cart.filter(i => i.id !== id);
+  }
+  saveCart();
+  renderCart();
+  updateFloatingCart();
+}
+
+function removeItem(id){
+  cart = cart.filter(i => i.id !== id);
+  saveCart();
+  renderCart();
+  updateFloatingCart();
+}
+
+/* ===============================
+   RENDER CART
+================================ */
+function renderCart(){
+  const box = document.getElementById("cartItems");
+  const empty = document.getElementById("emptyCart");
+  box.innerHTML = "";
+
+  if(cart.length === 0){
+    empty.style.display = "block";
+    return;
+  }
+  empty.style.display = "none";
+
+  let total = 0;
+
+  cart.forEach(item=>{
+    total += item.price * item.qty;
+
+    const div = document.createElement("div");
+    div.style.display="flex";
+    div.style.justifyContent="space-between";
+    div.style.alignItems="center";
+    div.style.margin="10px 0";
+
+    div.innerHTML = `
+      <div>
+        <strong>${item.name}</strong><br>
+        Rp ${item.price.toLocaleString("id-ID")}
+      </div>
+      <div>
+        <button onclick="decreaseQty(${item.id})">−</button>
+        <button onclick="event.preventDefault(); addToCart(...)">
+        <strong>${item.qty}</strong>
+        <button onclick="increaseQty(${item.id})">+</button>
+        <button onclick="removeItem(${item.id})">🗑️</button>
+      </div>
+    `;
+    box.appendChild(div);
+  });
+
+  const totalDiv = document.createElement("div");
+  totalDiv.style.marginTop="15px";
+  totalDiv.innerHTML = `<strong>Total: Rp ${total.toLocaleString("id-ID")}</strong>`;
+  box.appendChild(totalDiv);
+}
+
+/* ===============================
+   FLOATING CART
+================================ */
+function updateFloatingCart(){
+  const count = document.getElementById("cartCount");
+  const floating = document.getElementById("floatingCart");
+  const totalQty = cart.reduce((sum,i)=>sum+i.qty,0);
+  count.innerText = totalQty;
+  floating.style.display = totalQty>0 ? "block":"none";
+}
+
+/* ===============================
+   SAVE & INIT
+================================ */
+function saveCart(){
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  renderCart();
+  updateFloatingCart();
+});
+</script>
 
 </body>
 </html>
-
-
-
-
-
-
