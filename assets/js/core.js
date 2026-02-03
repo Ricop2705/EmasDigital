@@ -1,4 +1,3 @@
-
 (function(){
 if(window.__AUTO_CORE_LOADED__) return;
 window.__AUTO_CORE_LOADED__=true;
