@@ -1,4 +1,3 @@
-
 const popup=document.getElementById('agePopup');
 if(document.getElementById('yes')){
 document.getElementById('yes').onclick=()=>popup.style.display='none';
