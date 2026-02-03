@@ -3,12 +3,15 @@
 if(window.__AUTO_CORE_LOADED__) return;
 window.__AUTO_CORE_LOADED__=true;
 
-const modules=[
-"assets/js/ui.js",
-"assets/js/auth.js",
-"assets/js/cart.js",
-"assets/js/membership.js"
-];
+const BASE = location.hostname.includes("github.io")
+  ? "/EmasDigital/"
+  : "";
+
+load(BASE + "assets/js/ui.js");
+load(BASE + "assets/js/auth.js");
+load(BASE + "assets/js/cart.js");
+load(BASE + "assets/js/membership.js");
+
 
 function loadScript(src){
 return new Promise((resolve)=>{
