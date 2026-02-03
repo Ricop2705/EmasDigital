@@ -3,14 +3,15 @@
 if(window.__AUTO_CORE_LOADED__) return;
 window.__AUTO_CORE_LOADED__=true;
 
-const BASE = location.hostname.includes("github.io")
-  ? "/EmasDigital/"
-  : "";
+const modules = [
+ BASE + "assets/js/ui.js",
+ BASE + "assets/js/auth.js",
+ BASE + "assets/js/cart.js",
+ BASE + "assets/js/membership.js"
+];
 
-loadScript(BASE + "assets/js/ui.js");
-loadScript(BASE + "assets/js/auth.js");
-loadScript(BASE + "assets/js/cart.js");
-loadScript(BASE + "assets/js/membership.js");
+modules.forEach(loadScript);
+
 
 
 
