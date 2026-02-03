@@ -7,10 +7,11 @@ const BASE = location.hostname.includes("github.io")
   ? "/EmasDigital/"
   : "";
 
-load(BASE + "assets/js/ui.js");
-load(BASE + "assets/js/auth.js");
-load(BASE + "assets/js/cart.js");
-load(BASE + "assets/js/membership.js");
+loadScript(BASE + "assets/js/ui.js");
+loadScript(BASE + "assets/js/auth.js");
+loadScript(BASE + "assets/js/cart.js");
+loadScript(BASE + "assets/js/membership.js");
+
 
 
 function loadScript(src){
