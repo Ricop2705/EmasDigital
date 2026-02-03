@@ -3,16 +3,19 @@
 if(window.__AUTO_CORE_LOADED__) return;
 window.__AUTO_CORE_LOADED__=true;
 
+  const BASE = location.hostname.includes("github.io")
+  ? "/EmasDigital/"
+  : "";
 const modules=[
-"assets/js/ui.js",
-"assets/js/auth.js",
-"assets/js/cart.js",
-"assets/js/membership.js"
+ BASE + "assets/js/ui.js",
+ BASE + "assets/js/auth.js",
+ BASE + "assets/js/cart.js",
+ BASE + "assets/js/membership.js"
 ];
 
 modules.forEach(loadScript);
 
-
+})();
 
 
 function loadScript(src){
