@@ -33,4 +33,4 @@ if(window.renderCart) renderCart();
 if(window.updateFloatingCart) updateFloatingCart();
 }
 window.addEventListener("load",init);
-();
+;
