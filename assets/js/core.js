@@ -33,4 +33,3 @@ for(const m of modules){await loadScript(m);}
 if(window.renderCart) renderCart();
 if(window.updateFloatingCart) updateFloatingCart();
 }
-;
