@@ -2,9 +2,10 @@
 if(window.__AUTO_CORE_LOADED__) return;
 window.__AUTO_CORE_LOADED__=true;
 
-  const BASE = location.hostname.includes("github.io")
-  ? "/EmasDigital/"
-  : "";
+const BASE = location.pathname.includes("EmasDigital")
+ ? "/EmasDigital/"
+ : "";
+
 const modules=[
  BASE + "assets/js/ui.js",
  BASE + "assets/js/auth.js",
@@ -12,8 +13,9 @@ const modules=[
  BASE + "assets/js/membership.js"
 ];
 
-modules.forEach(loadScript);
-
+(function(){
+ if(window.__AUTO_CORE_LOADED__) return;
+ window.__AUTO_CORE_LOADED__=true;
 })();
 
 
