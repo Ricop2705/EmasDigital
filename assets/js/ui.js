@@ -16,3 +16,21 @@ if(!wa||!cart)return;
 wa.style.bottom=cart.style.display==="block"?"90px":"18px";
 }
 window.scrollToSection=scrollToSection;
+
+/* ===============================
+   NAVBAR TOGGLE MENU
+================================ */
+
+function toggleMenu(){
+  const navMenu = document.getElementById("navMenu");
+  const hamburger = document.querySelector(".hamburger");
+
+  if(!navMenu || !hamburger) return;
+
+  navMenu.classList.toggle("active");
+  hamburger.classList.toggle("open");
+}
+
+/* expose ke HTML onclick */
+window.toggleMenu = toggleMenu;
+
