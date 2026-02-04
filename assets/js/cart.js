@@ -160,16 +160,32 @@ function animateCart(){
 ================================ */
 function checkoutGold(){
 
-  if(cart.length === 0){
+  if(cart.length===0){
     if(typeof showToast==="function"){
       showToast("Keranjang kosong");
     }
     return;
   }
 
-  if(typeof openPayment==="function"){
-    openPayment();
+  /* FINTECH BUTTON LOADING */
+  const btn = document.querySelector("[onclick='checkoutGold()']");
+  if(btn){
+    btn.classList.add("fintech-loading");
+    btn.innerText="Memproses...";
   }
+
+  setTimeout(()=>{
+
+    if(typeof openPayment==="function"){
+      openPayment();
+    }
+
+    if(btn){
+      btn.classList.remove("fintech-loading");
+      btn.innerText="Checkout Sekarang";
+    }
+
+  },600);
 }
 
 /* ===============================
@@ -177,16 +193,31 @@ function checkoutGold(){
 ================================ */
 function payNow(method){
 
-  if(cart.length === 0){
-    alert("Keranjang kosong");
-    return;
-  }
+ if(cart.length===0){
+   alert("Keranjang kosong");
+   return;
+ }
 
-  if(typeof closePayment==="function"){
-    closePayment();
-  }
+ closePayment();
 
-  showProcessing();
+ setTimeout(()=>{
+   fintechProgress();
+   showProcessing();
+ },500);
+}
+
+/* REAL FINTECH PROGRESS */
+function fintechProgress(){
+
+  const panel=document.getElementById("successPanel");
+  if(!panel) return;
+
+  panel.style.opacity="0";
+  panel.classList.add("show");
+
+  setTimeout(()=>{
+    panel.style.opacity="1";
+  },200);
 }
 
 /* ===============================
