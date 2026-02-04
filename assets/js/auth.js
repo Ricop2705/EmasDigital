@@ -1,22 +1,33 @@
 /* =====================================
    ULTRA FINTECH AUTH ENGINE
 ===================================== */
+function getAuth(){
+ return document.getElementById("authPopup");
+}
 
-const authPopup = document.getElementById("authPopup");
 
 function openLogin(){
+
+ const authPopup = getAuth();
+ if(!authPopup) return;
+
  authPopup.classList.add("show");
- document.getElementById("authTitle").innerText="Login";
+
+ const title=document.getElementById("authTitle");
+ if(title) title.innerText="Login";
 }
 
 function openSignup(){
+
+ const authPopup = getAuth();
+ if(!authPopup) return;
+
  authPopup.classList.add("show");
- document.getElementById("authTitle").innerText="Sign Up";
+
+ const title=document.getElementById("authTitle");
+ if(title) title.innerText="Sign Up";
 }
 
-function closeAuth(){
- authPopup.classList.remove("show");
-}
 
 /* ==========================
    MANUAL LOGIN / SIGNUP
@@ -37,6 +48,12 @@ function loginManual(){
  showToast("Login berhasil 😈");
  closeAuth();
 
+}
+
+function closeAuth(){
+ const authPopup=getAuth();
+ if(!authPopup) return;
+ authPopup.classList.remove("show");
 }
 
 /* ==========================
