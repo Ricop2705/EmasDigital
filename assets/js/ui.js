@@ -52,3 +52,6 @@ function showToast(msg){
   setTimeout(()=>t.remove(),1600);
 }
 
+if(isMember()){
+ document.body.classList.add("vip-user");
+}
