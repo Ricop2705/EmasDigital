@@ -271,6 +271,88 @@ document.addEventListener("DOMContentLoaded",()=>{
  observer.observe(popup,{attributes:true});
 });
 
+/* =====================================
+   ULTRA SUPER APP AUTH ENGINE 😈🚀
+===================================== */
+
+/* CHECK LOGIN STATUS */
+function isLoggedIn(){
+ return !!localStorage.getItem("fintechUser");
+}
+
+/* LOCK CHECKOUT JIKA BELUM LOGIN */
+const oldCheckout = window.checkoutGold;
+
+window.checkoutGold = function(){
+
+ if(!isLoggedIn()){
+   showToast("Login dulu untuk checkout 😈");
+   openLogin();
+   return;
+ }
+
+ if(oldCheckout) oldCheckout();
+}
+
+/* STATUS MEMBER DI AVATAR */
+function showMemberBadge(){
+
+ const type = localStorage.getItem("memberType");
+ const avatar = document.getElementById("navUser");
+
+ if(!type || !avatar) return;
+
+ avatar.innerHTML += `
+   <span style="
+     margin-left:6px;
+     font-size:11px;
+     background:#111;
+     padding:3px 8px;
+     border-radius:10px;
+     border:1px solid #d4af37;
+   ">
+   ${type.toUpperCase()}
+   </span>
+ `;
+}
+
+/* AUTO DASHBOARD FEEL */
+function autoDashboard(){
+
+ const dash=document.getElementById("memberDashboard");
+ if(!dash) return;
+
+ if(isLoggedIn()){
+   dash.style.display="block";
+ }
+}
+
+/* MOTION EFFECT NAVBAR */
+function navbarGlow(){
+
+ const nav=document.querySelector("header");
+
+ if(!nav || !isLoggedIn()) return;
+
+ nav.style.boxShadow="0 0 20px rgba(212,175,55,.2)";
+}
+
+/* INIT SUPER APP */
+document.addEventListener("DOMContentLoaded",()=>{
+
+ if(isLoggedIn()){
+   const user=localStorage.getItem("fintechUser");
+
+   if(typeof updateUserUI==="function"){
+     updateUserUI(user);
+   }
+
+   showMemberBadge();
+   autoDashboard();
+   navbarGlow();
+ }
+
+});
 
 /* expose global agar onclick HTML bisa akses */
 window.openLogin = openLogin;
