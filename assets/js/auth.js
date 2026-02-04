@@ -1,61 +1,61 @@
+/* =====================================
+   ULTRA FINTECH AUTH ENGINE
+===================================== */
 
-function showLogin(){
-const home=document.getElementById('home');
-const login=document.getElementById('loginPage');
-if(home) home.style.display='none';
-if(login) login.style.display='block';
+const authPopup = document.getElementById("authPopup");
+
+function openLogin(){
+ authPopup.classList.add("show");
+ document.getElementById("authTitle").innerText="Login";
 }
-function showHome(){
-const home=document.getElementById('home');
-const login=document.getElementById('loginPage');
-if(home) home.style.display='block';
-if(login) login.style.display='none';
-}
+
 function openSignup(){
-const popup=document.getElementById("signupPopup");
-if(popup) popup.style.display="flex";
-}
-function closeSignup(){
-const popup=document.getElementById("signupPopup");
-if(popup) popup.style.display="none";
-}
-window.signupGoogle=function(){
-alert("Login Google berhasil 😈");
-closeSignup();
-document.getElementById("memberDashboard").style.display="block";
-}
-window.signupNormal=function(){
-const inputs=document.querySelectorAll("#signupPopup input");
-let valid=true;
-inputs.forEach(i=>{if(!i.value.trim()) valid=false;});
-if(!valid){alert("Lengkapi data terlebih dahulu");return;}
-alert("Pendaftaran berhasil!");
-closeSignup();
-document.getElementById("memberDashboard").style.display="block";
-}
-document.addEventListener("DOMContentLoaded",()=>{
-const loginBtn=document.querySelector('#loginPage button');
-if(loginBtn){
-loginBtn.addEventListener('click',()=>{
-const login=document.getElementById('loginPage');
-const dash=document.getElementById('memberDashboard');
-if(login) login.style.display='none';
-if(dash) dash.style.display='block';
-});
-}
-});
-
-/* ===============================
-   USER SESSION ENGINE
-================================ */
-
-function setUserSession(){
-  localStorage.setItem("isLogin","true");
+ authPopup.classList.add("show");
+ document.getElementById("authTitle").innerText="Sign Up";
 }
 
-function isLogged(){
-  return localStorage.getItem("isLogin")==="true";
+function closeAuth(){
+ authPopup.classList.remove("show");
 }
 
-/* expose global kalau dipakai HTML */
-window.setUserSession = setUserSession;
+/* ==========================
+   MANUAL LOGIN / SIGNUP
+========================== */
+
+function loginManual(){
+
+ const email=document.getElementById("authEmail").value;
+ const pass=document.getElementById("authPass").value;
+
+ if(!email || !pass){
+   showToast("Isi data dulu");
+   return;
+ }
+
+ localStorage.setItem("userEmail",email);
+
+ showToast("Login berhasil 😈");
+ closeAuth();
+
+}
+
+/* ==========================
+   GOOGLE LOGIN SIMULASI
+========================== */
+
+function loginGoogle(){
+
+ showToast("Menghubungkan Google...");
+
+ setTimeout(()=>{
+   localStorage.setItem("userEmail","google_user@gmail.com");
+   showToast("Login Google berhasil 🚀");
+   closeAuth();
+ },900);
+}
+
+/* expose global */
+window.openLogin=openLogin;
+window.openSignup=openSignup;
+window.loginManual=loginManual;
+window.loginGoogle=loginGoogle;
