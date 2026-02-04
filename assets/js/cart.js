@@ -1,199 +1,131 @@
-/* =================================================
-   ULTRA FINTECH CART ENGINE - STABLE CLEAN VERSION
-   TANPA MERUBAH SISTEM YANG SUDAH ADA
-================================================= */
-
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 /* ===============================
-   ADD TO CART
+   CART ENGINE
 ================================ */
+
 function addToCart(product){
 
-  const item = cart.find(i => i.id === product.id);
+  const item = cart.find(i=>i.id===product.id);
 
   if(item){
     item.qty++;
   }else{
-    cart.push({...product, qty:1});
+    cart.push({...product,qty:1});
   }
 
   saveCart();
   renderCart();
   updateFloatingCart();
-  animateCart();
-   
-   if(window.ultraCartPulse) ultraCartPulse();
 
   if(typeof showToast==="function"){
     showToast("Produk masuk keranjang 🛒");
   }
+
+  if(typeof ultraCartPulse==="function"){
+    ultraCartPulse();
+  }
 }
 
-/* ===============================
-   QTY CONTROL
-================================ */
 function increaseQty(id){
-  const item = cart.find(i => i.id === id);
-  if(!item) return;
-
-  item.qty++;
-  saveCart();
-  renderCart();
-  updateFloatingCart();
+ const item=cart.find(i=>i.id===id);
+ if(!item)return;
+ item.qty++;
+ saveCart();renderCart();updateFloatingCart();
 }
 
 function decreaseQty(id){
-  const item = cart.find(i => i.id === id);
-  if(!item) return;
-
-  item.qty--;
-
-  if(item.qty <= 0){
-    cart = cart.filter(i => i.id !== id);
-  }
-
-  saveCart();
-  renderCart();
-  updateFloatingCart();
+ const item=cart.find(i=>i.id===id);
+ if(!item)return;
+ item.qty--;
+ if(item.qty<=0){
+   cart=cart.filter(i=>i.id!==id);
+ }
+ saveCart();renderCart();updateFloatingCart();
 }
 
 function removeItem(id){
-  cart = cart.filter(i => i.id !== id);
-  saveCart();
-  renderCart();
-  updateFloatingCart();
+ cart=cart.filter(i=>i.id!==id);
+ saveCart();renderCart();updateFloatingCart();
 }
 
-/* ===============================
-   RENDER CART
-================================ */
 function renderCart(){
 
-  const box = document.getElementById("cartItems");
-  const empty = document.getElementById("emptyCart");
+ const box=document.getElementById("cartItems");
+ const empty=document.getElementById("emptyCart");
+ if(!box)return;
 
-  if(!box) return;
+ box.innerHTML="";
 
-  box.innerHTML = "";
+ if(cart.length===0){
+   if(empty) empty.style.display="block";
+   return;
+ }
 
-  if(cart.length === 0){
-    if(empty) empty.style.display="block";
-    return;
-  }
+ if(empty) empty.style.display="none";
 
-  if(empty) empty.style.display="none";
+ let total=0;
 
-  let total = 0;
+ cart.forEach(item=>{
+   total+=item.price*item.qty;
 
-  cart.forEach(item => {
+   const div=document.createElement("div");
 
-    total += item.price * item.qty;
+   div.innerHTML=`
+   <div style="display:flex;justify-content:space-between;margin:10px 0">
+     <div>
+       <strong>${item.name}</strong><br>
+       Rp ${item.price.toLocaleString("id-ID")}
+     </div>
+     <div>
+       <button onclick="decreaseQty(${item.id})">−</button>
+       <strong style="margin:0 8px">${item.qty}</strong>
+       <button onclick="increaseQty(${item.id})">+</button>
+       <button onclick="removeItem(${item.id})">🗑️</button>
+     </div>
+   </div>`;
+   box.appendChild(div);
+ });
 
-    const div = document.createElement("div");
-    div.style.display="flex";
-    div.style.justifyContent="space-between";
-    div.style.alignItems="center";
-    div.style.margin="10px 0";
-
-    div.innerHTML = `
-      <div>
-        <strong>${item.name}</strong><br>
-        Rp ${item.price.toLocaleString("id-ID")}
-      </div>
-      <div>
-        <button onclick="decreaseQty(${item.id})">−</button>
-        <strong style="margin:0 8px">${item.qty}</strong>
-        <button onclick="increaseQty(${item.id})">+</button>
-        <button onclick="removeItem(${item.id})">🗑️</button>
-      </div>
-    `;
-
-    box.appendChild(div);
-  });
-
-  const totalDiv = document.createElement("div");
-  totalDiv.style.marginTop="15px";
-  totalDiv.innerHTML =
-    `<strong>Total: Rp ${total.toLocaleString("id-ID")}</strong>`;
-
-  box.appendChild(totalDiv);
-
-  updatePaymentTotal(); // sync total ke payment panel
+ const totalDiv=document.createElement("div");
+ totalDiv.innerHTML=`<strong>Total: Rp ${total.toLocaleString("id-ID")}</strong>`;
+ box.appendChild(totalDiv);
 }
 
-/* ===============================
-   FLOATING CART
-================================ */
 function updateFloatingCart(){
+ const count=document.getElementById("cartCount");
+ const floating=document.getElementById("floatingCart");
+ if(!count||!floating)return;
 
-  const count = document.getElementById("cartCount");
-  const floating = document.getElementById("floatingCart");
+ const totalQty=cart.reduce((sum,i)=>sum+i.qty,0);
+ count.innerText=totalQty;
+ floating.style.display=totalQty>0?"block":"none";
 
-  if(!count || !floating) return;
-
-  const totalQty = cart.reduce((sum,i)=>sum+i.qty,0);
-
-  count.innerText = totalQty;
-  floating.style.display = totalQty>0 ? "block":"none";
-
-  if(typeof ultraFloatEngine==="function"){
-    ultraFloatEngine();
-  }
+ if(typeof ultraFloatEngine==="function"){
+   ultraFloatEngine();
+ }
 }
 
 function saveCart(){
-  localStorage.setItem("cart", JSON.stringify(cart));
+ localStorage.setItem("cart",JSON.stringify(cart));
 }
 
 /* ===============================
-   MINI ANIMATION
+   REAL FINTECH CHECKOUT FLOW
 ================================ */
-function animateCart(){
-  const el = document.getElementById("floatingCart");
-  if(!el) return;
 
-  el.style.transform="scale(1.18)";
-  setTimeout(()=> el.style.transform="scale(1)",200);
-}
-
-/* ===============================
-   REAL CHECKOUT FLOW
-================================ */
 function checkoutGold(){
 
-   const btn=document.querySelector('[onclick="checkoutGold()"]');
-if(btn && window.setLoading){
-  setLoading(btn,true,"Membuka Pembayaran...");
+ if(cart.length===0){
+   showToast("Keranjang kosong");
+   return;
+ }
+
+ if(typeof openPayment==="function"){
+   openPayment();
+ }
 }
 
-  if(cart.length===0){
-    if(typeof showToast==="function"){
-      showToast("Keranjang kosong");
-    }
-    return;
-  }
-
-  /* FINTECH BUTTON LOADING */
-  const btn = document.querySelector("[onclick='checkoutGold()']");
-  if(btn){
-    btn.classList.add("fintech-loading");
-    btn.innerText="Memproses...";
-  }
-
-  setTimeout(()=>{
-
-  if(btn){
-      btn.classList.remove("fintech-loading");
-      btn.innerText="Checkout Sekarang";
-    }
-
-  },600);
-}
-
-/* ===============================
-   PAYMENT FLOW ENGINE
-================================ */
 function payNow(method){
 
  if(cart.length===0){
@@ -201,84 +133,44 @@ function payNow(method){
    return;
  }
 
- setTimeout(()=>{
-   fintechProgress();
-   showProcessing();
- },500);
+ if(typeof closePayment==="function"){
+   closePayment();
+ }
+
+ showProcessing();
 }
 
-/* REAL FINTECH PROGRESS */
-function fintechProgress(){
-
-  const panel=document.getElementById("successPanel");
-  if(!panel) return;
-
-  panel.style.opacity="0";
-  panel.classList.add("show");
-
-  setTimeout(()=>{
-    panel.style.opacity="1";
-  },200);
-}
-
-/* ===============================
-   FINTECH SUCCESS FLOW
-================================ */
 function showProcessing(){
 
-  const panel = document.getElementById("successPanel");
-  const order = document.getElementById("orderId");
-   
-  if(!panel) return;
+ const panel=document.getElementById("successPanel");
+ const order=document.getElementById("orderId");
 
-  const orderNumber =
-    "ORD-" + Date.now().toString().slice(-6);
+ const orderNumber="ORD-"+Date.now().toString().slice(-6);
 
-  if(order){
-    order.innerText = "Nomor Order: " + orderNumber;
-     
-   const panel=document.getElementById("successPanel");
-if(panel) panel.classList.add("show");
+ if(order){
+   order.innerText="Nomor Order: "+orderNumber;
+ }
 
-  }
+ if(panel){
+   panel.classList.add("show");
+ }
 
-  panel.classList.add("show");
-   showToast("Transaksi berhasil 🎉");
-
-
-  cart = [];
-  saveCart();
-  renderCart();
-  updateFloatingCart();
+ cart=[];
+ saveCart();
+ renderCart();
+ updateFloatingCart();
 }
 
 function closeSuccess(){
-  const panel = document.getElementById("successPanel");
-  if(panel) panel.classList.remove("show");
+ const panel=document.getElementById("successPanel");
+ if(panel) panel.classList.remove("show");
 }
 
-/* ===============================
-   PAYMENT TOTAL SYNC
-================================ */
-function updatePaymentTotal(){
-
-  const el = document.getElementById("paymentTotal");
-  if(!el) return;
-
-  const total =
-    cart.reduce((sum,i)=>sum+(i.price*i.qty),0);
-
-  el.innerText =
-    "Total Bayar: Rp " + total.toLocaleString("id-ID");
-}
-
-/* ===============================
-   GLOBAL EXPOSE (WAJIB)
-================================ */
-window.addToCart = addToCart;
-window.increaseQty = increaseQty;
-window.decreaseQty = decreaseQty;
-window.removeItem = removeItem;
-window.checkoutGold = checkoutGold;
-window.payNow = payNow;
-window.closeSuccess = closeSuccess;
+/* expose global */
+window.addToCart=addToCart;
+window.increaseQty=increaseQty;
+window.decreaseQty=decreaseQty;
+window.removeItem=removeItem;
+window.checkoutGold=checkoutGold;
+window.payNow=payNow;
+window.closeSuccess=closeSuccess;
