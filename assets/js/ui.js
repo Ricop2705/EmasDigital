@@ -124,3 +124,53 @@ document.querySelectorAll("#navMenu li").forEach(li=>{
    li.classList.add("active");
  });
 });
+
+/* ===============================
+ ULTRA FINTECH MOTION ENGINE
+================================ */
+
+// Slide payment panel
+function openPayment(){
+ const panel=document.getElementById("paymentPanel");
+ if(panel){
+   panel.classList.add("show");
+ }
+}
+
+function closePayment(){
+ const panel=document.getElementById("paymentPanel");
+ if(panel){
+   panel.classList.remove("show");
+ }
+}
+
+// Scroll reveal animation
+function ultraReveal(){
+ document.querySelectorAll(".card,.trust-box,.member-card").forEach(el=>{
+   el.classList.add("motion-slide-up");
+ });
+
+ const obs=new IntersectionObserver(entries=>{
+   entries.forEach(entry=>{
+     if(entry.isIntersecting){
+       entry.target.classList.add("motion-show");
+     }
+   });
+ });
+
+ document.querySelectorAll(".motion-slide-up").forEach(el=>obs.observe(el));
+}
+
+// Floating cart pulse
+function ultraCartPulse(){
+ const cart=document.getElementById("floatingCart");
+ if(!cart) return;
+ cart.style.transform="scale(1.15)";
+ setTimeout(()=>cart.style.transform="scale(1)",180);
+}
+
+window.openPayment=openPayment;
+window.closePayment=closePayment;
+window.ultraCartPulse=ultraCartPulse;
+
+document.addEventListener("DOMContentLoaded",ultraReveal);
