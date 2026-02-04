@@ -71,8 +71,11 @@ function loginGoogle(){
  },900);
 }
 
-/* expose global */
-window.openLogin=openLogin;
-window.openSignup=openSignup;
-window.loginManual=loginManual;
-window.loginGoogle=loginGoogle;
+/* expose global agar onclick HTML bisa akses */
+window.openLogin = openLogin;
+window.openSignup = openSignup;
+window.loginManual = loginManual;
+window.loginGoogle = loginGoogle;
+window.closeAuth = closeAuth;
+
+
