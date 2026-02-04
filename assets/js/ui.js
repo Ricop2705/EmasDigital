@@ -80,3 +80,10 @@ function closeCartPanel(){
 window.openCartPanel=openCartPanel;
 window.closeCartPanel=closeCartPanel;
 
+/* NAVBAR SHAKE ON CHECKOUT */
+document.addEventListener("click",e=>{
+ if(e.target && e.target.innerText==="Checkout Sekarang"){
+   document.body.classList.add("checkout-active");
+   setTimeout(()=>document.body.classList.remove("checkout-active"),500);
+ }
+});
