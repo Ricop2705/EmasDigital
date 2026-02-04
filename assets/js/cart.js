@@ -183,11 +183,7 @@ if(btn && window.setLoading){
 
   setTimeout(()=>{
 
-    if(typeof openPayment==="function"){
-      openPayment();
-    }
-
-    if(btn){
+  if(btn){
       btn.classList.remove("fintech-loading");
       btn.innerText="Checkout Sekarang";
     }
@@ -204,8 +200,6 @@ function payNow(method){
    alert("Keranjang kosong");
    return;
  }
-
- closePayment();
 
  setTimeout(()=>{
    fintechProgress();
@@ -277,29 +271,6 @@ function updatePaymentTotal(){
   el.innerText =
     "Total Bayar: Rp " + total.toLocaleString("id-ID");
 }
-
-/* HARD FALLBACK PAYMENT ENGINE
-   supaya checkout tidak mati di GitHub Pages */
-
-if(typeof openPayment !== "function"){
-
-  window.openPayment = function(){
-    const p = document.getElementById("paymentPanel");
-    if(p){
-      p.classList.add("show");
-    }else{
-      console.warn("paymentPanel tidak ditemukan");
-    }
-  };
-
-  window.closePayment = function(){
-    const p = document.getElementById("paymentPanel");
-    if(p){
-      p.classList.remove("show");
-    }
-  };
-}
-
 
 /* ===============================
    GLOBAL EXPOSE (WAJIB)
