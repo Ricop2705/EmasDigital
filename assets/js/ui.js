@@ -181,3 +181,27 @@ document.addEventListener("DOMContentLoaded",ultraReveal);
  console.log("ULTRA CORE READY");
 })();
 
+/* ===============================
+   NAVIGATION ENGINE FIX
+================================ */
+
+function showHome(){
+  const home=document.getElementById("home");
+  const login=document.getElementById("loginPage");
+
+  if(home) home.style.display="block";
+  if(login) login.style.display="none";
+}
+
+function showLogin(){
+  const home=document.getElementById("home");
+  const login=document.getElementById("loginPage");
+
+  if(home) home.style.display="none";
+  if(login) login.style.display="block";
+}
+
+/* expose global supaya onclick HTML bisa akses */
+window.showHome = showHome;
+window.showLogin = showLogin;
+
