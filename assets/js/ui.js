@@ -52,9 +52,10 @@ function showToast(msg){
   setTimeout(()=>t.remove(),1600);
 }
 
-if(isMember()){
- document.body.classList.add("vip-user");
+if(typeof isMember === "function" && isMember()){
+  document.body.classList.add("vip-user");
 }
+
 
 document.querySelectorAll("#navMenu li").forEach(li=>{
  li.addEventListener("click",()=>{
