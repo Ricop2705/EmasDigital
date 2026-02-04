@@ -62,3 +62,21 @@ document.querySelectorAll("#navMenu li").forEach(li=>{
    navMenu.classList.remove("active");
  });
 });
+
+/* ===============================
+   MINI CART SLIDE PANEL
+================================ */
+
+function openCartPanel(){
+  const panel=document.getElementById("cartPanel");
+  if(panel) panel.classList.add("show");
+}
+
+function closeCartPanel(){
+  const panel=document.getElementById("cartPanel");
+  if(panel) panel.classList.remove("show");
+}
+
+window.openCartPanel=openCartPanel;
+window.closeCartPanel=closeCartPanel;
+
