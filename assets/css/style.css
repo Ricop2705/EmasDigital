@@ -711,3 +711,22 @@ header{
   border:1px solid rgba(212,175,55,.4);
   box-shadow:0 25px 70px rgba(0,0,0,.6);
 }
+
+/* Mini Cart Slide Panel */
+.cart-panel{
+ position:fixed;
+ right:-420px;
+ top:0;
+ width:380px;
+ height:100%;
+ background:#111;
+ color:#fff;
+ transition:.35s;
+ z-index:9999;
+ padding:20px;
+ overflow:auto;
+}
+
+.cart-panel.show{
+ right:0;
+}
