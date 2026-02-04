@@ -790,4 +790,25 @@ header{
  color:#fff;
 }
 
+/* FINTECH CHECKOUT PANEL */
+.payment-panel{
+  position:fixed;
+  left:0;
+  bottom:-100%;
+  width:100%;
+  height:100%;
+  background:#0a0a0a;
+  z-index:9999;
+  transition:bottom .45s ease;
+}
+
+.payment-panel.show{
+  bottom:0;
+}
+
+/* BUTTON LOADING */
+.fintech-loading{
+  opacity:.7;
+  pointer-events:none;
+}
 
