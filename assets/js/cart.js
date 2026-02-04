@@ -234,6 +234,29 @@ function updatePaymentTotal(){
     "Total Bayar: Rp " + total.toLocaleString("id-ID");
 }
 
+/* HARD FALLBACK PAYMENT ENGINE
+   supaya checkout tidak mati di GitHub Pages */
+
+if(typeof openPayment !== "function"){
+
+  window.openPayment = function(){
+    const p = document.getElementById("paymentPanel");
+    if(p){
+      p.classList.add("show");
+    }else{
+      console.warn("paymentPanel tidak ditemukan");
+    }
+  };
+
+  window.closePayment = function(){
+    const p = document.getElementById("paymentPanel");
+    if(p){
+      p.classList.remove("show");
+    }
+  };
+}
+
+
 /* ===============================
    GLOBAL EXPOSE (WAJIB)
 ================================ */
