@@ -129,10 +129,6 @@ function animateCart(){
  setTimeout(()=>cart.style.transform="scale(1)",200);
 }
 
-function checkoutGold(){
-  openCartPanel(); // 🔥 buka panel dulu
-}
-
 window.checkoutGold=checkoutGold;
 
 /* ===============================
