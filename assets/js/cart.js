@@ -82,7 +82,6 @@ if(typeof ultraFloatEngine==="function") ultraFloatEngine();
 function saveCart(){
 localStorage.setItem("cart",JSON.stringify(cart));
 }
-window.addToCart=addToCart;
 window.increaseQty=increaseQty;
 window.decreaseQty=decreaseQty;
 window.removeItem=removeItem;
@@ -118,8 +117,6 @@ function checkoutGold(){
  openPayment(); // 🔥 buka menu pembayaran
 }
 
-window.checkoutGold = checkoutGold;
-
 /* ANIMATED CARD MINI */
 function animateCart(){
  const cart=document.getElementById("floatingCart");
@@ -129,25 +126,10 @@ function animateCart(){
  setTimeout(()=>cart.style.transform="scale(1)",200);
 }
 
-window.checkoutGold=checkoutGold;
 
 /* ===============================
-   PAYMENT FLOW ENGINE
+   PAYMENT FLOW ENGINE (FIXED)
 ================================ */
-
-function openPayment(){
- const p=document.getElementById("paymentPanel");
- if(p){
-   p.classList.add("show");
-   updatePaymentTotal(); // 🔥 update total
- }
-}
-
-
-function closePayment(){
- const p=document.getElementById("paymentPanel");
- if(p) p.classList.remove("show");
-}
 
 function payNow(method){
 
@@ -156,24 +138,9 @@ function payNow(method){
    return;
  }
 
- closePayment(); // tutup panel pembayaran
+ closePayment();
  showProcessing();
 }
-
-
- const summary = cart.map(i=>`${i.name} x${i.qty}`).join("%0A");
-
- const url =
-  "https://wa.me/6285717442694?text=Halo%20Saya%20checkout%20via%20"+
-  encodeURIComponent(method)+
-  "%0A%0A"+summary;
-
- window.open(url,"_blank");
-}
-
-window.openPayment=openPayment;
-window.closePayment=closePayment;
-window.payNow=payNow;
 
 /* ===============================
    FINTECH CHECKOUT EXPERIENCE
@@ -194,7 +161,6 @@ function showProcessing(){
 
  panel.classList.add("show");
 
- // kosongkan cart (feel real)
  cart=[];
  saveCart();
  renderCart();
@@ -206,7 +172,11 @@ function closeSuccess(){
  if(panel) panel.classList.remove("show");
 }
 
+/* expose global */
+window.payNow=payNow;
 window.closeSuccess=closeSuccess;
+window.checkoutGold=checkoutGold;
+window.addToCart=addToCart;
 
 function updatePaymentTotal(){
 
@@ -217,4 +187,3 @@ function updatePaymentTotal(){
 
  el.innerText="Total Bayar: Rp "+total.toLocaleString("id-ID");
 }
-
