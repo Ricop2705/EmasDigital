@@ -4,7 +4,9 @@ function addToCart(product){
 const item=cart.find(i=>i.id===product.id);
 if(item){item.qty++;}else{cart.push({...product,qty:1});}
 saveCart();renderCart();updateFloatingCart();
+animateCart();
 }
+
 function increaseQty(id){
 const item=cart.find(i=>i.id===id);
 if(!item)return;
@@ -125,4 +127,19 @@ function checkoutGold(){
 
 /* expose ke HTML button */
 window.checkoutGold = checkoutGold;
+
+/* ANIMATED CARD MINI */
+function animateCart(){
+ const cart=document.getElementById("floatingCart");
+ if(!cart) return;
+
+ cart.style.transform="scale(1.18)";
+ setTimeout(()=>cart.style.transform="scale(1)",200);
+}
+
+function checkoutGold(){
+  openCartPanel(); // 🔥 buka panel dulu
+}
+
+window.checkoutGold=checkoutGold;
 
