@@ -881,3 +881,27 @@ header{
  transition:.25s ease;
 }
 
+.fintech-toast{
+ position:fixed;
+ bottom:30px;
+ left:50%;
+ transform:translateX(-50%) translateY(20px);
+ background:#000;
+ color:#fff;
+ padding:12px 18px;
+ border-radius:30px;
+ opacity:0;
+ transition:.35s;
+ z-index:9999;
+}
+
+.fintech-toast.show{
+ opacity:1;
+ transform:translateX(-50%) translateY(0);
+}
+
+.card:hover{
+ transform:translateY(-6px);
+ box-shadow:0 20px 40px rgba(0,0,0,.4);
+ transition:.3s;
+}
