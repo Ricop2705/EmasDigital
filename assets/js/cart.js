@@ -160,6 +160,11 @@ function animateCart(){
 ================================ */
 function checkoutGold(){
 
+   const btn=document.querySelector('[onclick="checkoutGold()"]');
+if(btn && window.setLoading){
+  setLoading(btn,true,"Membuka Pembayaran...");
+}
+
   if(cart.length===0){
     if(typeof showToast==="function"){
       showToast("Keranjang kosong");
@@ -238,6 +243,8 @@ function showProcessing(){
   }
 
   panel.classList.add("show");
+   showToast("Transaksi berhasil 🎉");
+
 
   cart = [];
   saveCart();
