@@ -905,3 +905,20 @@ header{
  box-shadow:0 20px 40px rgba(0,0,0,.4);
  transition:.3s;
 }
+
+/* ===== LOGIN FORM PATCH (NO VISUAL CHANGE) ===== */
+#loginPage form{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    width:100%;
+}
+
+#loginPage form input{
+    width:100%;
+}
+
+#loginPage form button{
+    width:100%;
+}
+
