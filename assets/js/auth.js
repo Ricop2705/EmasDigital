@@ -123,6 +123,8 @@ function attachAvatarEvent(){
 /* UPDATE NAVBAR PRO */
 function updateUserUI(email){
 
+ if(!email) return;
+
  const nav=document.querySelector("#navMenu");
  if(!nav) return;
 
@@ -136,6 +138,8 @@ function updateUserUI(email){
    nav.appendChild(user);
  }
 
+ const name = email.includes("@") ? email.split("@")[0] : email;
+
  user.innerHTML=`
    <span style="
      background:#d4af37;
@@ -144,12 +148,11 @@ function updateUserUI(email){
      color:#000;
      font-weight:bold;
    ">
-   👤 ${email.split("@")[0]}
+   👤 ${name}
    </span>
  `;
-
- attachAvatarEvent();
 }
+
 
 /* LOGOUT ENGINE */
 function logoutUser(){
