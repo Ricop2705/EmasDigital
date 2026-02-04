@@ -394,6 +394,7 @@ z-index:999;align-items:center;justify-content:center">
 <div id="paymentPanel" class="payment-panel">
   <div class="payment-box">
     <h3>Pilih Metode Pembayaran</h3>
+    <p id="paymentTotal"></p>
 
     <button onclick="payNow('Transfer Bank')">🏦 Transfer Bank</button>
     <button onclick="payNow('E-Wallet')">📱 E-Wallet</button>
@@ -404,8 +405,20 @@ z-index:999;align-items:center;justify-content:center">
   </div>
 </div>
 
+<!-- SUCCESS ORDER PANEL -->
+<div id="successPanel" class="success-panel">
+  <div class="success-box">
+    <h2>✅ Pembayaran Diproses</h2>
+    <p id="orderId"></p>
+
+    <button onclick="closeSuccess()">Kembali</button>
+  </div>
+</div>
+
+
 </body>
 </html>
+
 
 
 
