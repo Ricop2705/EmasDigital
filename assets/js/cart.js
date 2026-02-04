@@ -116,14 +116,18 @@ function saveCart(){
 
 function checkoutGold(){
 
+ if(!localStorage.getItem("memberType")){
+   showToast("Silakan login dulu 🔐");
+   openSignup();
+   return;
+ }
+
  if(cart.length===0){
    showToast("Keranjang kosong");
    return;
  }
 
- if(typeof openPayment==="function"){
-   openPayment();
- }
+ openPayment();
 }
 
 function payNow(method){
