@@ -837,3 +837,47 @@ header{
 #navMenu li.active{
  color:#d4af37;
 }
+
+/* ===============================
+ ULTRA FINTECH MOTION ENGINE
+================================ */
+
+.motion-slide-up{
+ transform:translateY(40px);
+ opacity:0;
+ transition:.45s ease;
+}
+
+.motion-show{
+ transform:translateY(0);
+ opacity:1;
+}
+
+.payment-panel{
+ position:fixed;
+ left:0;
+ right:0;
+ bottom:-100%;
+ transition:.45s cubic-bezier(.2,.8,.2,1);
+ z-index:9999;
+}
+
+.payment-panel.show{
+ bottom:0;
+}
+
+.success-panel{
+ transform:scale(.92);
+ opacity:0;
+ transition:.35s ease;
+}
+
+.success-panel.show{
+ transform:scale(1);
+ opacity:1;
+}
+
+#floatingCart{
+ transition:.25s ease;
+}
+
