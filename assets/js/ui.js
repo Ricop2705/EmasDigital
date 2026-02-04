@@ -87,3 +87,40 @@ document.addEventListener("click",e=>{
    setTimeout(()=>document.body.classList.remove("checkout-active"),500);
  }
 });
+
+function setLoading(btn,state,text="Memproses..."){
+ if(!btn) return;
+
+ if(state){
+   btn.dataset.original = btn.innerText;
+   btn.innerText = text;
+   btn.disabled = true;
+ }else{
+   btn.innerText = btn.dataset.original || "OK";
+   btn.disabled = false;
+ }
+}
+
+window.setLoading=setLoading;
+
+function showToast(msg){
+ const box=document.getElementById("toastBox");
+ if(!box) return;
+
+ const div=document.createElement("div");
+ div.className="toast";
+ div.innerText=msg;
+
+ box.appendChild(div);
+
+ setTimeout(()=>div.remove(),2500);
+}
+
+window.showToast=showToast;
+
+document.querySelectorAll("#navMenu li").forEach(li=>{
+ li.addEventListener("click",()=>{
+   document.querySelectorAll("#navMenu li").forEach(x=>x.classList.remove("active"));
+   li.classList.add("active");
+ });
+});
