@@ -103,3 +103,26 @@ function addToCart(product){
   showToast("Produk masuk keranjang 🛒");
 }
 
+/* ===============================
+   REAL CHECKOUT FLOW
+================================ */
+function checkoutGold(){
+
+  if(cart.length===0){
+    showToast("Keranjang kosong");
+    return;
+  }
+
+  const summary = cart
+    .map(i => `${i.name} x${i.qty}`)
+    .join("%0A");
+
+  window.open(
+    "https://wa.me/6285717442694?text=Halo%20Saya%20ingin%20checkout:%0A"+summary,
+    "_blank"
+  );
+}
+
+/* expose ke HTML button */
+window.checkoutGold = checkoutGold;
+
