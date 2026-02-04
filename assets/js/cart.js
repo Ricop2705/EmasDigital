@@ -143,3 +143,39 @@ function checkoutGold(){
 
 window.checkoutGold=checkoutGold;
 
+/* ===============================
+   PAYMENT FLOW ENGINE
+================================ */
+
+function openPayment(){
+ const p=document.getElementById("paymentPanel");
+ if(p) p.classList.add("show");
+}
+
+function closePayment(){
+ const p=document.getElementById("paymentPanel");
+ if(p) p.classList.remove("show");
+}
+
+function payNow(method){
+
+ if(cart.length===0){
+   alert("Keranjang kosong");
+   return;
+ }
+
+ const summary = cart.map(i=>`${i.name} x${i.qty}`).join("%0A");
+
+ const url =
+  "https://wa.me/6285717442694?text=Halo%20Saya%20checkout%20via%20"+
+  encodeURIComponent(method)+
+  "%0A%0A"+summary;
+
+ window.open(url,"_blank");
+}
+
+window.openPayment=openPayment;
+window.closePayment=closePayment;
+window.payNow=payNow;
+
+
