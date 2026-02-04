@@ -137,8 +137,12 @@ window.checkoutGold=checkoutGold;
 
 function openPayment(){
  const p=document.getElementById("paymentPanel");
- if(p) p.classList.add("show");
+ if(p){
+   p.classList.add("show");
+   updatePaymentTotal(); // 🔥 update total
+ }
 }
+
 
 function closePayment(){
  const p=document.getElementById("paymentPanel");
@@ -151,6 +155,11 @@ function payNow(method){
    alert("Keranjang kosong");
    return;
  }
+
+ closePayment(); // tutup panel pembayaran
+ showProcessing();
+}
+
 
  const summary = cart.map(i=>`${i.name} x${i.qty}`).join("%0A");
 
@@ -166,4 +175,46 @@ window.openPayment=openPayment;
 window.closePayment=closePayment;
 window.payNow=payNow;
 
+/* ===============================
+   FINTECH CHECKOUT EXPERIENCE
+================================ */
+
+function showProcessing(){
+
+ const panel=document.getElementById("successPanel");
+ const order=document.getElementById("orderId");
+
+ if(!panel) return;
+
+ const orderNumber="ORD-"+Date.now().toString().slice(-6);
+
+ if(order){
+   order.innerText="Nomor Order: "+orderNumber;
+ }
+
+ panel.classList.add("show");
+
+ // kosongkan cart (feel real)
+ cart=[];
+ saveCart();
+ renderCart();
+ updateFloatingCart();
+}
+
+function closeSuccess(){
+ const panel=document.getElementById("successPanel");
+ if(panel) panel.classList.remove("show");
+}
+
+window.closeSuccess=closeSuccess;
+
+function updatePaymentTotal(){
+
+ const el=document.getElementById("paymentTotal");
+ if(!el) return;
+
+ const total=cart.reduce((sum,i)=>sum+(i.price*i.qty),0);
+
+ el.innerText="Total Bayar: Rp "+total.toLocaleString("id-ID");
+}
 
