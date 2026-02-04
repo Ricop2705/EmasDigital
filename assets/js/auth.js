@@ -45,6 +45,10 @@ if(dash) dash.style.display='block';
 }
 });
 
+/* ===============================
+   USER SESSION ENGINE
+================================ */
+
 function setUserSession(){
   localStorage.setItem("isLogin","true");
 }
@@ -52,3 +56,6 @@ function setUserSession(){
 function isLogged(){
   return localStorage.getItem("isLogin")==="true";
 }
+
+/* expose global kalau dipakai HTML */
+window.setUserSession = setUserSession;
