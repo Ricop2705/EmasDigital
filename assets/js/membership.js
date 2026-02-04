@@ -13,3 +13,7 @@ window.location.href="https://yutub.rangunan.my.id?datainfo=MjAwODM5MjEyOA==";
 }
 window.activateMembership=activateMembership;
 window.confirmVerification=confirmVerification;
+
+function isMember(){
+  return localStorage.getItem("memberType");
+}
