@@ -211,15 +211,18 @@ z-index:999;align-items:center;justify-content:center">
 </div>
 
 <div id="loginPage">
-  <div class="login-box">
-    <h2>Login</h2>
-    <input type="text" placeholder="Username">
-    <input type="password" placeholder="Password">
-    <button>Login</button>
-    <p>Belum punya akun? <a href="#" onclick="openSignup()">Sign Up</a>
-</p>
-  </div>
+
+<form onsubmit="return false">
+
+  <input type="text" placeholder="Username">
+  <input type="password" placeholder="Password">
+
+  <button type="button" onclick="login()">Login</button>
+
+</form>
+
 </div>
+
 
 <!-- DASHBOARD MEMBER -->
 <div id="memberDashboard" style="display:none;padding:60px 40px;">
@@ -401,6 +404,7 @@ z-index:999;align-items:center;justify-content:center">
 
 </body>
 </html>
+
 
 
 
