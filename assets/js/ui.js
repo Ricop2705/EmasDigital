@@ -34,3 +34,21 @@ function toggleMenu(){
 /* expose ke HTML onclick */
 window.toggleMenu = toggleMenu;
 
+function showToast(msg){
+  const t=document.createElement("div");
+  t.innerText=msg;
+  t.style.cssText=`
+    position:fixed;
+    bottom:80px;
+    left:50%;
+    transform:translateX(-50%);
+    background:#000;
+    color:#fff;
+    padding:12px 20px;
+    border-radius:30px;
+    z-index:9999;
+  `;
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),1600);
+}
+
