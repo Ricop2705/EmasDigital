@@ -22,6 +22,8 @@ function addToCart(product){
   renderCart();
   updateFloatingCart();
   animateCart();
+   
+   if(window.ultraCartPulse) ultraCartPulse();
 
   if(typeof showToast==="function"){
     showToast("Produk masuk keranjang 🛒");
@@ -232,7 +234,7 @@ function showProcessing(){
 
   const panel = document.getElementById("successPanel");
   const order = document.getElementById("orderId");
-
+   
   if(!panel) return;
 
   const orderNumber =
@@ -240,6 +242,10 @@ function showProcessing(){
 
   if(order){
     order.innerText = "Nomor Order: " + orderNumber;
+     
+   const panel=document.getElementById("successPanel");
+if(panel) panel.classList.add("show");
+
   }
 
   panel.classList.add("show");
