@@ -812,3 +812,28 @@ header{
   pointer-events:none;
 }
 
+.toast-box{
+ position:fixed;
+ bottom:120px;
+ right:20px;
+ z-index:9999;
+}
+
+.toast{
+ background:#111;
+ border:1px solid rgba(212,175,55,.4);
+ padding:12px 18px;
+ border-radius:8px;
+ margin-top:8px;
+ color:#fff;
+ animation:fadeUp .3s ease;
+}
+
+@keyframes fadeUp{
+ from{transform:translateY(20px);opacity:0}
+ to{transform:translateY(0);opacity:1}
+}
+
+#navMenu li.active{
+ color:#d4af37;
+}
