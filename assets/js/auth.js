@@ -123,7 +123,7 @@ function attachAvatarEvent(){
 /* UPDATE NAVBAR PRO */
 function updateUserUI(email){
 
- if(!email) return;
+ if(!email || typeof email !== "string") return;
 
  const nav=document.querySelector("#navMenu");
  if(!nav) return;
@@ -131,25 +131,25 @@ function updateUserUI(email){
  let user=document.getElementById("navUser");
 
  if(!user){
-
    user=document.createElement("li");
    user.id="navUser";
-   user.style.cursor="pointer";
    nav.appendChild(user);
  }
 
- const name = email.includes("@") ? email.split("@")[0] : email;
+ const name = email.includes("@")
+   ? email.split("@")[0]
+   : email;
 
  user.innerHTML=`
-   <span style="
-     background:#d4af37;
-     padding:6px 14px;
-     border-radius:20px;
-     color:#000;
-     font-weight:bold;
-   ">
-   👤 ${name}
-   </span>
+ <span style="
+   background:#d4af37;
+   padding:6px 14px;
+   border-radius:20px;
+   color:#000;
+   font-weight:bold;
+ ">
+ 👤 ${name}
+ </span>
  `;
 }
 
