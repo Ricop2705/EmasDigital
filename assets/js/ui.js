@@ -55,3 +55,9 @@ function showToast(msg){
 if(isMember()){
  document.body.classList.add("vip-user");
 }
+
+document.querySelectorAll("#navMenu li").forEach(li=>{
+ li.addEventListener("click",()=>{
+   navMenu.classList.remove("active");
+ });
+});
