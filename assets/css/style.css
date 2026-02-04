@@ -926,3 +926,74 @@ header{
    all:unset;
    display:block;
 }
+
+/* ===============================
+   FINTECH AUTH ENGINE STYLE
+================================ */
+
+.auth-popup{
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.7);
+ display:none;
+ align-items:center;
+ justify-content:center;
+ z-index:9999;
+}
+
+.auth-popup.show{
+ display:flex;
+}
+
+.auth-card{
+ width:360px;
+ background:linear-gradient(180deg,#1b1b1f,#0c0c0e);
+ border-radius:22px;
+ padding:30px;
+ border:1px solid rgba(212,175,55,.3);
+ box-shadow:0 0 40px rgba(212,175,55,.15);
+}
+
+.auth-card input{
+ width:100%;
+ margin:10px 0;
+ padding:14px;
+ border-radius:14px;
+ background:#111;
+ border:1px solid rgba(212,175,55,.3);
+ color:#fff;
+}
+
+.gold-btn{
+ width:100%;
+ background:#d4af37;
+ border:none;
+ padding:14px;
+ border-radius:20px;
+ font-weight:bold;
+ cursor:pointer;
+}
+
+.google-btn{
+ width:100%;
+ margin-top:12px;
+ padding:12px;
+ border-radius:20px;
+ border:none;
+ background:#fff;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ gap:10px;
+ cursor:pointer;
+}
+
+.google-btn img{
+ width:20px;
+}
+
+.divider{
+ text-align:center;
+ margin:12px 0;
+ color:#aaa;
+}
