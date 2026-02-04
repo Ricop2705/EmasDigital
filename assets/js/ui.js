@@ -205,3 +205,16 @@ function showLogin(){
 window.showHome = showHome;
 window.showLogin = showLogin;
 
+window.showToast = function(msg){
+
+ const t=document.createElement("div");
+
+ t.className="fintech-toast";
+ t.innerText=msg;
+
+ document.body.appendChild(t);
+
+ setTimeout(()=>t.classList.add("show"),20);
+ setTimeout(()=>t.remove(),2200);
+};
+
