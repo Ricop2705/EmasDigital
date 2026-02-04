@@ -44,3 +44,11 @@ if(dash) dash.style.display='block';
 });
 }
 });
+
+function setUserSession(){
+  localStorage.setItem("isLogin","true");
+}
+
+function isLogged(){
+  return localStorage.getItem("isLogin")==="true";
+}
