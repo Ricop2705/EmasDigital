@@ -17,3 +17,25 @@ window.confirmVerification=confirmVerification;
 function isMember(){
   return localStorage.getItem("memberType");
 }
+/* ===============================
+   PAYMENT PANEL ENGINE
+   (dibutuhkan cart.js)
+================================ */
+
+function openPayment(){
+  const p = document.getElementById("paymentPanel");
+  if(p){
+    p.classList.add("show");
+  }
+}
+
+function closePayment(){
+  const p = document.getElementById("paymentPanel");
+  if(p){
+    p.classList.remove("show");
+  }
+}
+
+/* expose global supaya onclick & cart.js bisa akses */
+window.openPayment = openPayment;
+window.closePayment = closePayment;
