@@ -59,7 +59,10 @@ if(typeof isMember === "function" && isMember()){
 
 document.querySelectorAll("#navMenu li").forEach(li=>{
  li.addEventListener("click",()=>{
-   navMenu.classList.remove("active");
+   if(navMenu){
+ navMenu.classList.remove("active");
+}
+
  });
 });
 
