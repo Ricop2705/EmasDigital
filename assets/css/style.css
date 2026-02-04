@@ -768,3 +768,26 @@ header{
  cursor:pointer;
 }
 
+.success-panel{
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.8);
+ display:none;
+ justify-content:center;
+ align-items:center;
+ z-index:999999;
+}
+
+.success-panel.show{
+ display:flex;
+}
+
+.success-box{
+ background:#111;
+ padding:30px;
+ border-radius:16px;
+ text-align:center;
+ color:#fff;
+}
+
+
