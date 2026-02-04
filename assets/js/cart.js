@@ -84,3 +84,22 @@ window.addToCart=addToCart;
 window.increaseQty=increaseQty;
 window.decreaseQty=decreaseQty;
 window.removeItem=removeItem;
+
+function addToCart(product){
+
+  const item = cart.find(i=>i.id===product.id);
+
+  if(item){
+    item.qty++;
+  }else{
+    cart.push({...product,qty:1});
+  }
+
+  saveCart();
+  renderCart();
+  updateFloatingCart();
+
+  /* REAL STORE FEEDBACK */
+  showToast("Produk masuk keranjang 🛒");
+}
+
