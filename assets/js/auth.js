@@ -44,6 +44,7 @@ function loginManual(){
  }
 
  localStorage.setItem("userEmail",email);
+ updateUserUI(email);
 
  showToast("Login berhasil 😈");
  closeAuth();
@@ -267,6 +268,20 @@ document.addEventListener("DOMContentLoaded",()=>{
    showMemberBadge();
    autoDashboard();
    navbarGlow();
+ }
+
+});
+
+/* ===============================
+   AUTO SYNC USER UI (FINTECH MODE)
+================================ */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+ const email = localStorage.getItem("userEmail");
+
+ if(email){
+   updateUserUI(email);
  }
 
 });
