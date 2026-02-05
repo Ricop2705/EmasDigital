@@ -182,7 +182,7 @@ window.ultraCartPulse=ultraCartPulse;
 
 document.addEventListener("DOMContentLoaded",ultraReveal);
 
-function(){
+(function(){
  if(window.__ULTRA_CORE__) return;
  window.__ULTRA_CORE__=true;
  console.log("ULTRA CORE READY");
