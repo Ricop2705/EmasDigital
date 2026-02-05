@@ -272,19 +272,13 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 });
 
-/* ===============================
-   AUTO SYNC USER UI (FINTECH MODE)
-================================ */
 
-document.addEventListener("DOMContentLoaded",()=>{
-
- const email = localStorage.getItem("userEmail");
-
- if(email){
-   updateUserUI(email);
- }
-
-});
+/* expose global agar onclick HTML bisa akses */
+window.openLogin = openLogin;
+window.openSignup = openSignup;
+window.loginManual = loginManual;
+window.loginGoogle = loginGoogle;
+window.closeAuth = closeAuth;
 
 function doLogin(){
 
@@ -294,15 +288,34 @@ function doLogin(){
   localStorage.setItem("user",email);
 
   updateUserUI(email); // 🔥 INI YANG HILANG
+   renderNavbarUser(email);
 
   closeLogin();
 }
+/* ===============================
+   ULTRA NAVBAR FINTECH ENGINE
+================================ */
 
-/* expose global agar onclick HTML bisa akses */
-window.openLogin = openLogin;
-window.openSignup = openSignup;
-window.loginManual = loginManual;
-window.loginGoogle = loginGoogle;
-window.closeAuth = closeAuth;
+function renderNavbarUser(email){
 
+  const navUser = document.getElementById("navUser");
+  if(!navUser) return;
+
+  if(!email){
+     navUser.innerHTML =
+       `<a onclick="showLogin()">Login</a>`;
+     return;
+  }
+
+  const name = email.split("@")[0];
+
+  navUser.innerHTML = `
+    <div class="nav-avatar">
+      <span class="avatar-circle">${name[0].toUpperCase()}</span>
+      <span class="avatar-name">${name}</span>
+    </div>
+  `;
+}
+
+window.renderNavbarUser = renderNavbarUser;
 
