@@ -280,6 +280,18 @@ window.loginManual = loginManual;
 window.loginGoogle = loginGoogle;
 window.closeAuth = closeAuth;
 
+function doLogin(){
+
+  const email = document.getElementById("authEmail").value;
+  const pass  = document.getElementById("authPass").value;
+
+  localStorage.setItem("user",email);
+
+  updateUserUI(email); // 🔥 INI YANG HILANG
+   
+
+  closeLogin();
+}
 
 /* ===============================
    ULTRA NAVBAR FINTECH ENGINE
