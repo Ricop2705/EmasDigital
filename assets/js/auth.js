@@ -286,6 +286,18 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 });
 
+function doLogin(){
+
+  const email = document.getElementById("authEmail").value;
+  const pass  = document.getElementById("authPass").value;
+
+  localStorage.setItem("user",email);
+
+  updateUserUI(email); // 🔥 INI YANG HILANG
+
+  closeLogin();
+}
+
 /* expose global agar onclick HTML bisa akses */
 window.openLogin = openLogin;
 window.openSignup = openSignup;
