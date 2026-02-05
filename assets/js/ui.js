@@ -121,12 +121,16 @@ function showToast(msg){
 
 window.showToast=showToast;
 
+const navMenu = document.getElementById("navMenu");
+
 document.querySelectorAll("#navMenu li").forEach(li=>{
  li.addEventListener("click",()=>{
-   document.querySelectorAll("#navMenu li").forEach(x=>x.classList.remove("active"));
-   li.classList.add("active");
+   if(navMenu){
+     navMenu.classList.remove("active");
+   }
  });
 });
+
 
 /* ===============================
  ULTRA FINTECH MOTION ENGINE
