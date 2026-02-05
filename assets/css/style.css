@@ -997,3 +997,27 @@ header{
  margin:12px 0;
  color:#aaa;
 }
+
+.nav-avatar{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ cursor:pointer;
+}
+
+.avatar-circle{
+ width:34px;
+ height:34px;
+ border-radius:50%;
+ background:linear-gradient(135deg,#d4af37,#fff1b8);
+ color:#000;
+ font-weight:bold;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+}
+
+.avatar-name{
+ font-size:14px;
+ color:#fff;
+}
