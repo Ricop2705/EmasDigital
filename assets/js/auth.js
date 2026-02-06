@@ -3,6 +3,7 @@
    + ULTRA SUPER APP AVATAR MOTION ENGINE
    + ULTRA IDENTITY ENGINE
    + ULTRA PRESENCE ENGINE
+   + ULTRA AI GREETING ENGINE
 ===================================== */
 
 function getAuth(){
@@ -79,7 +80,7 @@ function loginGoogle(){
 
 /* =================================
 🔥 ULTRA SUPER APP NAVBAR ENGINE
-+ IDENTITY + PRESENCE (CLEAN)
++ AI GREETING + IDENTITY + PRESENCE
 ================================= */
 
 function fintechNavbarUpdate(email,animate=false){
@@ -100,7 +101,7 @@ function fintechNavbarUpdate(email,animate=false){
    const name=email.split("@")[0];
    const firstLetter=name.charAt(0).toUpperCase();
 
-   /* ===== ULTRA IDENTITY ===== */
+   /* ===== IDENTITY ENGINE ===== */
 
    avatar.innerText=firstLetter;
    avatar.style.background=createIdentityColor(name);
@@ -108,7 +109,6 @@ function fintechNavbarUpdate(email,animate=false){
    avatar.style.fontWeight="600";
    avatar.style.alignItems="center";
    avatar.style.justifyContent="center";
-
    avatar.classList.add("nav-avatar-online");
 
    /* ===== MEMBER BADGE ===== */
@@ -121,10 +121,12 @@ function fintechNavbarUpdate(email,animate=false){
      document.body.classList.add("vip-user");
    }
 
-   /* ===== PRESENCE GREETING ===== */
+   /* ===== AI GREETING ENGINE ===== */
+
+   const greeting=getAIGreeting();
 
    navUser.innerHTML=`
-     <span class="avatar-name">Halo ${name} 👋</span>
+     <span class="avatar-name">${greeting} ${name} 👋</span>
      ${badge}
      <a onclick="logoutUser()" class="logout-btn">Logout</a>
    `;
@@ -132,10 +134,7 @@ function fintechNavbarUpdate(email,animate=false){
    /* ===== MOTION ENGINE ===== */
 
    avatar.style.transition="transform .35s ease, box-shadow .35s ease";
-   avatar.style.willChange="transform";
-
    navUser.style.transition="transform .35s ease, opacity .35s ease";
-   navUser.style.willChange="transform";
 
    if(animate){
 
@@ -162,6 +161,21 @@ function fintechNavbarUpdate(email,animate=false){
 
    document.body.classList.remove("vip-user");
  }
+}
+
+/* ===============================
+   ULTRA AI GREETING ENGINE
+================================ */
+
+function getAIGreeting(){
+
+ const hour=new Date().getHours();
+
+ if(hour>=5 && hour<11) return "🌅 Selamat Pagi";
+ if(hour>=11 && hour<15) return "☀️ Selamat Siang";
+ if(hour>=15 && hour<19) return "🌤️ Selamat Sore";
+
+ return "🌙 Selamat Malam";
 }
 
 /* ===============================
