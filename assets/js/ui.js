@@ -225,3 +225,23 @@ window.showToast = function(msg){
  setTimeout(()=>t.remove(),2200);
 };
 
+/* =====================================
+   MOBILE DROPDOWN SUPPORT
+===================================== */
+
+document.querySelectorAll(".nav-dropdown").forEach(menu=>{
+ menu.addEventListener("click",function(e){
+
+   if(window.innerWidth < 768){
+
+     const drop=this.querySelector(".dropdown-menu");
+
+     if(drop){
+       drop.style.display =
+         drop.style.display==="flex" ? "none" : "flex";
+     }
+
+   }
+
+ });
+});
