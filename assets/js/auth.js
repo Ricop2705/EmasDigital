@@ -91,13 +91,32 @@ function fintechNavbarUpdate(email,animate=false){
 
  if(email){
 
-   if(loginBtn) loginBtn.style.display="none";
+ if(loginBtn) loginBtn.style.display="none";
 
-   avatar.style.display="flex";
-   navUser.style.display="block";
+ avatar.style.display="flex";
+ navUser.style.display="block";
 
-   const name=email.split("@")[0];
-   const firstLetter=name.charAt(0).toUpperCase();
+ const name=email.split("@")[0];
+ const firstLetter=name.charAt(0).toUpperCase();
+
+ avatar.innerText=firstLetter;
+ avatar.style.background=createIdentityColor(name);
+
+ avatar.classList.add("nav-avatar-online");
+
+ let badge="";
+ const member=localStorage.getItem("memberType");
+
+ if(member){
+   badge=`<span class="nav-badge">${member.toUpperCase()}</span>`;
+   document.body.classList.add("vip-user");
+ }
+
+ navUser.innerHTML=`
+   <span class="avatar-name">Halo ${name} 👋</span>
+   ${badge}
+   <a onclick="logoutUser()" class="logout-btn">Logout</a>
+ `;
 
    /* ======================
       ULTRA IDENTITY ENGINE
