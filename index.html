@@ -50,7 +50,15 @@
 <ul class="nav-menu" id="navMenu">
 
 <li onclick="showHome()">Beranda</li>
-<li onclick="scrollToSection('produk')">Produk</li>
+<li class="nav-dropdown">
+  Produk
+  <div class="dropdown-menu">
+    <a onclick="scrollToSection('produk')">Emas 1 Gram</a>
+    <a onclick="scrollToSection('produk')">Emas 2 Gram</a>
+    <a onclick="scrollToSection('produk')">Emas 3 Gram</a>
+  </div>
+</li>
+
 <li onclick="scrollToSection('keunggulan')">Keunggulan</li>
 <li onclick="scrollToSection('kontak')">Kontak</li>
 
@@ -72,9 +80,14 @@ color:#fff;
 ">
 </li>
 
-<li class="nav-member" onclick="scrollToSection('membership')">
-Membership
+<li class="nav-dropdown">
+ Membership
+ <div class="dropdown-menu">
+   <a onclick="scrollToSection('membership')">Gold Member</a>
+   <a onclick="scrollToSection('membership')">Platinum Member</a>
+ </div>
 </li>
+
 
 <!-- 🔥 AUTO USER ENGINE TARGET -->
 <li id="navUser" style="display:none;"></li>
@@ -437,6 +450,7 @@ z-index:999;align-items:center;justify-content:center">
 
 </body>
 </html>
+
 
 
 
