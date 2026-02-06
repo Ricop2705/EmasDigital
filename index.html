@@ -45,23 +45,24 @@
   </div>
 
   <!-- MENU -->
-  <ul class="nav-menu" id="navMenu">
-   <li onclick="showHome()">Beranda</li>
-      <li onclick="scrollToSection('produk')">Produk</li>
-      <li onclick="scrollToSection('keunggulan')">Keunggulan</li>
-      <li onclick="scrollToSection('kontak')">Kontak</li>
-     <li onclick="openLogin()">Login</li>
-<li>
-   <img id="navAvatar"
-        src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-        style="width:32px;height:32px;border-radius:50%;display:none;">
+<ul class="nav-menu" id="navMenu">
+
+<li onclick="showHome()">Beranda</li>
+<li onclick="scrollToSection('produk')">Produk</li>
+<li onclick="scrollToSection('keunggulan')">Keunggulan</li>
+<li onclick="scrollToSection('kontak')">Kontak</li>
+
+<li id="navLoginBtn" onclick="openLogin()">Login</li>
+
+<li class="nav-member" onclick="scrollToSection('membership')">
+Membership
 </li>
 
-      <li class="nav-member" onclick="scrollToSection('membership')">Membership</li>
-      </a>
-    </li>
-     <li id="navUser" style="display:none;"></li>
-  </ul>
+<!-- 🔥 AUTO USER ENGINE TARGET -->
+<li id="navUser" style="display:none;"></li>
+
+</ul>
+
 </nav>
 </header>
 
@@ -419,6 +420,7 @@ z-index:999;align-items:center;justify-content:center">
 
 </body>
 </html>
+
 
 
 
