@@ -358,3 +358,20 @@ document.addEventListener("click",()=>{
    p.classList.remove("open");
  });
 });
+
+/* =====================================
+🔥 NAVBAR TRUST SCROLL ENGINE
+===================================== */
+
+window.addEventListener("scroll",()=>{
+
+ const header=document.querySelector("header");
+ if(!header) return;
+
+ if(window.scrollY>40){
+   header.classList.add("scrolled");
+ }else{
+   header.classList.remove("scrolled");
+ }
+
+});
