@@ -147,7 +147,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 /* =====================================
    ULTRA FINTECH NAVBAR ENGINE
 ===================================== */
-
+const loginBtn=document.getElementById("navLoginBtn");
 function fintechNavbarUpdate(email){
 
  const avatar=document.getElementById("navAvatar");
@@ -155,7 +155,9 @@ function fintechNavbarUpdate(email){
 
  if(!avatar || !navUser) return;
 
- if(email){
+if(email){
+
+   if(loginBtn) loginBtn.style.display="none";
 
    avatar.style.display="block";
    navUser.style.display="block";
@@ -174,8 +176,10 @@ function fintechNavbarUpdate(email){
      <a onclick="logoutUser()" style="margin-left:10px;cursor:pointer">Logout</a>
    `;
 
- }else{
+}else{
 
+   if(loginBtn) loginBtn.style.display="block";
+   
    avatar.style.display="none";
    navUser.style.display="block";
    navUser.innerHTML=`<a onclick="openLogin()">Login</a>`;
