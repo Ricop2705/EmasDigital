@@ -1274,3 +1274,41 @@ header{
   }
 
 }
+
+/* =====================================
+🔥 ULTRA TRUST ENGINE
+===================================== */
+
+/* ONLINE DOT AVATAR */
+#navAvatar.nav-avatar-online{
+ position:relative;
+}
+
+#navAvatar.nav-avatar-online::after{
+ content:"";
+ position:absolute;
+ bottom:0;
+ right:0;
+ width:8px;
+ height:8px;
+ background:#00ff6a;
+ border-radius:50%;
+ box-shadow:0 0 8px #00ff6a;
+}
+
+/* NAVBAR SCROLL TRUST EFFECT */
+header.scrolled{
+ backdrop-filter:blur(12px);
+ box-shadow:0 8px 22px rgba(0,0,0,.35);
+ transition:.3s ease;
+}
+
+/* CHECKOUT TRUST TEXT */
+.checkout-trust{
+ margin-top:10px;
+ font-size:13px;
+ opacity:.7;
+ display:flex;
+ justify-content:center;
+ gap:6px;
+}
