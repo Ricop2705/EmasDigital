@@ -1312,3 +1312,37 @@ header.scrolled{
  justify-content:center;
  gap:6px;
 }
+
+/* ACCOUNT DASHBOARD */
+
+.account-card{
+ display:flex;
+ align-items:center;
+ gap:16px;
+ margin-top:20px;
+}
+
+.account-avatar{
+ width:50px;
+ height:50px;
+ border-radius:50%;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-weight:bold;
+ color:#fff;
+}
+
+.account-grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+ gap:16px;
+ margin-top:20px;
+}
+
+.account-box{
+ background:#111;
+ padding:20px;
+ border-radius:12px;
+ text-align:center;
+}
