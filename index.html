@@ -277,26 +277,32 @@ z-index:999;align-items:center;justify-content:center">
 
   <!-- DASHBOARD MEMBER -->
 <div id="memberDashboard" style="display:none;padding:60px 40px;">
-  <h2 style="text-align:center;">Dashboard Member</h2>
+ <h2 style="text-align:center;">Account Dashboard</h2>
 
-  <div class="membership-grid">
-    <div class="member-card gold">
-      <h3>🥇 GOLD MEMBER</h3>
-      <p>Diskon harga emas</p>
-      <p>Cashback transaksi</p>
-      <p>Akses prioritas</p>
-    </div>
+<div class="account-card">
+  <div id="accountAvatar" class="account-avatar"></div>
+  <div>
+    <div id="accountName"></div>
+    <div id="accountMember"></div>
+  </div>
+</div>
 
-    <div class="member-card platinum">
-      <h3>💎 PLATINUM MEMBER</h3>
-      <p>Harga emas terbaik</p>
-      <p>Early access produk</p>
-      <p>Layanan prioritas</p>
-    </div>
+<div class="account-grid">
+
+  <div class="account-box">
+    <h3>Total Transaksi</h3>
+    <p id="accTotalOrder">0</p>
   </div>
 
-  <div id="memberStatus" style="margin-top:30px;text-align:center;font-weight:bold;"></div>
+  <div class="account-box">
+    <h3>Status Member</h3>
+    <p id="accMemberStatus">FREE</p>
+  </div>
+
 </div>
+
+<h3 style="margin-top:30px">Riwayat Transaksi</h3>
+<div id="historyList"></div>
 
 <footer>
 <p>© 2026 Emas Digital. All rights reserved.</p>
@@ -486,9 +492,28 @@ z-index:999;align-items:center;justify-content:center">
 
   </div>
 </div>
+<!-- =============================
+   ULTRA PROFILE PANEL
+============================= -->
+<div id="profilePopup" class="auth-popup">
+  <div class="auth-card">
+
+    <h2>Edit Profile</h2>
+
+    <input id="profileName" placeholder="Nickname">
+    <input id="profilePass" type="password" placeholder="Password Baru">
+
+    <input type="file" id="profileAvatar">
+
+    <button class="gold-btn" onclick="saveProfile()">Simpan Perubahan</button>
+    <button onclick="closeProfile()">Tutup</button>
+
+  </div>
+</div>
 
 </body>
 </html>
+
 
 
 
