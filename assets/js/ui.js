@@ -245,3 +245,40 @@ document.querySelectorAll(".nav-dropdown").forEach(menu=>{
 
  });
 });
+/* =====================================
+🔥 MEGA DROPDOWN CLICK ENGINE
+===================================== */
+
+document.querySelectorAll(".nav-dropdown.mega").forEach(menu=>{
+
+ const trigger = menu.querySelector(".nav-link");
+ const box = menu.querySelector(".mega-menu");
+
+ if(!trigger || !box) return;
+
+ trigger.addEventListener("click",function(e){
+
+   e.stopPropagation();
+
+   const opened = box.classList.contains("open");
+
+   document.querySelectorAll(".mega-menu").forEach(m=>{
+     m.classList.remove("open");
+     m.style.display="none";
+   });
+
+   if(!opened){
+     box.classList.add("open");
+     box.style.display="flex";
+   }
+ });
+
+});
+
+/* close when click outside */
+document.addEventListener("click",()=>{
+ document.querySelectorAll(".mega-menu").forEach(m=>{
+   m.classList.remove("open");
+   m.style.display="none";
+ });
+});
