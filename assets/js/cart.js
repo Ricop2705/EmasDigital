@@ -158,6 +158,9 @@ function showProcessing(){
  if(panel){
    panel.classList.add("show");
  }
+let history=JSON.parse(localStorage.getItem("orderHistory")||"[]");
+cart.forEach(i=>history.push(i));
+localStorage.setItem("orderHistory",JSON.stringify(history));
 
  cart=[];
  saveCart();
