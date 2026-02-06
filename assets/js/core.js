@@ -61,6 +61,6 @@ async function boot(){
 }
 
 /* ====== START ENGINE ====== */
-window.addEventListener("load", boot);
-
+document.addEventListener("DOMContentLoaded", boot);
+   
 })();
