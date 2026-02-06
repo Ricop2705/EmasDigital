@@ -1197,10 +1197,6 @@ header{
  z-index:999;
 }
 
-.nav-dropdown.floating:hover .mega-panel{
- display:flex;
-}
-
 .mega-left{
  width:180px;
  display:flex;
