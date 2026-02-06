@@ -1121,3 +1121,54 @@ header{
 .nav-dropdown:hover .dropdown-menu{
  display:flex;
 }
+
+/* =====================================
+🔥 ULTRA MEGA DROPDOWN ENGINE
+===================================== */
+
+.nav-dropdown.mega{
+ position:relative;
+}
+
+.mega-menu{
+ position:absolute;
+ top:48px;
+ left:0;
+ background:#0b0b0b;
+ padding:18px;
+ border-radius:16px;
+ display:none;
+ flex-direction:column;
+ gap:12px;
+ min-width:260px;
+ box-shadow:0 20px 45px rgba(0,0,0,.45);
+ z-index:999;
+ backdrop-filter:blur(14px);
+}
+
+.mega-item{
+ display:flex;
+ gap:12px;
+ align-items:center;
+ cursor:pointer;
+ padding:10px;
+ border-radius:10px;
+ transition:.25s;
+}
+
+.mega-item img{
+ width:42px;
+ height:42px;
+ border-radius:8px;
+ object-fit:cover;
+}
+
+.mega-item:hover{
+ background:rgba(212,175,55,.15);
+ transform:translateX(4px);
+}
+
+/* desktop hover */
+.nav-dropdown.mega:hover .mega-menu{
+ display:flex;
+}
