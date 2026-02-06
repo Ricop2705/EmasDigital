@@ -1,5 +1,6 @@
 /* =====================================
-   ULTRA FINTECH AUTH ENGINE (CLEAN FIX)
+   ULTRA FINTECH AUTH ENGINE (FINAL CLEAN)
+   NO DOUBLE ENGINE
 ===================================== */
 
 function getAuth(){
@@ -11,7 +12,7 @@ function getAuth(){
 ========================== */
 
 function openLogin(){
- const authPopup = getAuth();
+ const authPopup=getAuth();
  if(!authPopup) return;
  authPopup.classList.add("show");
 
@@ -20,7 +21,7 @@ function openLogin(){
 }
 
 function openSignup(){
- const authPopup = getAuth();
+ const authPopup=getAuth();
  if(!authPopup) return;
  authPopup.classList.add("show");
 
@@ -43,21 +44,21 @@ function loginManual(){
  const email=document.getElementById("authEmail").value;
  const pass=document.getElementById("authPass").value;
 
- if(!email || !pass){
+ if(!email||!pass){
    showToast("Isi data dulu");
    return;
  }
 
  localStorage.setItem("fintechUser",email);
 
- updateUserUI(email);
- renderNavbarUser(email);
+ fintechNavbarUpdate(email);
 
  showToast("Login berhasil 😈");
  closeAuth();
 }
 
 /* GOOGLE LOGIN SIMULASI */
+
 function loginGoogle(){
 
  showToast("Menghubungkan Google...");
@@ -67,8 +68,7 @@ function loginGoogle(){
 
    localStorage.setItem("fintechUser",email);
 
-   updateUserUI(email);
-   renderNavbarUser(email);
+   fintechNavbarUpdate(email);
 
    showToast("Login Google berhasil 🚀");
    closeAuth();
@@ -76,86 +76,19 @@ function loginGoogle(){
 }
 
 /* ===============================
-   ULTRA NAVBAR FINTECH ENGINE
+🔥 AUTO NAVBAR FINTECH ENGINE
+SINGLE ENGINE ONLY
 ================================ */
 
-function renderNavbarUser(email){
-
- const navUser = document.getElementById("navUser");
- if(!navUser) return;
-
- if(!email){
-   navUser.innerHTML=`<a onclick="openLogin()">Login</a>`;
-   return;
- }
-
- const name=email.split("@")[0];
-
- navUser.innerHTML=`
-   <div class="nav-avatar">
-     <span class="avatar-circle">${name[0].toUpperCase()}</span>
-     <span class="avatar-name">${name}</span>
-   </div>
- `;
-}
-
-window.renderNavbarUser=renderNavbarUser;
-
-/* UPDATE USER UI */
-function updateUserUI(email){
-
- if(!email) return;
-
- const nav=document.querySelector("#navMenu");
- if(!nav) return;
-
- let user=document.getElementById("navUser");
-
- if(!user){
-   user=document.createElement("li");
-   user.id="navUser";
-   nav.appendChild(user);
- }
-}
-
-/* LOGOUT */
-function logoutUser(){
-
- localStorage.removeItem("fintechUser");
-
- const user=document.getElementById("navUser");
- if(user) user.innerHTML=`<a onclick="openLogin()">Login</a></a>`;
-
- showToast("Logout berhasil");
-}
-
-/* ===============================
-   INIT ENGINE (SATU SAJA)
-================================ */
-
-document.addEventListener("DOMContentLoaded",()=>{
-
- const savedUser=localStorage.getItem("fintechUser");
-
- if(savedUser){
-   updateUserUI(savedUser);
-   renderNavbarUser(savedUser);
- }
-
-});
-
-/* =====================================
-   ULTRA FINTECH NAVBAR ENGINE
-===================================== */
-const loginBtn=document.getElementById("navLoginBtn");
 function fintechNavbarUpdate(email){
 
  const avatar=document.getElementById("navAvatar");
  const navUser=document.getElementById("navUser");
+ const loginBtn=document.getElementById("navLoginBtn");
 
- if(!avatar || !navUser) return;
+ if(!avatar||!navUser) return;
 
-if(email){
+ if(email){
 
    if(loginBtn) loginBtn.style.display="none";
 
@@ -166,6 +99,7 @@ if(email){
 
    let badge="";
    const member=localStorage.getItem("memberType");
+
    if(member){
      badge=`<span class="nav-badge">${member.toUpperCase()}</span>`;
      document.body.classList.add("vip-user");
@@ -176,30 +110,41 @@ if(email){
      <a onclick="logoutUser()" style="margin-left:10px;cursor:pointer">Logout</a>
    `;
 
-}else{
+ }else{
 
    if(loginBtn) loginBtn.style.display="block";
-   
+
    avatar.style.display="none";
-   navUser.style.display="block";
-   navUser.innerHTML=`<a onclick="openLogin()">Login</a>`;
+   navUser.style.display="none";
+   navUser.innerHTML="";
+
+   document.body.classList.remove("vip-user");
 
  }
-
 }
 
-/* hook ke auth engine lama */
-const oldUpdateUserUI = window.updateUserUI;
+/* ===============================
+   LOGOUT
+================================ */
 
-window.updateUserUI=function(email){
- if(oldUpdateUserUI) oldUpdateUserUI(email);
- fintechNavbarUpdate(email);
-};
+function logoutUser(){
+ localStorage.removeItem("fintechUser");
+ fintechNavbarUpdate(null);
+ showToast("Logout berhasil");
+}
 
-/* init saat reload */
+/* ===============================
+   INIT ENGINE
+================================ */
+
 document.addEventListener("DOMContentLoaded",()=>{
- const email=localStorage.getItem("userEmail");
- fintechNavbarUpdate(email);
+
+ const savedUser=localStorage.getItem("fintechUser");
+
+ if(savedUser){
+   fintechNavbarUpdate(savedUser);
+ }
+
 });
 
 /* expose global */
@@ -209,3 +154,4 @@ window.loginManual=loginManual;
 window.loginGoogle=loginGoogle;
 window.closeAuth=closeAuth;
 window.logoutUser=logoutUser;
+window.fintechNavbarUpdate=fintechNavbarUpdate;
