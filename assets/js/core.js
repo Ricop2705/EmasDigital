@@ -12,9 +12,8 @@ if(window.__AUTO_CORE_LOADED__) return;
 window.__AUTO_CORE_LOADED__ = true;
 
 /* ====== AUTO BASE PATH (GITHUB SAFE) ====== */
-const BASE = location.pathname.includes("EmasDigital")
-  ? "/EmasDigital/"
-  : "";
+const BASE = "./";
+
 
 /* ====== MODULE LIST ====== */
 const modules = [
