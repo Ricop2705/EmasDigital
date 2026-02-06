@@ -144,6 +144,60 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 });
 
+/* =====================================
+   ULTRA FINTECH NAVBAR ENGINE
+===================================== */
+
+function fintechNavbarUpdate(email){
+
+ const avatar=document.getElementById("navAvatar");
+ const navUser=document.getElementById("navUser");
+
+ if(!avatar || !navUser) return;
+
+ if(email){
+
+   avatar.style.display="block";
+   navUser.style.display="block";
+
+   const name=email.split("@")[0];
+
+   let badge="";
+   const member=localStorage.getItem("memberType");
+   if(member){
+     badge=`<span class="nav-badge">${member.toUpperCase()}</span>`;
+     document.body.classList.add("vip-user");
+   }
+
+   navUser.innerHTML=`
+     <span>${name}</span>${badge}
+     <a onclick="logoutUser()" style="margin-left:10px;cursor:pointer">Logout</a>
+   `;
+
+ }else{
+
+   avatar.style.display="none";
+   navUser.style.display="block";
+   navUser.innerHTML=`<a onclick="openLogin()">Login</a>`;
+
+ }
+
+}
+
+/* hook ke auth engine lama */
+const oldUpdateUserUI = window.updateUserUI;
+
+window.updateUserUI=function(email){
+ if(oldUpdateUserUI) oldUpdateUserUI(email);
+ fintechNavbarUpdate(email);
+};
+
+/* init saat reload */
+document.addEventListener("DOMContentLoaded",()=>{
+ const email=localStorage.getItem("userEmail");
+ fintechNavbarUpdate(email);
+});
+
 /* expose global */
 window.openLogin=openLogin;
 window.openSignup=openSignup;
