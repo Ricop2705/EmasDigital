@@ -2,6 +2,7 @@
    ULTRA FINTECH AUTH ENGINE (FINAL CLEAN)
    + ULTRA SUPER APP AVATAR MOTION ENGINE
    + ULTRA IDENTITY ENGINE
+   + ULTRA PRESENCE ENGINE
 ===================================== */
 
 function getAuth(){
@@ -78,7 +79,7 @@ function loginGoogle(){
 
 /* =================================
 🔥 ULTRA SUPER APP NAVBAR ENGINE
-+ ULTRA IDENTITY ENGINE
++ IDENTITY + PRESENCE (CLEAN)
 ================================= */
 
 function fintechNavbarUpdate(email,animate=false){
@@ -91,36 +92,15 @@ function fintechNavbarUpdate(email,animate=false){
 
  if(email){
 
- if(loginBtn) loginBtn.style.display="none";
+   if(loginBtn) loginBtn.style.display="none";
 
- avatar.style.display="flex";
- navUser.style.display="block";
+   avatar.style.display="flex";
+   navUser.style.display="block";
 
- const name=email.split("@")[0];
- const firstLetter=name.charAt(0).toUpperCase();
+   const name=email.split("@")[0];
+   const firstLetter=name.charAt(0).toUpperCase();
 
- avatar.innerText=firstLetter;
- avatar.style.background=createIdentityColor(name);
-
- avatar.classList.add("nav-avatar-online");
-
- let badge="";
- const member=localStorage.getItem("memberType");
-
- if(member){
-   badge=`<span class="nav-badge">${member.toUpperCase()}</span>`;
-   document.body.classList.add("vip-user");
- }
-
- navUser.innerHTML=`
-   <span class="avatar-name">Halo ${name} 👋</span>
-   ${badge}
-   <a onclick="logoutUser()" class="logout-btn">Logout</a>
- `;
-
-   /* ======================
-      ULTRA IDENTITY ENGINE
-   ====================== */
+   /* ===== ULTRA IDENTITY ===== */
 
    avatar.innerText=firstLetter;
    avatar.style.background=createIdentityColor(name);
@@ -128,6 +108,10 @@ function fintechNavbarUpdate(email,animate=false){
    avatar.style.fontWeight="600";
    avatar.style.alignItems="center";
    avatar.style.justifyContent="center";
+
+   avatar.classList.add("nav-avatar-online");
+
+   /* ===== MEMBER BADGE ===== */
 
    let badge="";
    const member=localStorage.getItem("memberType");
@@ -137,14 +121,15 @@ function fintechNavbarUpdate(email,animate=false){
      document.body.classList.add("vip-user");
    }
 
+   /* ===== PRESENCE GREETING ===== */
+
    navUser.innerHTML=`
-     <span class="avatar-name">${name}</span>${badge}
+     <span class="avatar-name">Halo ${name} 👋</span>
+     ${badge}
      <a onclick="logoutUser()" class="logout-btn">Logout</a>
    `;
 
-   /* ======================
-      SUPER APP MOTION MODE
-   ====================== */
+   /* ===== MOTION ENGINE ===== */
 
    avatar.style.transition="transform .35s ease, box-shadow .35s ease";
    avatar.style.willChange="transform";
