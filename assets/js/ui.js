@@ -282,3 +282,74 @@ document.addEventListener("click",()=>{
    m.style.display="none";
  });
 });
+
+/* =====================================
+🔥 ULTRA SMART MEGA PANEL ENGINE
+ANTI CLOSE BUG
+===================================== */
+
+document.querySelectorAll(".nav-dropdown.floating").forEach(menu=>{
+
+ const trigger = menu.querySelector(".nav-link");
+ const panel   = menu.querySelector(".mega-panel");
+
+ if(!trigger || !panel) return;
+
+ let timeout=null;
+
+ function openPanel(){
+
+   clearTimeout(timeout);
+
+   document.querySelectorAll(".mega-panel").forEach(p=>{
+     if(p!==panel){
+       p.style.display="none";
+       p.classList.remove("open");
+     }
+   });
+
+   panel.style.display="flex";
+   panel.classList.add("open");
+ }
+
+ function closePanel(){
+
+   timeout=setTimeout(()=>{
+     panel.style.display="none";
+     panel.classList.remove("open");
+   },180); // delay supaya bisa klik
+ }
+
+ /* HOVER DESKTOP */
+ trigger.addEventListener("mouseenter",openPanel);
+ panel.addEventListener("mouseenter",openPanel);
+
+ trigger.addEventListener("mouseleave",closePanel);
+ panel.addEventListener("mouseleave",closePanel);
+
+ /* CLICK SUPPORT */
+ trigger.addEventListener("click",(e)=>{
+   e.stopPropagation();
+
+   const opened = panel.classList.contains("open");
+
+   document.querySelectorAll(".mega-panel").forEach(p=>{
+     p.style.display="none";
+     p.classList.remove("open");
+   });
+
+   if(!opened){
+     panel.style.display="flex";
+     panel.classList.add("open");
+   }
+ });
+
+});
+
+/* CLOSE OUTSIDE */
+document.addEventListener("click",()=>{
+ document.querySelectorAll(".mega-panel").forEach(p=>{
+   p.style.display="none";
+   p.classList.remove("open");
+ });
+});
