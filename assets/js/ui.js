@@ -298,6 +298,11 @@ document.querySelectorAll(".nav-dropdown.floating").forEach(menu=>{
  let timeout=null;
 
  function openPanel(){
+    
+if(window.innerWidth <= 768){
+   panel.classList.toggle("open");
+   return;
+}
 
    clearTimeout(timeout);
 
