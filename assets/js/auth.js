@@ -85,7 +85,7 @@ function renderNavbarUser(email){
  if(!navUser) return;
 
  if(!email){
-   navUser.innerHTML=`<a onclick="showLogin()">Login</a>`;
+   navUser.innerHTML=`<a onclick="openLogin()">Login</a>`;
    return;
  }
 
@@ -124,7 +124,7 @@ function logoutUser(){
  localStorage.removeItem("fintechUser");
 
  const user=document.getElementById("navUser");
- if(user) user.innerHTML=`<a onclick="showLogin()">Login</a>`;
+ if(user) user.innerHTML=`<a onclick="openLogin()">Login</a></a>`;
 
  showToast("Logout berhasil");
 }
