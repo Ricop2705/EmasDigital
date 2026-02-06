@@ -1,66 +1,51 @@
 /* ======================================================
-   CORE ZERO ERROR ENGINE 😈
-   - Ultra Fintech Stable Loader
-   - GitHub Production Safe
+   ULTRA CORE SAFE ENGINE 😈 FINAL
    - No Double Init
+   - Ultra Fast Boot
+   - GitHub Safe
 ====================================================== */
 
 (function(){
 
-/* ====== PREVENT DOUBLE LOAD ====== */
 if(window.__AUTO_CORE_LOADED__) return;
-window.__AUTO_CORE_LOADED__ = true;
+window.__AUTO_CORE_LOADED__=true;
 
-/* ====== AUTO BASE PATH (GITHUB SAFE) ====== */
-const BASE = "./";
+const BASE="./";
 
-
-/* ====== MODULE LIST ====== */
-const modules = [
-  BASE + "assets/js/ui.js",
-  BASE + "assets/js/auth.js",
-  BASE + "assets/js/cart.js",
-  BASE + "assets/js/membership.js"
+const modules=[
+ BASE+"assets/js/ui.js",
+ BASE+"assets/js/auth.js",
+ BASE+"assets/js/cart.js",
+ BASE+"assets/js/membership.js"
 ];
 
-/* ====== SAFE SCRIPT LOADER ====== */
 function loadScript(src){
-  return new Promise((resolve)=>{
-    try{
-      const s = document.createElement("script");
-      s.src = src;
-      s.defer = true;
+ return new Promise(resolve=>{
+  const s=document.createElement("script");
+  s.src=src;
+  s.defer=true;
 
-      s.onload = () => resolve(true);
+  s.onload=()=>resolve(true);
+  s.onerror=()=>resolve(false);
 
-      /* ZERO ERROR MODE */
-      s.onerror = () => {
-        console.warn("⚠️ Module gagal load:", src);
-        resolve(false); // tidak bikin crash
-      };
-
-      document.body.appendChild(s);
-    }catch(err){
-      console.warn("⚠️ Loader error:", err);
-      resolve(false);
-    }
-  });
+  document.body.appendChild(s);
+ });
 }
 
-/* ====== AUTO BOOTSTRAP ENGINE ====== */
 async function boot(){
 
-  for(const m of modules){
-    await loadScript(m);
-  }
+ for(const m of modules){
+   await loadScript(m);
+ }
 
-  /* restore cart kalau ada */
-  if(window.renderCart) window.renderCart();
-  if(window.updateFloatingCart) window.updateFloatingCart();
+ /* SAFE INIT */
+ requestAnimationFrame(()=>{
+   if(window.renderCart) renderCart();
+   if(window.updateFloatingCart) updateFloatingCart();
+ });
 
 }
 
-/* ====== START ENGINE ====== */
-document.addEventListener("DOMContentLoaded", boot);
-   
+document.addEventListener("DOMContentLoaded",boot);
+
 })();
