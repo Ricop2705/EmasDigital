@@ -1,6 +1,6 @@
 /* =====================================
    ULTRA FINTECH AUTH ENGINE (FINAL CLEAN)
-   NO DOUBLE ENGINE
+   + ULTRA SUPER APP AVATAR MOTION ENGINE
 ===================================== */
 
 function getAuth(){
@@ -51,7 +51,7 @@ function loginManual(){
 
  localStorage.setItem("fintechUser",email);
 
- fintechNavbarUpdate(email);
+ fintechNavbarUpdate(email,true);
 
  showToast("Login berhasil 😈");
  closeAuth();
@@ -68,19 +68,18 @@ function loginGoogle(){
 
    localStorage.setItem("fintechUser",email);
 
-   fintechNavbarUpdate(email);
+   fintechNavbarUpdate(email,true);
 
    showToast("Login Google berhasil 🚀");
    closeAuth();
  },900);
 }
 
-/* ===============================
-🔥 AUTO NAVBAR FINTECH ENGINE
-SINGLE ENGINE ONLY
-================================ */
+/* =================================
+🔥 ULTRA SUPER APP NAVBAR ENGINE
+================================= */
 
-function fintechNavbarUpdate(email){
+function fintechNavbarUpdate(email,animate=false){
 
  const avatar=document.getElementById("navAvatar");
  const navUser=document.getElementById("navUser");
@@ -106,9 +105,34 @@ function fintechNavbarUpdate(email){
    }
 
    navUser.innerHTML=`
-     <span>${name}</span>${badge}
-     <a onclick="logoutUser()" style="margin-left:10px;cursor:pointer">Logout</a>
+     <span class="avatar-name">${name}</span>${badge}
+     <a onclick="logoutUser()" class="logout-btn">Logout</a>
    `;
+
+   /* ======================
+      SUPER APP MOTION MODE
+   ====================== */
+
+   avatar.style.transition="transform .35s ease, box-shadow .35s ease";
+   avatar.style.willChange="transform";
+
+   navUser.style.transition="transform .35s ease, opacity .35s ease";
+   navUser.style.willChange="transform";
+
+   if(animate){
+
+     avatar.style.transform="scale(1.25)";
+     avatar.style.boxShadow="0 0 14px rgba(212,175,55,.85)";
+
+     navUser.style.transform="translateY(-6px)";
+     navUser.style.opacity="0.4";
+
+     setTimeout(()=>{
+       avatar.style.transform="scale(1)";
+       navUser.style.transform="translateY(0)";
+       navUser.style.opacity="1";
+     },280);
+   }
 
  }else{
 
@@ -119,7 +143,6 @@ function fintechNavbarUpdate(email){
    navUser.innerHTML="";
 
    document.body.classList.remove("vip-user");
-
  }
 }
 
@@ -142,7 +165,7 @@ document.addEventListener("DOMContentLoaded",()=>{
  const savedUser=localStorage.getItem("fintechUser");
 
  if(savedUser){
-   fintechNavbarUpdate(savedUser);
+   fintechNavbarUpdate(savedUser,false);
  }
 
 });
