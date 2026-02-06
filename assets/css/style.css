@@ -1172,3 +1172,75 @@ header{
 .nav-dropdown.mega:hover .mega-menu{
  display:flex;
 }
+
+/* =====================================
+🔥 ULTRA FLOATING MEGA PANEL
+===================================== */
+
+.nav-dropdown.floating{
+ position:relative;
+}
+
+.mega-panel{
+ position:absolute;
+ top:55px;
+ left:50%;
+ transform:translateX(-50%);
+ width:720px;
+ background:#0b0b0b;
+ border-radius:18px;
+ padding:22px;
+ display:none;
+ gap:25px;
+ box-shadow:0 30px 70px rgba(0,0,0,.5);
+ backdrop-filter:blur(20px);
+ z-index:999;
+}
+
+.nav-dropdown.floating:hover .mega-panel{
+ display:flex;
+}
+
+.mega-left{
+ width:180px;
+ display:flex;
+ flex-direction:column;
+ gap:10px;
+}
+
+.mega-left div{
+ padding:8px;
+ border-radius:8px;
+ cursor:pointer;
+ transition:.25s;
+}
+
+.mega-left div:hover{
+ background:rgba(212,175,55,.15);
+}
+
+.mega-right{
+ flex:1;
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:14px;
+}
+
+.mega-card{
+ background:#111;
+ border-radius:12px;
+ padding:12px;
+ text-align:center;
+ cursor:pointer;
+ transition:.25s;
+}
+
+.mega-card img{
+ width:100%;
+ border-radius:10px;
+}
+
+.mega-card:hover{
+ transform:translateY(-4px);
+ background:rgba(212,175,55,.15);
+}
