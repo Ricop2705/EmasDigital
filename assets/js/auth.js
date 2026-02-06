@@ -1,9 +1,6 @@
 /* =====================================
    ULTRA FINTECH AUTH ENGINE (FINAL CLEAN)
-   + ULTRA SUPER APP AVATAR MOTION ENGINE
-   + ULTRA IDENTITY ENGINE
-   + ULTRA PRESENCE ENGINE
-   + ULTRA AI GREETING ENGINE
+   + IDENTITY + PRESENCE + AI GREETING
 ===================================== */
 
 function getAuth(){
@@ -80,7 +77,6 @@ function loginGoogle(){
 
 /* =================================
 🔥 ULTRA SUPER APP NAVBAR ENGINE
-+ AI GREETING + IDENTITY + PRESENCE
 ================================= */
 
 function fintechNavbarUpdate(email,animate=false){
@@ -102,17 +98,17 @@ function fintechNavbarUpdate(email,animate=false){
    const firstLetter=name.charAt(0).toUpperCase();
 
    /* ===== IDENTITY ENGINE ===== */
-
    avatar.innerText=firstLetter;
    avatar.style.background=createIdentityColor(name);
    avatar.style.color="#fff";
    avatar.style.fontWeight="600";
    avatar.style.alignItems="center";
    avatar.style.justifyContent="center";
+
+   /* ===== PRESENCE ENGINE ===== */
    avatar.classList.add("nav-avatar-online");
 
    /* ===== MEMBER BADGE ===== */
-
    let badge="";
    const member=localStorage.getItem("memberType");
 
@@ -121,8 +117,7 @@ function fintechNavbarUpdate(email,animate=false){
      document.body.classList.add("vip-user");
    }
 
-   /* ===== AI GREETING ENGINE ===== */
-
+   /* ===== AI GREETING ===== */
    const greeting=getAIGreeting();
 
    navUser.innerHTML=`
@@ -132,7 +127,6 @@ function fintechNavbarUpdate(email,animate=false){
    `;
 
    /* ===== MOTION ENGINE ===== */
-
    avatar.style.transition="transform .35s ease, box-shadow .35s ease";
    navUser.style.transition="transform .35s ease, opacity .35s ease";
 
@@ -159,12 +153,14 @@ function fintechNavbarUpdate(email,animate=false){
    navUser.style.display="none";
    navUser.innerHTML="";
 
+   avatar.classList.remove("nav-avatar-online");
+
    document.body.classList.remove("vip-user");
  }
 }
 
 /* ===============================
-   ULTRA AI GREETING ENGINE
+   AI GREETING ENGINE
 ================================ */
 
 function getAIGreeting(){
@@ -179,7 +175,7 @@ function getAIGreeting(){
 }
 
 /* ===============================
-   ULTRA IDENTITY COLOR ENGINE
+   IDENTITY COLOR ENGINE
 ================================ */
 
 function createIdentityColor(name){
