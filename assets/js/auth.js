@@ -272,13 +272,22 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 });
 
+document.addEventListener("DOMContentLoaded", function(){
 
-/* expose global agar onclick HTML bisa akses */
-window.openLogin = openLogin;
-window.openSignup = openSignup;
-window.loginManual = loginManual;
-window.loginGoogle = loginGoogle;
-window.closeAuth = closeAuth;
+  const savedUser = localStorage.getItem("user");
+
+  if(savedUser){
+
+     if(typeof updateUserUI === "function"){
+        updateUserUI(savedUser);
+     }
+
+     if(typeof renderNavbarUser === "function"){
+        renderNavbarUser(savedUser);
+     }
+  }
+
+});
 
 function doLogin(){
 
@@ -320,3 +329,10 @@ function renderNavbarUser(email){
 
 window.renderNavbarUser = renderNavbarUser;
 
+
+/* expose global agar onclick HTML bisa akses */
+window.openLogin = openLogin;
+window.openSignup = openSignup;
+window.loginManual = loginManual;
+window.loginGoogle = loginGoogle;
+window.closeAuth = closeAuth;
