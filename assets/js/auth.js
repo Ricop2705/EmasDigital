@@ -1,6 +1,7 @@
 /* =====================================
    ULTRA FINTECH AUTH ENGINE (FINAL CLEAN)
    + ULTRA SUPER APP AVATAR MOTION ENGINE
+   + ULTRA IDENTITY ENGINE
 ===================================== */
 
 function getAuth(){
@@ -77,6 +78,7 @@ function loginGoogle(){
 
 /* =================================
 🔥 ULTRA SUPER APP NAVBAR ENGINE
++ ULTRA IDENTITY ENGINE
 ================================= */
 
 function fintechNavbarUpdate(email,animate=false){
@@ -91,10 +93,22 @@ function fintechNavbarUpdate(email,animate=false){
 
    if(loginBtn) loginBtn.style.display="none";
 
-   avatar.style.display="block";
+   avatar.style.display="flex";
    navUser.style.display="block";
 
    const name=email.split("@")[0];
+   const firstLetter=name.charAt(0).toUpperCase();
+
+   /* ======================
+      ULTRA IDENTITY ENGINE
+   ====================== */
+
+   avatar.innerText=firstLetter;
+   avatar.style.background=createIdentityColor(name);
+   avatar.style.color="#fff";
+   avatar.style.fontWeight="600";
+   avatar.style.alignItems="center";
+   avatar.style.justifyContent="center";
 
    let badge="";
    const member=localStorage.getItem("memberType");
@@ -144,6 +158,24 @@ function fintechNavbarUpdate(email,animate=false){
 
    document.body.classList.remove("vip-user");
  }
+}
+
+/* ===============================
+   ULTRA IDENTITY COLOR ENGINE
+================================ */
+
+function createIdentityColor(name){
+
+ let hash=0;
+
+ for(let i=0;i<name.length;i++){
+   hash=name.charCodeAt(i)+((hash<<5)-hash);
+ }
+
+ const color1=`hsl(${hash%360},70%,45%)`;
+ const color2=`hsl(${(hash+80)%360},70%,55%)`;
+
+ return `linear-gradient(135deg, ${color1}, ${color2})`;
 }
 
 /* ===============================
