@@ -1,16 +1,18 @@
 /* =====================================
-   ULTRA FINTECH AUTH ENGINE
+   ULTRA FINTECH AUTH ENGINE (CLEAN FIX)
 ===================================== */
+
 function getAuth(){
  return document.getElementById("authPopup");
 }
 
+/* ==========================
+   OPEN LOGIN / SIGNUP
+========================== */
 
 function openLogin(){
-
  const authPopup = getAuth();
  if(!authPopup) return;
-
  authPopup.classList.add("show");
 
  const title=document.getElementById("authTitle");
@@ -18,19 +20,22 @@ function openLogin(){
 }
 
 function openSignup(){
-
  const authPopup = getAuth();
  if(!authPopup) return;
-
  authPopup.classList.add("show");
 
  const title=document.getElementById("authTitle");
  if(title) title.innerText="Sign Up";
 }
 
+function closeAuth(){
+ const authPopup=getAuth();
+ if(!authPopup) return;
+ authPopup.classList.remove("show");
+}
 
 /* ==========================
-   MANUAL LOGIN / SIGNUP
+   LOGIN MANUAL
 ========================== */
 
 function loginManual(){
@@ -43,88 +48,63 @@ function loginManual(){
    return;
  }
 
- localStorage.setItem("userEmail",email);
+ localStorage.setItem("fintechUser",email);
+
  updateUserUI(email);
-renderNavbarUser(email);
+ renderNavbarUser(email);
+
  showToast("Login berhasil 😈");
  closeAuth();
-
 }
 
-function closeAuth(){
- const authPopup=getAuth();
- if(!authPopup) return;
- authPopup.classList.remove("show");
-}
-
-/* ==========================
-   GOOGLE LOGIN SIMULASI
-========================== */
-
+/* GOOGLE LOGIN SIMULASI */
 function loginGoogle(){
 
  showToast("Menghubungkan Google...");
 
  setTimeout(()=>{
-   localStorage.setItem("userEmail","google_user@gmail.com");
+   const email="google_user@gmail.com";
+
+   localStorage.setItem("fintechUser",email);
+
+   updateUserUI(email);
+   renderNavbarUser(email);
+
    showToast("Login Google berhasil 🚀");
    closeAuth();
  },900);
 }
 
+/* ===============================
+   ULTRA NAVBAR FINTECH ENGINE
+================================ */
 
-/* =====================================
-   FINTECH AUTH PRO EXPERIENCE 😈
-===================================== */
+function renderNavbarUser(email){
 
-function createUserDropdown(name){
+ const navUser = document.getElementById("navUser");
+ if(!navUser) return;
 
- let box=document.getElementById("userDropdown");
-
- if(!box){
-
-  box=document.createElement("div");
-  box.id="userDropdown";
-
-  box.style.position="absolute";
-  box.style.top="60px";
-  box.style.right="20px";
-  box.style.background="#111";
-  box.style.border="1px solid rgba(212,175,55,.4)";
-  box.style.borderRadius="16px";
-  box.style.padding="10px";
-  box.style.display="none";
-  box.style.zIndex="9999";
-
-  box.innerHTML=`
-    <div style="padding:8px 12px;cursor:pointer" onclick="logoutUser()">🚪 Logout</div>
-  `;
-
-  document.body.appendChild(box);
+ if(!email){
+   navUser.innerHTML=`<a onclick="showLogin()">Login</a>`;
+   return;
  }
 
- return box;
+ const name=email.split("@")[0];
+
+ navUser.innerHTML=`
+   <div class="nav-avatar">
+     <span class="avatar-circle">${name[0].toUpperCase()}</span>
+     <span class="avatar-name">${name}</span>
+   </div>
+ `;
 }
 
-function attachAvatarEvent(){
+window.renderNavbarUser=renderNavbarUser;
 
- const avatar=document.getElementById("navUser");
-
- if(!avatar) return;
-
- const dropdown=createUserDropdown();
-
- avatar.onclick=function(){
-
-   dropdown.style.display=
-     dropdown.style.display==="block"?"none":"block";
- }
-}
-
-/* UPDATE NAVBAR PRO */
+/* UPDATE USER UI */
 function updateUserUI(email){
 
- if(!email || typeof email !== "string") return;
+ if(!email) return;
 
  const nav=document.querySelector("#navMenu");
  if(!nav) return;
@@ -136,203 +116,38 @@ function updateUserUI(email){
    user.id="navUser";
    nav.appendChild(user);
  }
-
- const name = email.includes("@")
-   ? email.split("@")[0]
-   : email;
-
- user.innerHTML=`
- <span style="
-   background:#d4af37;
-   padding:6px 14px;
-   border-radius:20px;
-   color:#000;
-   font-weight:bold;
- ">
- 👤 ${name}
- </span>
- `;
 }
 
-
-/* LOGOUT ENGINE */
+/* LOGOUT */
 function logoutUser(){
 
  localStorage.removeItem("fintechUser");
 
  const user=document.getElementById("navUser");
- if(user) user.remove();
-
- const dropdown=document.getElementById("userDropdown");
- if(dropdown) dropdown.remove();
+ if(user) user.innerHTML=`<a onclick="showLogin()">Login</a>`;
 
  showToast("Logout berhasil");
 }
 
-/* SLIDE ANIMATION POPUP */
-document.addEventListener("DOMContentLoaded",()=>{
-
- const popup=document.getElementById("authPopup");
- if(!popup) return;
-
- popup.style.transition="all .35s ease";
- popup.style.transform="translateY(40px)";
- popup.style.opacity="0";
-
- const observer=new MutationObserver(()=>{
-   if(popup.classList.contains("show")){
-     popup.style.transform="translateY(0)";
-     popup.style.opacity="1";
-   }
- });
-
- observer.observe(popup,{attributes:true});
-});
-
-/* =====================================
-   ULTRA SUPER APP AUTH ENGINE 😈🚀
-===================================== */
-
-/* CHECK LOGIN STATUS */
-function isLoggedIn(){
- return !!localStorage.getItem("fintechUser");
-}
-
-/* LOCK CHECKOUT JIKA BELUM LOGIN */
-const oldCheckout = window.checkoutGold;
-
-window.checkoutGold = function(){
-
- if(!isLoggedIn()){
-   showToast("Login dulu untuk checkout 😈");
-   openLogin();
-   return;
- }
-
- if(oldCheckout) oldCheckout();
-}
-
-/* STATUS MEMBER DI AVATAR */
-function showMemberBadge(){
-
- const type = localStorage.getItem("memberType");
- const avatar = document.getElementById("navUser");
-
- if(!type || !avatar) return;
-
- avatar.innerHTML += `
-   <span style="
-     margin-left:6px;
-     font-size:11px;
-     background:#111;
-     padding:3px 8px;
-     border-radius:10px;
-     border:1px solid #d4af37;
-   ">
-   ${type.toUpperCase()}
-   </span>
- `;
-}
-
-/* AUTO DASHBOARD FEEL */
-function autoDashboard(){
-
- const dash=document.getElementById("memberDashboard");
- if(!dash) return;
-
- if(isLoggedIn()){
-   dash.style.display="block";
- }
-}
-
-/* MOTION EFFECT NAVBAR */
-function navbarGlow(){
-
- const nav=document.querySelector("header");
-
- if(!nav || !isLoggedIn()) return;
-
- nav.style.boxShadow="0 0 20px rgba(212,175,55,.2)";
-}
-
-/* INIT SUPER APP */
-document.addEventListener("DOMContentLoaded",()=>{
-
- if(isLoggedIn()){
-   const user=localStorage.getItem("fintechUser");
-
-   if(typeof updateUserUI==="function"){
-     updateUserUI(user);
-   }
-
-   showMemberBadge();
-   autoDashboard();
-   navbarGlow();
- }
-
-});
-
-document.addEventListener("DOMContentLoaded", function(){
-
-  const savedUser = localStorage.getItem("user");
-
-  if(savedUser){
-
-     if(typeof updateUserUI === "function"){
-        updateUserUI(savedUser);
-     }
-
-     if(typeof renderNavbarUser === "function"){
-        renderNavbarUser(savedUser);
-     }
-  }
-
-});
-
-function doLogin(){
-
-  const email = document.getElementById("authEmail").value;
-  const pass  = document.getElementById("authPass").value;
-
-  localStorage.setItem("user",email);
-
-  updateUserUI(email); // 🔥 INI YANG HILANG
-   
-
-  closeLogin();
-}
-
 /* ===============================
-   ULTRA NAVBAR FINTECH ENGINE
+   INIT ENGINE (SATU SAJA)
 ================================ */
 
-function renderNavbarUser(email){
+document.addEventListener("DOMContentLoaded",()=>{
 
-  const navUser = document.getElementById("navUser");
-  if(!navUser) return;
+ const savedUser=localStorage.getItem("fintechUser");
 
-  if(!email){
-     navUser.innerHTML =
-       `<a onclick="showLogin()">Login</a>`;
-     return;
-  }
+ if(savedUser){
+   updateUserUI(savedUser);
+   renderNavbarUser(savedUser);
+ }
 
-  const name = email.split("@")[0];
+});
 
-  navUser.innerHTML = `
-    <div class="nav-avatar">
-      <span class="avatar-circle">${name[0].toUpperCase()}</span>
-      <span class="avatar-name">${name}</span>
-    </div>
-  `;
-}
-
-window.renderNavbarUser = renderNavbarUser;
-
-
-/* expose global agar onclick HTML bisa akses */
-window.openLogin = openLogin;
-window.openSignup = openSignup;
-window.loginManual = loginManual;
-window.loginGoogle = loginGoogle;
-window.closeAuth = closeAuth;
+/* expose global */
+window.openLogin=openLogin;
+window.openSignup=openSignup;
+window.loginManual=loginManual;
+window.loginGoogle=loginGoogle;
+window.closeAuth=closeAuth;
+window.logoutUser=logoutUser;
