@@ -1240,3 +1240,37 @@ header{
  transform:translateY(-4px);
  background:rgba(212,175,55,.15);
 }
+
+/* =====================================
+🔥 ULTRA MOBILE MEGA PANEL MODE
+===================================== */
+
+@media (max-width:768px){
+
+  .nav-dropdown.floating{
+    position:relative;
+  }
+
+  .mega-panel{
+    position:relative !important;
+    width:100% !important;
+    top:0 !important;
+    left:0 !important;
+    transform:none !important;
+    display:none;
+    flex-direction:column;
+    padding:12px;
+    background:#0b0b0b;
+    box-shadow:none;
+    border-radius:12px;
+  }
+
+  .mega-panel.open{
+    display:flex !important;
+  }
+
+  .mega-panel .card{
+    width:100%;
+  }
+
+}
