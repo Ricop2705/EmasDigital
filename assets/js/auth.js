@@ -120,11 +120,12 @@ function fintechNavbarUpdate(email,animate=false){
    /* ===== AI GREETING ===== */
    const greeting=getAIGreeting();
 
-   navUser.innerHTML=`
-     <span class="avatar-name">${greeting} ${name} 👋</span>
-     ${badge}
-     <a onclick="logoutUser()" class="logout-btn">Logout</a>
-   `;
+  navUser.innerHTML=`
+<span class="avatar-name">${greeting} ${name} 👋</span>
+${badge}
+<a onclick="openProfile()" class="logout-btn">Profile</a>
+<a onclick="logoutUser()" class="logout-btn">Logout</a>
+`;
 
    /* ===== MOTION ENGINE ===== */
    avatar.style.transition="transform .35s ease, box-shadow .35s ease";
@@ -214,6 +215,123 @@ document.addEventListener("DOMContentLoaded",()=>{
    fintechNavbarUpdate(savedUser,false);
  }
 
+});
+/* =====================================
+   ULTRA PROFILE ENGINE
+===================================== */
+
+function openProfile(){
+ const p=document.getElementById("profilePopup");
+ if(p) p.classList.add("show");
+
+ const profile=JSON.parse(localStorage.getItem("fintechProfile")||"{}");
+
+ if(profile.nickname){
+   document.getElementById("profileName").value=profile.nickname;
+ }
+}
+
+function closeProfile(){
+ const p=document.getElementById("profilePopup");
+ if(p) p.classList.remove("show");
+}
+
+function saveProfile(){
+
+ const name=document.getElementById("profileName").value;
+ const pass=document.getElementById("profilePass").value;
+ const file=document.getElementById("profileAvatar").files[0];
+
+ let profile=JSON.parse(localStorage.getItem("fintechProfile")||"{}");
+
+ if(name) profile.nickname=name;
+ if(pass) profile.password=pass;
+
+ if(file){
+   const reader=new FileReader();
+   reader.onload=function(e){
+     profile.avatar=e.target.result;
+     localStorage.setItem("fintechProfile",JSON.stringify(profile));
+     applyProfile();
+   };
+   reader.readAsDataURL(file);
+ }else{
+   localStorage.setItem("fintechProfile",JSON.stringify(profile));
+   applyProfile();
+ }
+
+ showToast("Profile diperbarui 😈");
+ closeProfile();
+}
+
+function applyProfile(){
+
+ const profile=JSON.parse(localStorage.getItem("fintechProfile")||"{}");
+ const avatar=document.getElementById("navAvatar");
+
+ if(profile.avatar && avatar){
+   avatar.innerHTML=`<img src="${profile.avatar}" style="width:100%;height:100%;border-radius:50%">`;
+ }
+}
+/* =====================================
+   ULTRA ACCOUNT DASHBOARD ENGINE
+===================================== */
+
+function renderAccountDashboard(){
+
+ const email=localStorage.getItem("fintechUser");
+ if(!email) return;
+
+ const name=email.split("@")[0];
+ const avatar=document.getElementById("accountAvatar");
+ const member=localStorage.getItem("memberType")||"FREE";
+
+ if(avatar){
+   avatar.innerText=name.charAt(0).toUpperCase();
+   avatar.style.background=createIdentityColor(name);
+ }
+
+ const accName=document.getElementById("accountName");
+ if(accName) accName.innerText=name;
+
+ const accMember=document.getElementById("accountMember");
+ if(accMember) accMember.innerText="Member "+member;
+
+ const status=document.getElementById("accMemberStatus");
+ if(status) status.innerText=member.toUpperCase();
+
+ renderHistory();
+}
+
+/* RIWAYAT ORDER */
+function renderHistory(){
+
+ const box=document.getElementById("historyList");
+ if(!box) return;
+
+ const history=JSON.parse(localStorage.getItem("orderHistory")||"[]");
+
+ box.innerHTML="";
+
+ if(history.length===0){
+   box.innerHTML="<p>Belum ada transaksi</p>";
+   return;
+ }
+
+ history.forEach(h=>{
+   const div=document.createElement("div");
+   div.className="account-box";
+   div.innerText=h.name+" - Rp "+h.price.toLocaleString("id-ID");
+   box.appendChild(div);
+ });
+
+ const total=document.getElementById("accTotalOrder");
+ if(total) total.innerText=history.length;
+}
+
+/* INIT DASHBOARD */
+document.addEventListener("DOMContentLoaded",()=>{
+ setTimeout(renderAccountDashboard,300);
 });
 
 /* expose global */
