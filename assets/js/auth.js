@@ -118,6 +118,11 @@ document.addEventListener("DOMContentLoaded",()=>{
  if(saved) fintechNavbarUpdate(saved,false);
 });
 
+/* ===== REAL DEPLOY PREP ===== */
+
+window.getCurrentUser=function(){
+  return localStorage.getItem("fintechUser");
+}
 window.openLogin=openLogin;
 window.openSignup=openSignup;
 window.loginManual=loginManual;
