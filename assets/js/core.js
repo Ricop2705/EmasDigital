@@ -37,3 +37,28 @@ if(window.updateFloatingCart) updateFloatingCart();
 boot();
 
 })();
+/* ==============================
+   CORE SAFE PATCH 😈
+   MEMPERBAIKI MODULE TIDAK AKTIF
+============================== */
+
+(function(){
+
+if(window.__CORE_PATCH_READY__) return;
+window.__CORE_PATCH_READY__ = true;
+
+window.addEventListener("load", ()=>{
+
+  // pastikan semua engine hidup setelah load
+  if(typeof renderCart==="function") renderCart();
+  if(typeof updateFloatingCart==="function") updateFloatingCart();
+
+  // restore login navbar
+  const savedUser = localStorage.getItem("fintechUser");
+  if(savedUser && typeof fintechNavbarUpdate==="function"){
+    fintechNavbarUpdate(savedUser,false);
+  }
+
+});
+
+})();
