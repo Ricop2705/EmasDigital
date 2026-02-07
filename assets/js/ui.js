@@ -375,3 +375,35 @@ window.addEventListener("scroll",()=>{
  }
 
 });
+
+/* ===============================
+   ULTRA STABLE FINTECH INIT 😈
+   LEVEL PRODUCTION FINAL
+=============================== */
+
+(function(){
+
+if(window.__ULTRA_STABLE_READY__) return;
+window.__ULTRA_STABLE_READY__ = true;
+
+function stableBoot(){
+
+  // pastikan cart hidup
+  if(typeof renderCart==="function") renderCart();
+  if(typeof updateFloatingCart==="function") updateFloatingCart();
+
+  // restore login navbar
+  const user = localStorage.getItem("fintechUser");
+  if(user && typeof fintechNavbarUpdate==="function"){
+    fintechNavbarUpdate(user,false);
+  }
+
+}
+
+if(document.readyState==="complete"){
+  stableBoot();
+}else{
+  window.addEventListener("load", stableBoot);
+}
+
+})();
