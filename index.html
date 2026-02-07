@@ -202,7 +202,7 @@ style="width:32px;height:32px;border-radius:50%;display:none;">
 <section id="cart">
 <h2 style="text-align:center">🛒 Keranjang Emas Digital</h2>
 
-<div id="cartItemsPanel">
+<div id="cartItems">
 <p id="emptyCart">Keranjang masih kosong</p>
 </div>
 
@@ -225,10 +225,23 @@ style="width:32px;height:32px;border-radius:50%;display:none;">
 
 <div id="toastBox"></div>
 
+
+  <div id="authPopup" class="auth-popup">
+ <div class="auth-card">
+  <h2 id="authTitle">Login</h2>
+  <input id="authEmail">
+  <input id="authPass" type="password">
+  <button onclick="loginManual()">Login</button>
+  <button onclick="loginGoogle()">Google</button>
+ </div>
+</div>
+  
 <script src="assets/js/ui.js"></script>
 <script src="assets/js/auth.js"></script>
 <script src="assets/js/cart.js"></script>
 <script src="assets/js/membership.js"></script>
 
+
 </body>
 </html>
+
