@@ -1,132 +1,294 @@
+/* =====================================
+   ULTRA FINTECH AUTH ENGINE
+===================================== */
 function getAuth(){
  return document.getElementById("authPopup");
 }
 
+
 function openLogin(){
- const p=getAuth();
- if(p) p.classList.add("show");
+
+ const authPopup = getAuth();
+ if(!authPopup) return;
+
+ authPopup.classList.add("show");
+
+ const title=document.getElementById("authTitle");
+ if(title) title.innerText="Login";
 }
 
 function openSignup(){
- const p=getAuth();
- if(p) p.classList.add("show");
+
+ const authPopup = getAuth();
+ if(!authPopup) return;
+
+ authPopup.classList.add("show");
+
+ const title=document.getElementById("authTitle");
+ if(title) title.innerText="Sign Up";
 }
 
-function closeAuth(){
- const p=getAuth();
- if(p) p.classList.remove("show");
-}
+
+/* ==========================
+   MANUAL LOGIN / SIGNUP
+========================== */
 
 function loginManual(){
 
  const email=document.getElementById("authEmail").value;
  const pass=document.getElementById("authPass").value;
 
- if(!email||!pass){
+ if(!email || !pass){
    showToast("Isi data dulu");
    return;
  }
 
- localStorage.setItem("fintechUser",email);
- fintechNavbarUpdate(email,true);
+ localStorage.setItem("userEmail",email);
+ updateUserUI(email);
 
  showToast("Login berhasil 😈");
  closeAuth();
+
 }
+
+function closeAuth(){
+ const authPopup=getAuth();
+ if(!authPopup) return;
+ authPopup.classList.remove("show");
+}
+
+/* ==========================
+   GOOGLE LOGIN SIMULASI
+========================== */
 
 function loginGoogle(){
 
  showToast("Menghubungkan Google...");
 
  setTimeout(()=>{
-   const email="google_user@gmail.com";
-   localStorage.setItem("fintechUser",email);
-   fintechNavbarUpdate(email,true);
+   localStorage.setItem("userEmail","google_user@gmail.com");
    showToast("Login Google berhasil 🚀");
    closeAuth();
  },900);
 }
 
-function fintechNavbarUpdate(email,animate=false){
 
- const avatar=document.getElementById("navAvatar");
- const navUser=document.getElementById("navUser");
- const loginBtn=document.getElementById("navLoginBtn");
+/* =====================================
+   FINTECH AUTH PRO EXPERIENCE 😈
+===================================== */
 
- if(!avatar||!navUser) return;
+function createUserDropdown(name){
 
- if(email){
+ let box=document.getElementById("userDropdown");
 
-   if(loginBtn) loginBtn.style.display="none";
+ if(!box){
 
-   avatar.style.display="flex";
-   navUser.style.display="block";
+  box=document.createElement("div");
+  box.id="userDropdown";
 
-   const name=email.split("@")[0];
-   const first=name.charAt(0).toUpperCase();
+  box.style.position="absolute";
+  box.style.top="60px";
+  box.style.right="20px";
+  box.style.background="#111";
+  box.style.border="1px solid rgba(212,175,55,.4)";
+  box.style.borderRadius="16px";
+  box.style.padding="10px";
+  box.style.display="none";
+  box.style.zIndex="9999";
 
-   avatar.innerText=first;
-   avatar.style.background=createIdentityColor(name);
-   avatar.classList.add("nav-avatar-online");
+  box.innerHTML=`
+    <div style="padding:8px 12px;cursor:pointer" onclick="logoutUser()">🚪 Logout</div>
+  `;
 
-   const greeting=getAIGreeting();
+  document.body.appendChild(box);
+ }
 
-   navUser.innerHTML=
-   `<span class="avatar-name">${greeting} ${name} 👋</span>
-    <a onclick="logoutUser()" class="logout-btn">Logout</a>`;
+ return box;
+}
 
-   if(animate){
-     avatar.style.transform="scale(1.25)";
-     setTimeout(()=>avatar.style.transform="scale(1)",250);
-   }
+function attachAvatarEvent(){
 
- }else{
+ const avatar=document.getElementById("navUser");
 
-   if(loginBtn) loginBtn.style.display="block";
+ if(!avatar) return;
 
-   avatar.style.display="none";
-   navUser.style.display="none";
-   navUser.innerHTML="";
-   avatar.classList.remove("nav-avatar-online");
+ const dropdown=createUserDropdown();
+
+ avatar.onclick=function(){
+
+   dropdown.style.display=
+     dropdown.style.display==="block"?"none":"block";
  }
 }
 
-function getAIGreeting(){
- const h=new Date().getHours();
- if(h>=5&&h<11)return"🌅 Selamat Pagi";
- if(h>=11&&h<15)return"☀️ Selamat Siang";
- if(h>=15&&h<19)return"🌤️ Selamat Sore";
- return"🌙 Selamat Malam";
-}
+/* UPDATE NAVBAR PRO */
+function updateUserUI(email){
 
-function createIdentityColor(name){
- let hash=0;
- for(let i=0;i<name.length;i++){
-  hash=name.charCodeAt(i)+((hash<<5)-hash);
+ if(!email || typeof email !== "string") return;
+
+ const nav=document.querySelector("#navMenu");
+ if(!nav) return;
+
+ let user=document.getElementById("navUser");
+
+ if(!user){
+   user=document.createElement("li");
+   user.id="navUser";
+   nav.appendChild(user);
  }
- return`linear-gradient(135deg,hsl(${hash%360},70%,45%),hsl(${(hash+80)%360},70%,55%))`;
+
+ const name = email.includes("@")
+   ? email.split("@")[0]
+   : email;
+
+ user.innerHTML=`
+ <span style="
+   background:#d4af37;
+   padding:6px 14px;
+   border-radius:20px;
+   color:#000;
+   font-weight:bold;
+ ">
+ 👤 ${name}
+ </span>
+ `;
 }
 
+
+/* LOGOUT ENGINE */
 function logoutUser(){
+
  localStorage.removeItem("fintechUser");
- fintechNavbarUpdate(null);
+
+ const user=document.getElementById("navUser");
+ if(user) user.remove();
+
+ const dropdown=document.getElementById("userDropdown");
+ if(dropdown) dropdown.remove();
+
  showToast("Logout berhasil");
 }
 
+/* SLIDE ANIMATION POPUP */
 document.addEventListener("DOMContentLoaded",()=>{
- const saved=localStorage.getItem("fintechUser");
- if(saved) fintechNavbarUpdate(saved,false);
+
+ const popup=document.getElementById("authPopup");
+ if(!popup) return;
+
+ popup.style.transition="all .35s ease";
+ popup.style.transform="translateY(40px)";
+ popup.style.opacity="0";
+
+ const observer=new MutationObserver(()=>{
+   if(popup.classList.contains("show")){
+     popup.style.transform="translateY(0)";
+     popup.style.opacity="1";
+   }
+ });
+
+ observer.observe(popup,{attributes:true});
 });
 
-/* ===== REAL DEPLOY PREP ===== */
+/* =====================================
+   ULTRA SUPER APP AUTH ENGINE 😈🚀
+===================================== */
 
-window.getCurrentUser=function(){
-  return localStorage.getItem("fintechUser");
+/* CHECK LOGIN STATUS */
+function isLoggedIn(){
+ return !!localStorage.getItem("fintechUser");
 }
-window.openLogin=openLogin;
-window.openSignup=openSignup;
-window.loginManual=loginManual;
-window.loginGoogle=loginGoogle;
-window.closeAuth=closeAuth;
-window.logoutUser=logoutUser;
-window.fintechNavbarUpdate=fintechNavbarUpdate;
+
+/* LOCK CHECKOUT JIKA BELUM LOGIN */
+const oldCheckout = window.checkoutGold;
+
+window.checkoutGold = function(){
+
+ if(!isLoggedIn()){
+   showToast("Login dulu untuk checkout 😈");
+   openLogin();
+   return;
+ }
+
+ if(oldCheckout) oldCheckout();
+}
+
+/* STATUS MEMBER DI AVATAR */
+function showMemberBadge(){
+
+ const type = localStorage.getItem("memberType");
+ const avatar = document.getElementById("navUser");
+
+ if(!type || !avatar) return;
+
+ avatar.innerHTML += `
+   <span style="
+     margin-left:6px;
+     font-size:11px;
+     background:#111;
+     padding:3px 8px;
+     border-radius:10px;
+     border:1px solid #d4af37;
+   ">
+   ${type.toUpperCase()}
+   </span>
+ `;
+}
+
+/* AUTO DASHBOARD FEEL */
+function autoDashboard(){
+
+ const dash=document.getElementById("memberDashboard");
+ if(!dash) return;
+
+ if(isLoggedIn()){
+   dash.style.display="block";
+ }
+}
+
+/* MOTION EFFECT NAVBAR */
+function navbarGlow(){
+
+ const nav=document.querySelector("header");
+
+ if(!nav || !isLoggedIn()) return;
+
+ nav.style.boxShadow="0 0 20px rgba(212,175,55,.2)";
+}
+
+/* INIT SUPER APP */
+document.addEventListener("DOMContentLoaded",()=>{
+
+ if(isLoggedIn()){
+   const user=localStorage.getItem("fintechUser");
+
+   if(typeof updateUserUI==="function"){
+     updateUserUI(user);
+   }
+
+   showMemberBadge();
+   autoDashboard();
+   navbarGlow();
+ }
+
+});
+
+/* ===============================
+   AUTO SYNC USER UI (FINTECH MODE)
+================================ */
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+ const email = localStorage.getItem("userEmail");
+
+ if(email){
+   updateUserUI(email);
+ }
+
+});
+
+/* expose global agar onclick HTML bisa akses */
+window.openLogin = openLogin;
+window.openSignup = openSignup;
+window.loginManual = loginManual;
+window.loginGoogle = loginGoogle;
+window.closeAuth = closeAuth;
