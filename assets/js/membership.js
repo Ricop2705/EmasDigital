@@ -35,25 +35,3 @@ function closeSignup(){
 /* expose ke HTML */
 window.openSignup = openSignup;
 window.closeSignup = closeSignup;
-
-/* ===============================
-   REAL AUTH STATE ENGINE
-================================ */
-
-function isLoggedIn(){
-  return localStorage.getItem("memberType") !== null;
-}
-
-function applyAuthUI(){
-
-  const loginBtn = document.querySelector(".login-link");
-  const memberBtn = document.querySelector(".member-link");
-
-  if(isLoggedIn()){
-    document.body.classList.add("user-logged");
-    if(loginBtn) loginBtn.innerText="Dashboard";
-    if(memberBtn) memberBtn.style.display="inline-block";
-  }
-}
-
-window.addEventListener("load",applyAuthUI);
