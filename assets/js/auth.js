@@ -1,7 +1,3 @@
-/* =====================================
-   ULTRA FINTECH AUTH ENGINE FINAL CLEAN
-===================================== */
-
 function getAuth(){
  return document.getElementById("authPopup");
 }
