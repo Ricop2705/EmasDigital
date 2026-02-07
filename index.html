@@ -1,89 +1,32 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Emas Digital | Investasi Aman & Modern</title>
-  
-<!-- Open Graph WhatsApp -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://ricop2705.github.io/EmasDigital/">
-<meta property="og:title" content="Emas Digital Premium | Investasi Aman & Transparan">
-<meta property="og:description" content="Beli emas digital & fisik bersertifikat. Harga transparan, aman, dan terpercaya.">
-<meta property="og:image" content="https://github.com/Ricop2705/image/blob/main/share.png?raw=true">
 
-<!-- Optional tapi disarankan -->
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-
-  <!-- WhatsApp / Mobile -->
-<meta name="twitter:card" content="summary_large_image">
-
-  <!-- FAVICON LOGO WEBSITE -->
 <link rel="icon" type="image/png" href="assets/img/logo.png">
-<link rel="shortcut icon" href="assets/img/logo.png">
-
-
-<link rel="stylesheet" href="/EmasDigital/assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
 
 <header>
+<nav class="navbar">
 
-  <nav class="navbar">
-  <div class="logo">
-  <img src="https://github.com/Ricop2705/image/blob/main/logo.png?raw=true" alt="Emas Digital Logo">
-  <span>EmasDigital</span>
+<div class="logo">
+<img src="https://github.com/Ricop2705/image/blob/main/logo.png?raw=true">
+<span>EmasDigital</span>
 </div>
 
-  <!-- HAMBURGER -->
-  <div class="hamburger" onclick="toggleMenu()">
-    <span></span>
-    <span></span>
-    <span></span> 
-  </div>
+<div class="hamburger" onclick="toggleMenu()">
+<span></span><span></span><span></span>
+</div>
 
-<!-- ===============================
-   NAVBAR (ULTRA FINTECH READY)
-=============================== -->
 <ul class="nav-menu" id="navMenu">
 
 <li onclick="showHome()">Beranda</li>
-<li class="nav-dropdown mega floating">
-<span class="nav-link">Produk ▾</span>
-
-<div class="mega-panel">
-
-<div class="mega-left">
-<div onclick="scrollToSection('produk')">🔥 Semua Produk</div>
-<div>Emas Batangan</div>
-<div>Emas Digital</div>
-<div>Promo Spesial</div>
-</div>
-
-<div class="mega-right">
-
-<div class="mega-card" onclick="scrollToSection('produk')">
-<img src="https://github.com/Ricop2705/image/blob/main/EmasBatangan.jpg?raw=true">
-<p>Emas 1 Gram</p>
-</div>
-
-<div class="mega-card" onclick="scrollToSection('produk')">
-<img src="https://github.com/Ricop2705/image/blob/main/EmasBatangan2gram.jpg?raw=true">
-<p>Emas 2 Gram</p>
-</div>
-
-<div class="mega-card" onclick="scrollToSection('produk')">
-<img src="https://github.com/Ricop2705/image/blob/main/EmasBatangan3gram.jpg?raw=true">
-<p>Emas 3 Gram</p>
-</div>
-
-</div>
-
-</div>
-</li>
-
+<li onclick="scrollToSection('produk')">Produk</li>
 <li onclick="scrollToSection('keunggulan')">Keunggulan</li>
 <li onclick="scrollToSection('kontak')">Kontak</li>
 
@@ -92,424 +35,62 @@
 <li>
 <img id="navAvatar"
 src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-style="
-width:32px;
-height:32px;
-border-radius:50%;
-display:none;
-align-items:center;
-justify-content:center;
-font-size:14px;
-font-weight:bold;
-color:#fff;
-">
+style="width:32px;height:32px;border-radius:50%;display:none">
 </li>
 
-<li class="nav-dropdown mega">
-  <span class="nav-link">Membership ▾</span>
-
-  <div class="mega-menu">
-
-    <div class="mega-item" onclick="scrollToSection('membership')">
-      <strong>🥇 Gold Member</strong>
-      <p>Akses harga spesial</p>
-    </div>
-
-    <div class="mega-item" onclick="scrollToSection('membership')">
-      <strong>💎 Platinum Member</strong>
-      <p>Layanan VIP prioritas</p>
-    </div>
-
-  </div>
+<li class="nav-member" onclick="scrollToSection('membership')">
+Membership
 </li>
 
-
-
-<!-- 🔥 AUTO USER ENGINE TARGET -->
 <li id="navUser" style="display:none;"></li>
 
 </ul>
-
+</nav>
 </header>
 
-<div id="home">
-<section class="hero">
-  <div>
-    <h1>Emas Digital & Fisik Premium</h1>
-    <p>Investasi emas aman, transparan, dan bersertifikat internasional.</p>
-    <button onclick="scrollToSection('produk')">Lihat Produk</button>
-  </div>
-</section>
-
 <section id="produk">
-<h2>Produk Emas Unggulan</h2>
 <div class="products">
-  <div class="card">
-    <img src="https://github.com/Ricop2705/image/blob/main/EmasBatangan.jpg?raw=true">
-    <div class="info">
-      <h3>Emas Antam 1 Gram</h3>
-      <div class="price">Rp 3.150.000</div>
-      <button onclick='addToCart({id:1,name:"Emas Antam 1 Gram",price:3150000})'>
-    Beli Sekarang
-  </button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="https://github.com/Ricop2705/image/blob/main/EmasBatangan2gram.jpg?raw=true">
-    <div class="info">
-      <h3>Emas Antam 2 Gram</h3>
-      <div class="price">Rp 6.280.000</div>
-      <button onclick='addToCart({id:2,name:"Emas Antam 2 Gram",price:6280000})'>
-    Beli Sekarang
-  </button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="https://github.com/Ricop2705/image/blob/main/EmasBatangan3gram.jpg?raw=true">
-    <div class="info">
-      <h3>Emas Antam 3 Gram</h3>
-      <div class="price">Rp 9.400.000</div>
-      <button onclick='addToCart({id:3,name:"Emas Antam 3 Gram",price:9400000})'>
-    Beli Sekarang
-  </button>
-    </div>
-  </div>
+<div class="card">
+<button onclick='addToCart({id:1,name:"Emas Antam 1 Gram",price:3150000})'>Beli Sekarang</button>
 </div>
-</section>
-
-<!-- === VERIFIKASI MEMBERSHIP === -->
-<div id="verifyPopup" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.9);
-z-index:999;align-items:center;justify-content:center">
-  <div style="max-width:480px;background:linear-gradient(180deg,rgba(255,255,255,.2),rgba(255,255,255,.08));
-    border-radius:24px;padding:36px;color:#fff;text-align:center">
-    
-    <h2>🔐 Verifikasi Membership</h2>
-    <p style="margin:20px 0;line-height:1.6">
-      Untuk menghindari penyalahgunaan data, kami melakukan verifikasi melalui:
-      <br><br>
-      ✅ Wajah<br>
-      ✅ Lokasi<br>
-      ✅ Rekaman suara
-      <br><br>
-      Tenang, privasi Anda kami jaga sepenuhnya demi kenyamanan pelanggan membership kami.
-    </p>
-
-    <button style="padding:14px 26px;border-radius:999px;border:none;
-      background:linear-gradient(135deg,#d4af37,#fff1b8);font-weight:bold"
-      onclick="confirmVerification()">
-      Saya Setuju & Lanjutkan
-    </button>
-    <div id="verifyLoader" style="display:none;margin-top:25px;">
-  <p id="verifyText" style="margin-bottom:12px;font-weight:600;">
-    🔍 Memindai wajah...
-  </p>
-  <div id="faceScan" class="scan-box">
-    <div class="scan-line"></div>
-    <span>Face Scan</span>
-
-    <div id="locationScan" class="radar">
-    <div class="sweep"></div>
-  </div>  
-  </div>
-
-  <div style="width:100%;height:12px;background:rgba(255,255,255,.2);
-              border-radius:20px;overflow:hidden;">
-    <div id="verifyProgress"
-         style="height:100%;width:0%;
-                background:linear-gradient(90deg,#d4af37,#fff1b8);
-                transition:width .4s ease;">
-    
-    <div id="voiceScan" class="wave">
-  <span></span><span></span><span></span>
-  <span></span><span></span>
-
-  </div>
-    </div>
-  </div>
-</div>
-
-  </div>
-</div>
-
-<!-- MEMBERSHIP GOLD & PLATINUM -->
-<section id="membership">
-<h2>Membership Eksklusif</h2>
-<div class="products">
-  <div class="card" style="border:2px solid #d4af37">
-    <img src="https://github.com/Ricop2705/image/blob/main/goldmember.png?raw=true">
-    <div class="info">
-      <h3>GOLD MEMBER</h3>
-      <p>Akses harga spesial & prioritas pembelian</p>
-      <div class="price">Rp 99.000 / tahun</div>
-      <button onclick="activateMembership('gold')">Aktifkan Membership</button>
-    </div>
-  </div>
-  
-  <div class="card" style="border:2px solid #e5e4e2">
-    <img src="https://github.com/Ricop2705/image/blob/main/platinummember.png?raw=true2">
-    <div class="info">
-      <h3>PLATINUM MEMBER</h3>
-      <p>Harga terbaik, konsultasi & prioritas VIP</p>
-      <div class="price">Rp 199.000 / tahun</div>
-      <button onclick="activateMembership('platinum')">Aktifkan Membership</button>
-    </div>
-  </div>
 </div>
 </section>
 
 <section id="keunggulan">
-<h2>Kenapa Pilih Emas Digital?</h2>
-<ul id="navMenu">
-  <li>✔ Sertifikat LBMA & ANTAM</li>
-  <li>✔ Harga Real-Time & Transparan</li>
-  <li>✔ Penyimpanan Aman & Penarikan Mudah</li>
+<ul>
+<li>✔ Sertifikat LBMA & ANTAM</li>
+<li>✔ Harga Real-Time & Transparan</li>
+<li>✔ Penyimpanan Aman & Penarikan Mudah</li>
 </ul>
 </section>
 
-<section id="kontak">
-<h2>Kontak Kami</h2>
-<p>Email: support@emasdigital.id</p>
-<p>WhatsApp: 08xxxxxxxx</p>
-</section>
-</div>
-
-  <!-- DASHBOARD MEMBER -->
-<div id="memberDashboard" style="display:none;padding:60px 40px;">
- <h2 style="text-align:center;">Account Dashboard</h2>
-
-<div class="account-card">
-  <div id="accountAvatar" class="account-avatar"></div>
-  <div>
-    <div id="accountName"></div>
-    <div id="accountMember"></div>
-  </div>
-</div>
-
-<div class="account-grid">
-
-  <div class="account-box">
-    <h3>Total Transaksi</h3>
-    <p id="accTotalOrder">0</p>
-  </div>
-
-  <div class="account-box">
-    <h3>Status Member</h3>
-    <p id="accMemberStatus">FREE</p>
-  </div>
-
-</div>
-
-<h3 style="margin-top:30px">Riwayat Transaksi</h3>
-<div id="historyList"></div>
-
-<footer>
-<p>© 2026 Emas Digital. All rights reserved.</p>
-</footer>
-
-<!-- === KERANJANG EMAS (SIMULASI) === -->
-<section id="cart" style="padding:60px 40px;background:linear-gradient(135deg,#0b0b0b,#fcb502)">
-  <h2 style="text-align:center">🛒 Keranjang Emas Digital</h2>
-  <div id="cartItemsPanel" style="max-width:800px;margin:30px auto;background:rgb(0, 0, 0);padding:25px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.15)">
-    <p id="emptyCart" style="text-align:center;color:#ffffff">Keranjang masih kosong</p>
-  </div>
-  <div style="text-align:center;margin-top:20px">
-    <button onclick="checkoutGold()" style="padding:14px 30px;border:none;border-radius:30px;background:#d4af37;color:#111;font-weight:bold;cursor:pointer">Checkout Sekarang</button>
-    <div class="checkout-trust">
- 🔒 Transaksi dilindungi sistem keamanan berlapis
-</div>
-  </div>
+<section id="cart">
+<div id="cartItems"></div>
+<button onclick="checkoutGold()">Checkout Sekarang</button>
 </section>
 
-<!-- ===== ADD-ON: PRICE TICKER ===== -->
-<div class="ticker">
-  <div class="track">
-    <span class="badge">Harga Emas 24K: Rp 3.150.000 / gram</span>
-    <span class="badge">Buyback: Rp 1.180.000</span>
-    <span class="badge">Update Real-Time*</span>
-    <span class="badge">Sertifikat LBMA & ANTAM</span>
-    <span class="badge">Harga Emas 24K: Rp 3.150.000 / gram</span>
-    <span class="badge">Buyback: Rp 1.180.000</span>
-  </div>
-</div>
+<a class="wa" href="https://wa.me/6285717442694" target="_blank">
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" style="width:28px">
+</a>
 
-<!-- ===== ADD-ON: GOLD CALCULATOR ===== -->
-<section id="kalkulator">
-  <h2>Simulasi Pembelian Emas</h2>
-  <div class="calc">
-    <div class="panel">
-      <label>Jenis Emas</label>
-      <select id="jenis">
-        <option value="1250000">Emas Digital 24K</option>
-        <option value="3150000">Emas Batangan ANTAM</option>
-      </select>
-      <label>Jumlah (gram)</label>
-      <input type="number" id="gram" value="1" min="0.01" step="0.01" />
-      <div class="result">Total: <span id="total">Rp 3.150.000</span></div>
-    </div>
-    <div class="panel">
-      <p>✔ Disimpan aman</p>
-      <p>✔ Bisa dicairkan</p>
-      <p>✔ Cocok investasi wanita modern</p>
-    </div>
-  </div>
-</section>
+<div id="floatingCart">🛒 <span id="cartCount">0</span></div>
 
-<!-- ===== ADD-ON: TESTIMONIALS ===== -->
-<section>
-  <h2>Apa Kata Mereka</h2>
-  <div class="testi">
-    <div class="cardt">“Tampilannya mewah, belinya gampang.” ⭐⭐⭐⭐⭐ — Rina</div>
-    <div class="cardt">“Nyaman buat investasi rutin.” ⭐⭐⭐⭐⭐ — Maya</div>
-    <div class="cardt">“Aman & terpercaya.” ⭐⭐⭐⭐⭐ — Lestari</div>
-  </div>
-</section>
-
-<!-- ===== ADD-ON: FAQ ===== -->
-<section class="faq">
-  <h2>Pertanyaan Umum</h2>
-  <div class="q">Apakah emas bisa dicairkan?</div><div class="a">Bisa, kapan saja sesuai ketentuan.</div>
-  <div class="q">Apakah ada sertifikat?</div><div class="a">Ya, LBMA & ANTAM.</div>
-</section>
-
-<!-- ===== ADD-ON: WHATSAPP ===== -->
-<a class="wa" href="https://wa.me/6285717442694?text=Halo%20Emas%20Digital" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" style="width:28px;height:28px;"></a>
-<div class="premium-section">
-  <span class="gold-badge">EMAS DIGITAL PREMIUM</span>
-  <h2>Investasi Elegan & Aman</h2>
-  <p>Mulai investasi emas digital dari <b>0.01 gram</b>. Disimpan aman, bersertifikat, dan bisa dicetak fisik kapan saja.</p>
-
-  <div class="trust-grid">
-    <div class="trust-item"><span>🛡️</span>Emas Bersertifikat</div>
-    <div class="trust-item"><span>📈</span>Harga Update Harian</div>
-    <div class="trust-item"><span>💳</span>Pembayaran Aman</div>
-    <div class="trust-item"><span>👩‍💼</span>Dipercaya Wanita Modern</div>
-  </div>
-</div>
-
-<div id="floatingCart">
-  🛒 <span id="cartCount">0</span>
-</div>
-
-<style id="gold-platform-mode">
-/* GOLD PLATFORM MODE - SMART FLOAT ENGINE */
-.wa{
-  transition: bottom .35s ease, transform .25s ease;
-}
-#floatingCart{
-  transition: all .35s ease;
-}
-</style>
-
-<style id="app-feel-mode">
-/* ===== APP FEEL MODE UI ENGINE ===== */
-#floatingCart{
-  backdrop-filter: blur(12px);
-  box-shadow:0 15px 40px rgba(0,0,0,.35);
-  transition:transform .25s ease, box-shadow .25s ease;
-}
-#floatingCart:hover{
-  transform:translateY(-3px);
-}
-.wa{
-  box-shadow:0 10px 30px rgba(0,0,0,.35), 0 0 0 0 rgba(37,211,102,.6);
-  animation:waPulse 2.2s infinite;
-}
-@keyframes waPulse{
-  0%{box-shadow:0 0 0 0 rgba(37,211,102,.6);}
-  70%{box-shadow:0 0 0 12px rgba(37,211,102,0);}
-  100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}
-}
-</style>
-
-<div id="cartPanel">
-  <div class="cart-header">
-    <h3>Keranjang</h3>
-    <button onclick="closeCartPanel()">✕</button>
-  </div>
-  <div id="cartItemsPanel"></div>
-</div>
-
-<!-- PAYMENT PANEL -->
-<div id="paymentPanel" class="payment-panel">
-  <div class="payment-box">
-    <h3>Pilih Metode Pembayaran</h3>
-    <p id="paymentTotal"></p>
-
-    <button onclick="payNow('Transfer Bank')">🏦 Transfer Bank</button>
-    <button onclick="payNow('E-Wallet')">📱 E-Wallet</button>
-    <button onclick="payNow('QRIS')">🔳 QRIS</button>
-
-    <br><br>
-    <button onclick="closePayment()">Tutup</button>
-  </div>
-</div>
-
-<!-- SUCCESS ORDER PANEL -->
-<div id="successPanel" class="success-panel">
-  <div class="success-box">
-    <h2>✅ Pembayaran Diproses</h2>
-    <p id="orderId"></p>
-
-    <button onclick="closeSuccess()">Kembali</button>
-  </div>
-</div>
-
+<div id="paymentPanel" class="payment-panel"></div>
+<div id="successPanel" class="success-panel"></div>
 <div id="toastBox" class="toast-box"></div>
-  
-<script src="assets/js/core.js"></script>
-
-<!-- =============================
-   ULTRA FINTECH AUTH POPUP
-================================= -->
 
 <div id="authPopup" class="auth-popup">
-  <div class="auth-card">
-
-    <h2 id="authTitle">Login</h2>
-
-    <input id="authEmail" type="email" placeholder="Email / Gmail">
-    <input id="authPass" type="password" placeholder="Password">
-
-    <button class="gold-btn" onclick="loginManual()">Login</button>
-
-    <div class="divider">atau</div>
-
-    <button class="google-btn" onclick="loginGoogle()">
-      <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png">
-      Lanjutkan dengan Google
-    </button>
-
-    <p class="auth-switch">
-        Belum punya akun?
-        <a href="javascript:void(0)" onclick="openSignup()">Sign Up</a>
-    </p>
-
-
-  </div>
+<div class="auth-card">
+<h2 id="authTitle">Login</h2>
+<input id="authEmail" type="email">
+<input id="authPass" type="password">
+<button onclick="loginManual()">Login</button>
+<button onclick="loginGoogle()">Google</button>
+<a href="javascript:void(0)" onclick="openSignup()">Sign Up</a>
 </div>
-<!-- =============================
-   ULTRA PROFILE PANEL
-============================= -->
-<div id="profilePopup" class="auth-popup">
-  <div class="auth-card">
-
-    <h2>Edit Profile</h2>
-
-    <input id="profileName" placeholder="Nickname">
-    <input id="profilePass" type="password" placeholder="Password Baru">
-
-    <input type="file" id="profileAvatar">
-
-    <button class="gold-btn" onclick="saveProfile()">Simpan Perubahan</button>
-    <button onclick="closeProfile()">Tutup</button>
-
-  </div>
 </div>
+
+<script src="assets/js/core.js"></script>
 
 </body>
 </html>
-
-
-
