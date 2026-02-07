@@ -116,18 +116,14 @@ function saveCart(){
 
 function checkoutGold(){
 
- if(!localStorage.getItem("memberType")){
-   showToast("Silakan login dulu 🔐");
-   openSignup();
-   return;
- }
-
  if(cart.length===0){
    showToast("Keranjang kosong");
    return;
  }
 
- openPayment();
+ if(typeof openPayment==="function"){
+   openPayment();
+ }
 }
 
 function payNow(method){
@@ -158,9 +154,6 @@ function showProcessing(){
  if(panel){
    panel.classList.add("show");
  }
-let history=JSON.parse(localStorage.getItem("orderHistory")||"[]");
-cart.forEach(i=>history.push(i));
-localStorage.setItem("orderHistory",JSON.stringify(history));
 
  cart=[];
  saveCart();
