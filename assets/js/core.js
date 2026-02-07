@@ -1,14 +1,12 @@
 /* ======================================================
-   ULTRA CORE SAFE ENGINE 😈 FINAL
-   - No Double Init
-   - Ultra Fast Boot
-   - GitHub Safe
+   CORE SAFE ENGINE FINAL 😈
+   SINGLE LOADER ONLY
 ====================================================== */
 
 (function(){
 
 if(window.__AUTO_CORE_LOADED__) return;
-window.__AUTO_CORE_LOADED__=true;
+window.__AUTO_CORE_LOADED__ = true;
 
 const BASE="./";
 
@@ -24,10 +22,8 @@ function loadScript(src){
   const s=document.createElement("script");
   s.src=src;
   s.defer=true;
-
   s.onload=()=>resolve(true);
   s.onerror=()=>resolve(false);
-
   document.body.appendChild(s);
  });
 }
@@ -38,7 +34,6 @@ async function boot(){
    await loadScript(m);
  }
 
- /* SAFE INIT */
  requestAnimationFrame(()=>{
    if(window.renderCart) renderCart();
    if(window.updateFloatingCart) updateFloatingCart();
@@ -47,6 +42,5 @@ async function boot(){
 }
 
 boot();
-
 
 })();
