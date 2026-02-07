@@ -1,44 +1,37 @@
-/* ======================================================
-   CORE SAFE ENGINE FINAL 😈
-   SINGLE LOADER ONLY
-====================================================== */
+/* CORE SAFE ENGINE FINAL FIX */
 
 (function(){
 
 if(window.__AUTO_CORE_LOADED__) return;
-window.__AUTO_CORE_LOADED__ = true;
+window.__AUTO_CORE_LOADED__=true;
 
-const BASE="./";
+const BASE = location.pathname.includes("EmasDigital") ? "/EmasDigital/" : "";
 
 const modules=[
- BASE+"assets/js/ui.js",
- BASE+"assets/js/auth.js",
- BASE+"assets/js/cart.js",
- BASE+"assets/js/membership.js"
+BASE+"assets/js/ui.js",
+BASE+"assets/js/auth.js",
+BASE+"assets/js/cart.js",
+BASE+"assets/js/membership.js"
 ];
 
-function loadScript(src){
- return new Promise(resolve=>{
-  const s=document.createElement("script");
-  s.src=src;
-  s.defer=true;
-  s.onload=()=>resolve(true);
-  s.onerror=()=>resolve(false);
-  document.body.appendChild(s);
- });
+function load(src){
+return new Promise(res=>{
+const s=document.createElement("script");
+s.src=src;
+s.defer=true;
+s.onload=()=>res(true);
+s.onerror=()=>res(false);
+document.body.appendChild(s);
+});
 }
 
 async function boot(){
+for(const m of modules){
+await load(m);
+}
 
- for(const m of modules){
-   await loadScript(m);
- }
-
- requestAnimationFrame(()=>{
-   if(window.renderCart) renderCart();
-   if(window.updateFloatingCart) updateFloatingCart();
- });
-
+if(window.renderCart) renderCart();
+if(window.updateFloatingCart) updateFloatingCart();
 }
 
 boot();
