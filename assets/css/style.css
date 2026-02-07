@@ -166,17 +166,6 @@ footer{
   color:#d8c98f;text-align:center;padding:28px
 }
 
-/* popup umur */
-#agePopup{position:fixed;inset:0;background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center;z-index:999}
-#agePopup .box{
-  background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.06));
-  border:1px solid rgba(246,231,178,.45);
-  padding:34px;border-radius:22px;text-align:center;max-width:420px;color:#fff;
-  box-shadow:0 30px 80px rgba(0,0,0,.55)
-}
-#agePopup button{margin:10px;padding:12px 22px;border:none;border-radius:999px;cursor:pointer;font-weight:800}
-#yes{background:linear-gradient(135deg,var(--gold-soft),var(--gold));color:#1b1606}
-#no{background:#2a2a36;color:#fff}
 
 /* login */
 #loginPage{display:none;padding:90px 20px}
@@ -409,14 +398,6 @@ footer{
     height:200px;
   }
 }
-@media (max-width: 768px){
-  #agePopup .box,
-  #verifyPopup > div{
-    width:90%;
-    max-width:360px;
-    padding:26px;
-  }
-
   #verifyPopup h2{
     font-size:20px;
   }
