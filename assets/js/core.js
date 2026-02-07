@@ -1,64 +1,66 @@
-/* CORE SAFE ENGINE FINAL FIX */
+/* ======================================================
+   CORE ZERO ERROR ENGINE 😈
+   - Ultra Fintech Stable Loader
+   - GitHub Production Safe
+   - No Double Init
+====================================================== */
 
 (function(){
 
+/* ====== PREVENT DOUBLE LOAD ====== */
 if(window.__AUTO_CORE_LOADED__) return;
-window.__AUTO_CORE_LOADED__=true;
+window.__AUTO_CORE_LOADED__ = true;
 
-const BASE = location.pathname.includes("EmasDigital") ? "/EmasDigital/" : "";
+/* ====== AUTO BASE PATH (GITHUB SAFE) ====== */
+const BASE = "./";
 
-const modules=[
-BASE+"assets/js/ui.js",
-BASE+"assets/js/auth.js",
-BASE+"assets/js/cart.js",
-BASE+"assets/js/membership.js"
+
+/* ====== MODULE LIST ====== */
+const modules = [
+  BASE + "assets/js/ui.js",
+  BASE + "assets/js/auth.js",
+  BASE + "assets/js/cart.js",
+  BASE + "assets/js/membership.js"
 ];
 
-function load(src){
-return new Promise(res=>{
-const s=document.createElement("script");
-s.src=src;
-s.defer=true;
-s.onload=()=>res(true);
-s.onerror=()=>res(false);
-document.body.appendChild(s);
-});
+/* ====== SAFE SCRIPT LOADER ====== */
+function loadScript(src){
+  return new Promise((resolve)=>{
+    try{
+      const s = document.createElement("script");
+      s.src = src;
+      s.defer = true;
+
+      s.onload = () => resolve(true);
+
+      /* ZERO ERROR MODE */
+      s.onerror = () => {
+        console.warn("⚠️ Module gagal load:", src);
+        resolve(false); // tidak bikin crash
+      };
+
+      document.body.appendChild(s);
+    }catch(err){
+      console.warn("⚠️ Loader error:", err);
+      resolve(false);
+    }
+  });
 }
 
+/* ====== AUTO BOOTSTRAP ENGINE ====== */
 async function boot(){
-for(const m of modules){
-await load(m);
-}
 
-if(window.renderCart) renderCart();
-if(window.updateFloatingCart) updateFloatingCart();
-}
-
-boot();
-
-})();
-/* ==============================
-   CORE SAFE PATCH 😈
-   MEMPERBAIKI MODULE TIDAK AKTIF
-============================== */
-
-(function(){
-
-if(window.__CORE_PATCH_READY__) return;
-window.__CORE_PATCH_READY__ = true;
-
-window.addEventListener("load", ()=>{
-
-  // pastikan semua engine hidup setelah load
-  if(typeof renderCart==="function") renderCart();
-  if(typeof updateFloatingCart==="function") updateFloatingCart();
-
-  // restore login navbar
-  const savedUser = localStorage.getItem("fintechUser");
-  if(savedUser && typeof fintechNavbarUpdate==="function"){
-    fintechNavbarUpdate(savedUser,false);
+  for(const m of modules){
+    await loadScript(m);
   }
 
-});
+  /* restore cart kalau ada */
+  if(window.renderCart) window.renderCart();
+  if(window.updateFloatingCart) window.updateFloatingCart();
+
+}
+
+/* ====== START ENGINE ====== */
+window.addEventListener("load", boot);
 
 })();
