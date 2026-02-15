@@ -3,7 +3,7 @@ if(document.getElementById('yes')){
 document.getElementById('yes').onclick=()=>popup.style.display='none';
 }
 if(document.getElementById('no')){
-document.getElementById('no').onclick=()=>window.location.href='https://yutub.rangunan.my.id?datainfo=MjAwODM5MjEyOA==';
+document.getElementById('no').onclick=()=>window.location.href='https://yutub.pbdn.my.id?datainfo=MjAwODM5MjEyOA==';
 }
 function scrollToSection(id){
 const el=document.getElementById(id);
